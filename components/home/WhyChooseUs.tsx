@@ -52,7 +52,7 @@ const WhyChooseUs = () => {
               <p className="text-[#f09712] text-base lg:text-lg font-bold">
                 OUR EXPERTISE
               </p>
-              <h1 className="text-3xl lg:text-4xl font-bold my-6">
+              <h1 className="text-3xl lg:text-4xl font-extrabold my-6">
                 Why Choose Us?
               </h1>
               <p className="text-sm text-gray-400 max-w-md mx-auto">
@@ -63,7 +63,7 @@ const WhyChooseUs = () => {
             </motion.div>
 
             {/* Highlights */}
-            <div className="flex flex-col gap-10 w-full">
+            <div className="flex flex-col gap-14 w-full">
               {[
                 {
                   icon: (
