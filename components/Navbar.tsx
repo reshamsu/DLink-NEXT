@@ -64,7 +64,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex text-sm">
-            <Link href="/add-listing" className="select-none btn-orange-sm">
+            <Link href="/add-listing" className="select-none btn-dark-sm">
               Get Started
             </Link>
           </div>
@@ -115,7 +115,7 @@ const Navbar = () => {
           <div className="md:hidden items-center gap-4 p-4 text-sm">
             <Link
               href="/add-listing"
-              className="select-none btn-orange-sm w-full"
+              className="select-none btn-dark-sm w-full"
             >
               Get Started
             </Link>
