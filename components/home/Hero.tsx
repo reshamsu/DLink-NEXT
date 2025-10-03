@@ -21,10 +21,10 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto 2xl:rounded-4xl">
           <div className=" relative h-screen 2xl:rounded-4xl w-full overflow-hidden flex items-center justify-center text-center">
             <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white z-10 gap-8 px-10 md:px-20 lg:px-40">
-              <h1 className="text-3xl md:text-4xl 2xl:text-5xl font-bold flex flex-col gap-2 md:flex-row">
+              <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col gap-2 md:flex-row">
                 Find your Next{" "}
                 <ReactTyped
-                  className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold text-orange-400"
+                  className="text-4xl 2xl:text-5xl font-extrabold text-orange-400"
                   strings={["Property", "Home", "Apartment", "Villa", "Land"]}
                   typeSpeed={120}
                   backSpeed={80}
@@ -34,10 +34,9 @@ const Hero = () => {
               <p className="text-sm 2xl:text-base font-medium max-w-3xl">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
                 odit eos, voluptas suscipit recusandae illum in, laborum itaque
-                cumque, laudantium labore obcaecati iste odio nostrum dicta
-                totam fugiat placeat similique.
+                cumque.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full md:w-fit">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-fit">
                 <Link
                   href="/add-listing"
                   className="flex items-center gap-3 hover:gap-4 duration-500 transition-transform select-none btn-orange-base"

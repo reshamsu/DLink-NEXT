@@ -62,24 +62,25 @@ const Navbar = () => {
           })}
         </ul>
 
-        {/* Desktop Right */}
-        <div className="hidden md:flex items-center gap-4 text-sm">
-          <Link href="/add-listing" className="select-none btn-orange-sm">
-            Get Started
-          </Link>
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex text-sm">
+            <Link href="/add-listing" className="select-none btn-orange-sm">
+              Get Started
+            </Link>
+          </div>
+
+          <button
+            aria-label="Open menu"
+            className="lg:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? (
+              <TbX className="w-8 h-8 cursor-pointer" />
+            ) : (
+              <TbMenu className="w-8 h-8 cursor-pointer" />
+            )}
+          </button>
         </div>
-        {/* Mobile Menu button */}
-        <button
-          aria-label="Open menu"
-          className="lg:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? (
-            <TbX className="w-8 h-8 cursor-pointer" />
-          ) : (
-            <TbMenu className="w-8 h-8 cursor-pointer" />
-          )}
-        </button>
       </nav>
 
       {/* Mobile Dropdown */}
@@ -112,7 +113,10 @@ const Navbar = () => {
             );
           })}
           <div className="md:hidden items-center gap-4 p-4 text-sm">
-            <Link href="/add-listing" className="select-none btn-orange-sm w-full">
+            <Link
+              href="/add-listing"
+              className="select-none btn-orange-sm w-full"
+            >
               Get Started
             </Link>
           </div>
