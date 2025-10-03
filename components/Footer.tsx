@@ -24,7 +24,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-300">
           {/* Logo + Socials */}
-          <div className="flex flex-col items-center text-center md:items-start md:text-start gap-6 w-full md:w-xs">
+          <div className="flex flex-col items-center text-center gap-6 w-full md:w-xs">
             <Link href="/" className="flex items-center gap-2 text-black">
               <div className="relative w-14 h-14">
                 <Image

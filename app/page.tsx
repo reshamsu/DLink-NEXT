@@ -8,7 +8,7 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import dynamic from "next/dynamic";
 
 // Dynamic import of Listings to disable SSR
-const Listings = dynamic(() => import("@/components/home/Listings"), { ssr: false });
+const Listings = dynamic(() => import("@/components/home/Listings"), { ssr: true });
 
 export default function Home() {
   return (
