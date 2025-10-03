@@ -6,18 +6,18 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 // Animation variant
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-};
+// const fadeInUp = {
+//   hidden: { opacity: 0, y: 40 },
+//   visible: (i = 1) => ({
+//     opacity: 1,
+//     y: 0,
+//     transition: {
+//       delay: i * 0.2,
+//       duration: 0.6,
+//       ease: "easeOut",
+//     },
+//   }),
+// };
 
 const WhyChooseUs = () => {
   return (
@@ -29,7 +29,6 @@ const WhyChooseUs = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            variants={fadeInUp}
             className="absolute md:relative left-0 w-full h-[60vh] sm:h-[70vh]"
           >
             <Image
@@ -48,7 +47,6 @@ const WhyChooseUs = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={fadeInUp}
               className="mb-14 text-center"
             >
               <p className="text-[#f09712] text-base lg:text-lg font-bold">
@@ -95,7 +93,6 @@ const WhyChooseUs = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  variants={fadeInUp}
                   className="flex items-start gap-6 lg:gap-10"
                 >
                   {item.icon}

@@ -16,7 +16,7 @@ const Hero = () => {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-orange-800/20" />
+          <div className="absolute inset-0 bg-orange-900/20" />
         </div>
         <div className="max-w-7xl mx-auto 2xl:rounded-4xl">
           <div className=" relative h-screen 2xl:rounded-4xl w-full overflow-hidden flex items-center justify-center text-center">
@@ -44,7 +44,7 @@ const Hero = () => {
                   Find Listing <TbArrowRight size={24} />
                 </Link>
                 <Link
-                  href="/add-listing"
+                  href="https://wa.me/94761676603"
                   className="select-none btn-light-outline"
                 >
                   Book Now

@@ -6,7 +6,6 @@ import {
   FaRegCopyright,
   FaFacebook,
   FaInstagram,
-  FaLinkedin,
 } from "react-icons/fa";
 import { TbMail } from "react-icons/tb";
 import Image from "next/image";

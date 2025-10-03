@@ -1,14 +1,10 @@
 "use client";
 
 import { FaArrowRight } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
-import Button from "@/components/Button";
 import Image from "next/image";
 import Link from "next/link";
 
 const CTA = () => {
-  const router = useRouter();
-
   return (
     <div className="bg-gray-100 text-gray-800 relative">
       <div className="max-w-7xl mx-auto py-12 px-6 2xl:px-0 flex flex-col gap-6">
@@ -33,7 +29,7 @@ const CTA = () => {
             {/* Buttons */}
             <div className="flex items-center text-sm 2xl:text-base gap-4 flex-wrap justify-center lg:justify-start">
               <Link
-                href="/book"
+                href="https://wa.me/94761676603"
                 className="select-none btn-dark-base"
               >
                 Book Now <FaArrowRight size={18} />
