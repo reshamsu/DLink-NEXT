@@ -38,7 +38,7 @@ const Hero = () => {
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-fit">
                 <Link
-                  href="/add-listing"
+                  href="#form"
                   className="flex items-center gap-3 hover:gap-4 duration-500 transition-transform select-none btn-orange-base"
                 >
                   Find Listing <TbArrowRight size={24} />
