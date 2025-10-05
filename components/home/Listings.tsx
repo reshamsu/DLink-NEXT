@@ -2,26 +2,25 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
-import supabase from "../config/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 import { TbBed, TbBath } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
 
-// Supabase raw data type
-// interface SupabaseListing {
-//   id: number;
-//   property_title: string;
-//   city: string;
-//   location: string;
-//   is_furnished: boolean;
-//   bedrooms: number;
-//   bathrooms: number;
-//   property_type: string;
-//   status: string;
-//   image_urls: string[] | string | null;
-// }
+interface SupabaseListing {
+  id: number;
+  property_title: string;
+  city: string;
+  location: string;
+  is_furnished: boolean;
+  bedrooms: number;
+  bathrooms: number;
+  property_type: string;
+  status: string;
+  image_urls: string[] | string | null;
+  created_at: string;
+}
 
-// Frontend listing type
 interface Listing {
   id: number;
   title: string;
@@ -34,7 +33,7 @@ interface Listing {
   image: string;
 }
 
-const easeOut: Transition["ease"] = [0.25, 0.1, 0.25, 1]; // cubic-bezier equivalent of easeOut
+const easeOut: Transition["ease"] = [0.25, 0.1, 0.25, 1];
 
 const rowVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -55,6 +54,7 @@ const Listings: React.FC = () => {
 
   const fetchListings = async () => {
     setLoading(true);
+
     const { data, error } = await supabase
       .from("listings")
       .select("*")
@@ -64,33 +64,40 @@ const Listings: React.FC = () => {
       console.error("Error fetching listings:", error);
       setListingsData([]);
     } else if (data) {
-      const formattedData: Listing[] = data.map((listing) => {
-        let images: string[] = [];
+      const formattedData: Listing[] = (data as SupabaseListing[]).map(
+        (listing) => {
+          let images: string[] = [];
 
-        if (Array.isArray(listing.image_urls)) images = listing.image_urls;
-        else if (typeof listing.image_urls === "string") {
-          try {
-            images = JSON.parse(listing.image_urls);
-          } catch {
-            images = [];
+          if (Array.isArray(listing.image_urls)) {
+            images = listing.image_urls;
+          } else if (typeof listing.image_urls === "string") {
+            try {
+              images = JSON.parse(listing.image_urls);
+            } catch {
+              images = [];
+            }
           }
-        }
 
-        return {
-          id: listing.id,
-          title: listing.property_title,
-          location: `${listing.city} - ${listing.location}`,
-          is_furnished: listing.is_furnished,
-          bedrooms: listing.bedrooms,
-          bathrooms: listing.bathrooms,
-          type: listing.property_type,
-          status: listing.status,
-          image: images.length > 0 ? images[0] : "/assets/banner/modern.webp",
-        };
-      });
+          return {
+            id: listing.id,
+            title: listing.property_title,
+            location: `${listing.city} - ${listing.location}`,
+            is_furnished: listing.is_furnished,
+            bedrooms: listing.bedrooms,
+            bathrooms: listing.bathrooms,
+            type: listing.property_type,
+            status: listing.status,
+            image:
+              images.length > 0
+                ? images[0]
+                : "/assets/banner/modern.webp", // fallback
+          };
+        }
+      );
 
       setListingsData(formattedData);
     }
+
     setLoading(false);
   };
 
@@ -98,25 +105,25 @@ const Listings: React.FC = () => {
     fetchListings();
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = () =>
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
 
   return (
     <div className="max-w-7xl mx-auto py-14 px-6 2xl:px-0 text-gray-800">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>
-          <p className="text-[#f09712] text-base font-extrabold mb-1">LISTINGS</p>
+          <p className="text-[#f09712] text-base font-extrabold mb-1">
+            LISTINGS
+          </p>
           <h1 className="text-2xl font-bold mb-0">Featured Listings</h1>
         </div>
-{/* 
-        <input
-          type="text"
-          placeholder="Find Listing"
-          className="border-2 border-gray-100 focus:outline-none focus:ring-2 focus:ring-[#f09712] px-6 py-2.5 w-full md:w-64 rounded-full"
-        /> */}
       </div>
 
-      {/* Loader */}
+      {/* Loader / Empty / Data */}
       {loading ? (
         <div className="flex justify-center items-center py-20">
           <div className="w-8 h-8 border-4 border-[#f09712] border-t-transparent rounded-full animate-spin"></div>
@@ -143,6 +150,7 @@ const Listings: React.FC = () => {
                   src={listing.image}
                   alt={listing.title}
                   fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-3xl"
                 />
                 <div className="absolute inset-0 bg-black opacity-20 group-hover:opacity-30 transition-opacity duration-500 rounded-3xl"></div>

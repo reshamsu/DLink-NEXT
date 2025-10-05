@@ -20,7 +20,7 @@ const Navbar = () => {
   }, [isOpen]);
 
   return (
-    <header className="fixed z-40 w-full shadow-xs">
+    <header className="fixed z-40 w-full shadow-sm">
       <nav className="max-w-7xl mx-auto flex items-center justify-between py-2.5 px-6 2xl:px-0">
         <Link href="/" className="flex items-center gap-2">
           <div className="relative w-14 h-14">
