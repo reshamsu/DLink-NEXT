@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
-import { supabase } from "@/lib/supabaseClient";
 import { TbBed, TbBath } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
+import { supabase } from "@/utils/supabaseClient";
 
 interface SupabaseListing {
   id: number;
