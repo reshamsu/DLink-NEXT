@@ -40,11 +40,7 @@ const rowVariants: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.4,
-      ease: easeOut,
-    },
+    transition: { delay: i * 0.1, duration: 0.4, ease: easeOut },
   }),
 };
 
@@ -52,73 +48,72 @@ const Listings: React.FC = () => {
   const [listingsData, setListingsData] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchListings = async () => {
-    setLoading(true);
+  useEffect(() => {
+    const fetchListings = async () => {
+      setLoading(true);
 
-    const { data, error } = await supabase
-      .from("listings")
-      .select("*")
-      .order("created_at", { ascending: false });
+      if (!supabase) {
+        console.warn("Supabase client is not initialized.");
+        setLoading(false);
+        return;
+      }
 
-    if (error) {
-      console.error("Error fetching listings:", error);
-      setListingsData([]);
-    } else if (data) {
-      const formattedData: Listing[] = (data as SupabaseListing[]).map(
-        (listing) => {
-          let images: string[] = [];
+      const { data, error } = await supabase
+        .from("listings")
+        .select("*")
+        .order("created_at", { ascending: false });
 
-          if (Array.isArray(listing.image_urls)) {
-            images = listing.image_urls;
-          } else if (typeof listing.image_urls === "string") {
-            try {
-              images = JSON.parse(listing.image_urls);
-            } catch {
-              images = [];
+      if (error) {
+        console.error("Error fetching listings:", error);
+        setListingsData([]);
+      } else if (data) {
+        const formattedData: Listing[] = (data as SupabaseListing[]).map(
+          (listing) => {
+            let images: string[] = [];
+
+            if (Array.isArray(listing.image_urls)) images = listing.image_urls;
+            else if (typeof listing.image_urls === "string") {
+              try {
+                images = JSON.parse(listing.image_urls);
+              } catch {
+                images = [];
+              }
             }
-          }
 
-          return {
-            id: listing.id,
-            title: listing.property_title,
-            location: `${listing.city} - ${listing.location}`,
-            is_furnished: listing.is_furnished,
-            bedrooms: listing.bedrooms,
-            bathrooms: listing.bathrooms,
-            type: listing.property_type,
-            status: listing.status,
-            image:
-              images.length > 0
+            return {
+              id: listing.id,
+              title: listing.property_title,
+              location: `${listing.city} - ${listing.location}`,
+              is_furnished: listing.is_furnished,
+              bedrooms: listing.bedrooms,
+              bathrooms: listing.bathrooms,
+              type: listing.property_type,
+              status: listing.status,
+              image: images.length > 0
                 ? images[0]
                 : "/assets/banner/modern.webp", // fallback
-          };
-        }
-      );
+            };
+          }
+        );
+        setListingsData(formattedData);
+      }
 
-      setListingsData(formattedData);
-    }
+      setLoading(false);
+    };
 
-    setLoading(false);
-  };
-
-  useEffect(() => {
     fetchListings();
   }, []);
 
   const scrollToTop = () =>
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    typeof window !== "undefined" &&
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <div className="max-w-7xl mx-auto py-14 px-6 2xl:px-0 text-gray-800">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>
-          <p className="text-[#f09712] text-base font-extrabold mb-1">
-            LISTINGS
-          </p>
+          <p className="text-[#f09712] text-base font-extrabold mb-1">LISTINGS</p>
           <h1 className="text-2xl font-bold mb-0">Featured Listings</h1>
         </div>
       </div>
@@ -190,9 +185,7 @@ const Listings: React.FC = () => {
                   <span className="inline-block bg-green-300 text-[11px] font-semibold px-3 py-1.5 rounded-lg">
                     {listing.status}
                   </span>
-                  <p className="text-sm text-[#f09712] font-semibold">
-                    {listing.type}
-                  </p>
+                  <p className="text-sm text-[#f09712] font-semibold">{listing.type}</p>
                 </div>
               </div>
             </motion.div>
