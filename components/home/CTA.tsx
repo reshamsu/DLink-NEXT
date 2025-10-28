@@ -45,13 +45,13 @@ const CTA = () => {
 
           {/* Right Section */}
           <div className="flex justify-center items-center absolute inset-0 lg:relative w-full h-full">
-            <Image
+            {/* <Image
               src="/assets/banner/property.jpg"
               alt="pattern"
               fill
               className="absolute top-0 object-cover opacity-20 lg:opacity-80 rounded-3xl"
               priority
-            />
+            /> */}
           </div>
         </div>
       </div>

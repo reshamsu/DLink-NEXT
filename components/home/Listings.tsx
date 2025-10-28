@@ -5,7 +5,7 @@ import { motion, Variants, Transition } from "framer-motion";
 import { TbBed, TbBath } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
-import { supabase } from "@/utils/supabaseClient";
+import { supabase } from "@/lib/supabaseClient";
 
 interface SupabaseListing {
   id: number;
@@ -152,7 +152,7 @@ const Listings: React.FC = () => {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col flex-1 py-4 px-3">
+              <div className="flex flex-col flex-1 py-4 px-2">
                 <Link
                   href={`/property/listing/${listing.id}`}
                   onClick={scrollToTop}

@@ -20,7 +20,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-200 text-gray-600 border-t border-black/10 relative">
+    <footer className="bg-gray-100 text-gray-600 border-t border-black/5 relative">
       <div className="max-w-7xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-300">
           {/* Logo + Socials */}
@@ -85,7 +85,7 @@ const Footer = () => {
           {/* Footer Links */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full text-xs 2xl:text-sm">
             {/* Support */}
-            <div className="ml-0 xl:ml-10">
+            <div className="ml-0 xl:ml-6">
               <h6 className="text-sm 2xl:text-base font-semibold mb-3 text-black">
                 Support
               </h6>
@@ -209,7 +209,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-sm flex items-center text-center gap-1">
+        <p className="text-[14px] flex items-center text-center gap-1">
           <FaRegCopyright /> 2025 D-Link Colombo . All Rights Reserved.
         </p>
       </div>

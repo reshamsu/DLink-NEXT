@@ -8,7 +8,7 @@ import Link from "next/link";
 const Hero = () => {
   return (
     <>
-      <div className="bg-white/90 text-gray-900 relative pt-10">
+      <div className="bg-white/90 text-gray-900 relative">
         <div className="absolute inset-0 w-full transition-opacity duration-1000 bg-gray-100">
           <Image
             src="/assets/banner/hero_image.jpg"
