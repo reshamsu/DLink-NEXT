@@ -6,40 +6,40 @@ const Form = () => {
     <div className="bg-gray-100 text-gray-800" id="form">
       <div className="max-w-6xl mx-auto py-14 px-6 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col items-center text-center gap-2">
-          <h2 className="text-2xl font-bold">Find Your Ideal Property</h2>
-          <p className="text-gray-500">
+          <h2 className="text-xl 2xl:text-2xl font-bold">Find Your Ideal Property</h2>
+          <p className="text-sm 2xl:text-base text-gray-500">
             Choose location and dates to find available property
           </p>
         </div>
         <form
           method="post"
-          className="bg-white text-sm p-7 rounded-3xl shadow-md w-full flex flex-col lg:flex-row gap-4"
+          className="bg-white text-[15px] p-7.5 rounded-3xl shadow-md w-full flex flex-col justify-between lg:flex-row gap-6"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {/* Search Property */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="property" className="font-medium">
+              <label htmlFor="property" className="font-bold">
                 Search Property
               </label>
               <input
                 id="property"
                 type="text"
                 placeholder="Property Title or Name"
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl hover:scale-105"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/5 px-4 py-3.5 rounded-xl hover:scale-105"
                 required
               />
             </div>
 
             {/* Property Type */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="type" className="font-medium">
+              <label htmlFor="type" className="font-bold">
                 Property Type
               </label>
               <select
                 id="type"
                 name="type"
                 defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl hover:scale-105 w-full"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/5 px-4 py-3.5 rounded-xl hover:scale-105 w-full"
                 required
               >
                 <option value="" disabled>
@@ -55,14 +55,14 @@ const Form = () => {
 
             {/* Search City */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="city" className="font-medium">
+              <label htmlFor="city" className="font-bold">
                 Search City
               </label>
               <select
                 id="city"
                 name="city"
                 defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl hover:scale-105 w-full"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/5 px-4 py-3.5 rounded-xl hover:scale-105 w-full"
                 required
               >
                 <option value="" disabled>
@@ -80,14 +80,14 @@ const Form = () => {
 
             {/* Property Status */}
             <div className="flex flex-col gap-2">
-              <label htmlFor="status" className="font-medium">
+              <label htmlFor="status" className="font-bold">
                 Property Status
               </label>
               <select
                 id="status"
                 name="status"
                 defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl hover:scale-105 w-full"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/5 px-4 py-3.5 rounded-xl hover:scale-105 w-full"
                 required
               >
                 <option value="" disabled>
@@ -100,12 +100,12 @@ const Form = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-end">
             <button
               type="submit"
-              className="flex items-center gap-3 hover:gap-4 duration-500 transition-transform select-none btn-orange-base cursor-pointer"
+              className="flex items-end gap-3 hover:gap-4 duration-500 transition-transform select-none btn-orange-base cursor-pointer"
             >
-              <TbSearch size="22" /> Search Listing
+              <TbSearch size="22" /> Search
             </button>
           </div>
         </form>

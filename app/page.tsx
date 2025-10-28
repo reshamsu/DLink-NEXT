@@ -13,7 +13,7 @@ export default function Home() {
   });
 
   return (
-     <div className="relative z-30 pt-14">
+     <div className="relative z-30 pt-10">
       <Hero />
       <Form />
       <Listings />

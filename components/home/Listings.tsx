@@ -156,36 +156,36 @@ const Listings: React.FC = () => {
                 <Link
                   href={`/property/listing/${listing.id}`}
                   onClick={scrollToTop}
-                  className="text-base lg:text-sm font-semibold hover:text-[#f09712] hover:underline line-clamp-1"
+                  className="text-base lg:text-sm font-bold hover:text-[#f09712] hover:underline line-clamp-1"
                 >
                   {listing.title}
                 </Link>
 
-                <p className="text-sm lg:text-[12px] text-gray-600 my-1">
+                <p className="text-xs text-gray-600 my-1">
                   {listing.location}
                 </p>
 
-                <div className="flex items-center gap-3 text-xs font-semibold flex-wrap my-2">
+                <div className="flex items-center gap-3 text-xs font-bold flex-wrap my-2">
                   <p className="flex items-center gap-1.5">
-                    <TbBed size={16} className="text-orange-300" />
+                    <TbBed size={18} className="text-orange-300" />
                     {listing.bedrooms} Bed
                   </p>
                   <span className="text-gray-300">|</span>
                   <p className="flex items-center gap-1.5">
-                    <TbBath size={16} className="text-orange-300" />
+                    <TbBath size={18} className="text-orange-300" />
                     {listing.bathrooms} Bath
                   </p>
                 </div>
 
-                <p className="text-xs text-blue-500 font-semibold">
+                <p className="text-xs text-blue-500 font-bold">
                   {listing.is_furnished ? "Furnished" : "Unfurnished"}
                 </p>
 
                 <div className="flex justify-between items-center mt-3">
-                  <span className="inline-block bg-green-300 text-[11px] font-semibold px-3 py-1.5 rounded-lg">
+                  <span className="inline-block bg-green-300 text-[11px] font-bold px-3 py-1.5 rounded-lg">
                     {listing.status}
                   </span>
-                  <p className="text-sm text-[#f09712] font-semibold">{listing.type}</p>
+                  <p className="text-sm text-[#f09712] font-bold">{listing.type}</p>
                 </div>
               </div>
             </motion.div>
