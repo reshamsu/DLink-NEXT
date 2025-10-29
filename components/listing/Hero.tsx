@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +12,7 @@ import {
   TbMapPin,
   TbHome,
   TbCircleCheck,
+  TbSofa,
 } from "react-icons/tb";
 
 interface Listing {
@@ -24,7 +25,7 @@ interface Listing {
   is_furnished: boolean;
   property_type: string;
   price: number;
-  area_sqft?: number;
+  sqft: number;
   status: string;
   description?: string;
   created_at: string;
@@ -35,6 +36,9 @@ const Hero = () => {
   const { id } = useParams();
   const [listing, setListing] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -54,6 +58,14 @@ const Hero = () => {
     if (id) fetchListing();
   }, [id]);
 
+  // 🌀 Auto-slide every 5 minutes (300,000ms)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % 5);
+    }, 300000);
+    return () => clearInterval(interval);
+  }, []);
+
   if (loading)
     return (
       <div className="flex justify-center items-center h-[60vh]">
@@ -67,7 +79,7 @@ const Hero = () => {
       <p className="text-center text-gray-500 py-20">Property not found.</p>
     );
 
-  // ✅ Handle image parsing safely
+  // ✅ Parse image array safely
   let images: string[] = [];
   if (Array.isArray(listing.image_urls)) images = listing.image_urls;
   else if (typeof listing.image_urls === "string") {
@@ -78,32 +90,86 @@ const Hero = () => {
     }
   }
 
-  const mainImage = images[0] || "/assets/banner/modern.webp";
+  // Add fallback images if fewer than 5
+  const fallbackImages = [
+    "/assets/banner/property1.webp",
+    "/assets/banner/property2.jpeg",
+    "/assets/banner/property3.jpeg",
+    "/assets/banner/property4.jpg",
+    "/assets/banner/property5.jpg",
+  ];
+  if (images.length < 5) {
+    images = [...images, ...fallbackImages.slice(0, 5 - images.length)];
+  }
+
+  // Touch gestures
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 75) {
+      // Swipe left
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    } else if (touchEndX.current - touchStartX.current > 75) {
+      // Swipe right
+      setCurrentIndex(
+        (prev) => (prev - 1 + images.length) % images.length
+      );
+    }
+  };
+
+  const currentImage = images[currentIndex];
 
   return (
     <div className="max-w-7xl mx-auto px-0 md:px-6 2xl:p-0">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] w-full overflow-hidden">
+      {/* Hero Slider Section */}
+      <div
+        className="relative h-[60vh] w-full overflow-hidden select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
-          src={mainImage}
+          src={currentImage}
           alt={listing.property_title}
           fill
-          className="object-cover 2xl:rounded-b-4xl"
+          className="object-cover transition-all duration-700 ease-in-out 2xl:rounded-b-4xl"
+          priority
         />
         <div className="absolute inset-0 bg-black/40 2xl:rounded-b-4xl" />
 
-        <div className="absolute inset-0 flex flex-col justify-end gap-2 text-white z-10 p-8 md:p-12 2xl:p-10">
-          <h1 className="text-xl md:text-3xl font-bold">
+        <div className="absolute inset-0 flex flex-col justify-end gap-1 text-white z-10 p-6 py-12 2xl:p-10">
+          <h1 className="text-xl md:text-3xl font-bold drop-shadow-md">
             {listing.property_title}
           </h1>
           <div className="flex items-center justify-between">
             <p className="text-sm opacity-90 flex items-center gap-2">
               <TbMapPin size={18} /> {listing.city} - {listing.location}
             </p>
-            <p className="flex items-center gap-1 opacity-80 text-lg font-extrabold text-orange-400">
-              LKR {""} {listing.price?.toLocaleString()}
+            <p className="flex items-center gap-1 text-lg font-extrabold text-orange-400">
+              LKR {listing.price?.toLocaleString()}
             </p>
           </div>
+        </div>
+
+        {/* Slider Dots */}
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === currentIndex
+                  ? "bg-white scale-110"
+                  : "bg-white/40 hover:bg-white/60"
+              }`}
+            />
+          ))}
         </div>
       </div>
 
@@ -128,7 +194,7 @@ const Hero = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 items-center text-sm font-bold border-b border-gray-200 pb-6">
+          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 items-center text-sm font-bold border-b border-gray-200 pb-6">
             <p className="flex items-center gap-2">
               <TbBed size={22} className="text-orange-400" />
               {listing.bedrooms} Beds
@@ -137,18 +203,16 @@ const Hero = () => {
               <TbBath size={22} className="text-orange-400" />
               {listing.bathrooms} Baths
             </p>
-            {listing.area_sqft && (
-              <p className="flex items-center gap-2">
-                <TbRulerMeasure size={22} className="text-orange-400" />
-                {listing.area_sqft.toLocaleString()} sqft
-              </p>
-            )}
+            <p className="flex items-center gap-2">
+              <TbRulerMeasure size={22} className="text-orange-400" />
+              {listing.sqft} Sqft.
+            </p>
             <p className="flex items-center gap-2">
               <TbHome size={22} className="text-orange-400" />
               {listing.property_type}
             </p>
             <p className="flex items-center gap-2">
-              <TbCircleCheck size={22} className="text-orange-400" />
+              <TbSofa size={22} className="text-orange-400" />
               {listing.is_furnished ? "Furnished" : "Unfurnished"}
             </p>
           </div>
@@ -158,54 +222,40 @@ const Hero = () => {
             <h2 className="text-xl font-extrabold">Property Description</h2>
             <p className="text-sm text-gray-500 leading-relaxed">
               {listing.description ||
-                `Discover your dream home in ${
-                  listing.city
-                }, perfectly located near ${listing.location}. 
-                This ${listing.property_type.toLowerCase()} combines modern design with comfort and functionality. 
-                Every detail has been thoughtfully crafted to enhance your lifestyle.`}
+                `Discover your dream home in ${listing.city}, near ${listing.location}. 
+                This ${listing.property_type.toLowerCase()} blends modern design with comfort and practicality.`}
             </p>
           </div>
 
-          {/* Amenities (Optional static section) */}
+          {/* Features */}
           <div className="flex flex-col gap-4">
             <h2 className="text-xl font-extrabold">Key Features</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm text-gray-600">
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> Modern
-                Kitchen
-              </li>
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> Air
-                Conditioning
-              </li>
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> Parking
-                Space
-              </li>
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> 24/7
-                Security
-              </li>
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> Balcony
-                with View
-              </li>
-              <li className="flex items-center gap-2">
-                <TbCircleCheck size={20} className="text-orange-400" /> Nearby
-                Schools
-              </li>
+              {[
+                "Modern Kitchen",
+                "Air Conditioning",
+                "Parking Space",
+                "24/7 Security",
+                "Balcony with View",
+                "Nearby Schools",
+              ].map((feature, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <TbCircleCheck size={20} className="text-orange-400" />{" "}
+                  {feature}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Right side card */}
+        {/* Contact Card */}
         <div className="bg-white shadow-lg border-2 border-orange-200 rounded-3xl p-10 flex flex-col gap-6 h-fit">
           <div className="flex flex-col gap-2">
             <h3 className="text-xl font-extrabold mb-2">Price</h3>
             <p className="text-3xl font-bold text-orange-500">
               LKR {listing.price?.toLocaleString()}
             </p>
-            <p className="text-sm text-gray-500">One-time payment</p>
+            <p className="text-sm text-gray-500">(Negotiable)</p>
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-gray-500 pt-6 border-t border-gray-200">
@@ -231,12 +281,11 @@ const Hero = () => {
 
           <div className="flex flex-col md:flex-row items-center gap-4 mt-4">
             <Link
-              href={`/contact-agent/${listing.id}`}
+              href="tel:+94761676603"
               className="btn-orange-base btn-dynamic text-center select-none"
             >
               Contact Agent
             </Link>
-
             <Link
               href="/"
               className="btn-light-base btn-dynamic text-center select-none"

@@ -91,7 +91,7 @@ const Listings: React.FC = () => {
               status: listing.status,
               image: images.length > 0
                 ? images[0]
-                : "/assets/banner/modern.webp", // fallback
+                : "/assets/banner/property1.webp", // fallback
             };
           }
         );
