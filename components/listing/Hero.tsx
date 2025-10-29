@@ -13,6 +13,7 @@ import {
   TbHome,
   TbCircleCheck,
   TbSofa,
+  TbSquareCheckFilled,
 } from "react-icons/tb";
 
 interface Listing {
@@ -26,6 +27,7 @@ interface Listing {
   property_type: string;
   price: number;
   sqft: number;
+  perches: number;
   status: string;
   description?: string;
   created_at: string;
@@ -117,9 +119,7 @@ const Hero = () => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     } else if (touchEndX.current - touchStartX.current > 75) {
       // Swipe right
-      setCurrentIndex(
-        (prev) => (prev - 1 + images.length) % images.length
-      );
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     }
   };
 
@@ -194,7 +194,7 @@ const Hero = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-3 items-center text-sm font-bold border-b border-gray-200 pb-6">
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 items-center text-sm font-bold border-b border-gray-200 pb-6">
             <p className="flex items-center gap-2">
               <TbBed size={22} className="text-orange-400" />
               {listing.bedrooms} Beds
@@ -206,6 +206,10 @@ const Hero = () => {
             <p className="flex items-center gap-2">
               <TbRulerMeasure size={22} className="text-orange-400" />
               {listing.sqft} Sqft.
+            </p>
+            <p className="flex items-center gap-2">
+              <TbSquareCheckFilled size={22} className="text-orange-400" />
+              {listing.perches} Perch
             </p>
             <p className="flex items-center gap-2">
               <TbHome size={22} className="text-orange-400" />
@@ -222,7 +226,9 @@ const Hero = () => {
             <h2 className="text-xl font-extrabold">Property Description</h2>
             <p className="text-sm text-gray-500 leading-relaxed">
               {listing.description ||
-                `Discover your dream home in ${listing.city}, near ${listing.location}. 
+                `Discover your dream home in ${listing.city}, near ${
+                  listing.location
+                }. 
                 This ${listing.property_type.toLowerCase()} blends modern design with comfort and practicality.`}
             </p>
           </div>
