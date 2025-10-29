@@ -154,7 +154,7 @@ const Listings: React.FC = () => {
               {/* Content */}
               <div className="flex flex-col flex-1 py-4 px-2">
                 <Link
-                  href={`/property/listing/${listing.id}`}
+                  href={`/listing/${listing.id}`}
                   onClick={scrollToTop}
                   className="text-base lg:text-sm font-bold hover:text-[#f09712] hover:underline line-clamp-1"
                 >

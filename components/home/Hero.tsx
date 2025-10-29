@@ -18,8 +18,8 @@ const Hero = () => {
           />
           <div className="absolute inset-0 bg-orange-950/30" />
         </div>
-        <div className="max-w-7xl mx-auto 2xl:rounded-4xl">
-          <div className=" relative h-screen 2xl:rounded-4xl w-full overflow-hidden flex items-center justify-center text-center">
+        <div className="max-w-7xl mx-auto">
+          <div className="relative h-screen w-full overflow-hidden flex items-center justify-center text-center">
             <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white z-10 gap-8 px-10 md:px-20 lg:px-40">
               <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col gap-2 md:flex-row">
                 Find your Next{" "}

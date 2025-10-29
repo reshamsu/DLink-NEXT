@@ -85,11 +85,11 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       <div
-        className={`absolute top-full left-0 w-full bg-white text-black overflow-hidden lg:hidden 
+        className={`absolute top-full left-0 w-full bg-white text-black overflow-hidden shadow-md lg:hidden 
           transition-transform duration-300 ease-in-out origin-top 
           ${isOpen ? "scale-y-100" : "scale-y-0"}`}
       >
-        <ul className="flex flex-col gap-2 p-6 text-sm">
+        <ul className="flex flex-col gap-2 p-6 text-[15px]">
           {Nav_Links.map((link) => {
             const isActive = pathname === link.href;
             return (
