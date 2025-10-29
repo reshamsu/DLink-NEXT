@@ -37,7 +37,7 @@ const Info = () => {
             <div className="flex flex-col gap-1">
               <p className="text-xs 2xl:text-sm font-bold">Top Pick</p>
               <p className="text-[10px] 2xl:text-sm text-gray-500">
-                Traveler’s Choice
+                Traveler&apos;s Choice
               </p>
             </div>
             <div className="flex flex-col gap-1">
@@ -66,9 +66,10 @@ const Info = () => {
               Why Book This Package?
             </h4>
             <p className="text-xs 2xl:text-sm text-gray-500 max-w-3xl">
-              You’re not just booking a trip — you’re unlocking an experience.
-              With handpicked hotels, verified partners, and zero hidden costs,
-              this package guarantees both luxury and peace of mind.
+              You&apos;re not just booking a trip — you&apos;re unlocking an
+              experience. With handpicked hotels, verified partners, and zero
+              hidden costs, this package guarantees both luxury and peace of
+              mind.
             </p>
           </div>
 
@@ -78,8 +79,8 @@ const Info = () => {
               Full Description
             </h4>
             <p className="text-xs 2xl:text-sm text-gray-400 max-w-3xl">
-              Enjoy 5 days and 4 nights in Dubai’s most iconic locations — from
-              the Burj Khalifa to the desert dunes. Stay in 4-star comfort,
+              Enjoy 5 days and 4 nights in Dubai&apos;s most iconic locations —
+              from the Burj Khalifa to the desert dunes. Stay in 4-star comfort,
               enjoy international cuisine, and embark on guided adventures
               crafted for every type of traveler.
             </p>
@@ -94,23 +95,28 @@ const Info = () => {
           {/* Inclusions */}
           <div className="flex flex-col gap-4 2xl:gap-6 pb-6 border-b md:border-none border-gray-200">
             <h4 className="text-sm 2xl:text-base font-extrabold">
-              What’s Included
+              What&apos;s Included
             </h4>
             <ul className="flex flex-col gap-4 text-start items-start text-gray-600">
               <li className="flex items-center gap-2 text-xs 2xl:text-sm font-semibold">
-                <TbBuildingSkyscraper size={22} className="text-orange-400" /> 4-Star Hotel Accommodation
+                <TbBuildingSkyscraper size={22} className="text-orange-400" />{" "}
+                4-Star Hotel Accommodation
               </li>
               <li className="flex items-center gap-2 text-xs 2xl:text-sm font-semibold">
-                <TbPlane size={22} className="text-orange-400" /> Roundtrip Flights
+                <TbPlane size={22} className="text-orange-400" /> Roundtrip
+                Flights
               </li>
               <li className="flex items-center gap-2 text-xs 2xl:text-sm font-semibold">
-                <TbCar size={22} className="text-orange-400" /> Private Airport Transfers & Car Rentals
+                <TbCar size={22} className="text-orange-400" /> Private Airport
+                Transfers & Car Rentals
               </li>
               <li className="flex items-center gap-2 text-xs 2xl:text-sm font-semibold">
-                <TbBurger size={22} className="text-orange-400" /> Daily Breakfast & Select Meals
+                <TbBurger size={22} className="text-orange-400" /> Daily
+                Breakfast & Select Meals
               </li>
               <li className="flex items-center gap-2 text-xs 2xl:text-sm font-semibold">
-                <TbMapPin size={22} className="text-orange-400" /> Guided City Tours & Excursions
+                <TbMapPin size={22} className="text-orange-400" /> Guided City
+                Tours & Excursions
               </li>
             </ul>
             <Link
@@ -124,10 +130,10 @@ const Info = () => {
 
         {/* RIGHT SECTION */}
         <div className="flex flex-col gap-6">
-          {/* Traveler’s Choice */}
+          {/* Traveler's Choice */}
           <div className="flex flex-col items-center text-center gap-2 pb-6 border-b border-gray-200">
             <h4 className="text-base 2xl:text-lg font-extrabold">
-              Traveler's Choice
+              Traveler&apos;s Choice
             </h4>
             <p className="text-xs 2xl:text-sm text-gray-400 max-w-3xl">
               Voted as one of our most loved experiences — guests rave about the
@@ -152,7 +158,7 @@ const Info = () => {
                   </p>
                 </div>
                 <Link
-                  href="/listing"
+                  href="/listing?package=basic"
                   className="select-none btn-orange-sm btn-dynamic"
                 >
                   Select
@@ -169,7 +175,7 @@ const Info = () => {
                   </p>
                 </div>
                 <Link
-                  href="/listing"
+                  href="/listing?package=standard"
                   className="select-none btn-orange-sm btn-dynamic"
                 >
                   Select
@@ -186,7 +192,7 @@ const Info = () => {
                   </p>
                 </div>
                 <Link
-                  href="/listing"
+                  href="/listing?package=premium"
                   className="select-none btn-orange-sm btn-dynamic"
                 >
                   Select
