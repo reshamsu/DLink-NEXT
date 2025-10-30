@@ -9,18 +9,22 @@ const Page = () => {
     <div className="bg-gray-100 text-gray-800 relative">
       <div className="max-w-2xl mx-auto pt-26 pb-10 h-full flex items-center">
         <div className="bg-white border-none md:border-2 border-gray-100 relative w-full h-full md:h-fit md:rounded-3xl overflow-hidden shadow-none md:shadow-lg flex flex-col justify-between md:justify-normal">
-          <div className="pb-6 border-b-2 border-gray-100 p-6 md:p-8">
+          <div className="flex flex-col text-center md:text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
             <h2 className="text-lg font-bold">
               {" "}
-              Add a New Listing to <span className="text-orange-400">D-Link Colombo</span>
+              Add a New Listing to{" "}
+              <span className="text-orange-400">D-Link Colombo</span>
             </h2>
             <p className="text-sm text-gray-400 max-w-3xl">
-              Send your Listing Info for display on <Link href="/" className="underline">D-Link Colombo</Link>
+              Send your Listing Info for display on{" "}
+              <Link href="/" className="underline">
+                D-Link Colombo
+              </Link>
             </p>
           </div>
 
           <form
-            className="flex flex-col items-end gap-6 w-full 2xl:text-base overflow-hidden group p-6 md:p-10 border-b-2 border-gray-100"
+            className="flex flex-col items-end gap-6 w-full 2xl:text-base overflow-hidden group p-8 md:p-10 border-b-2 border-gray-100"
             id="listingForm"
             method="post"
           >
@@ -83,6 +87,8 @@ const Page = () => {
                 >
                   <option value="dehiwela">Dehiwela</option>
                   <option value="wellawatta">Wellawatta</option>
+                   <option value="mount_lavinia">Mount Lavinia</option>
+                  <option value="bambalapitiya">Bambalapitiya</option>
                 </select>
               </div>
 
@@ -229,6 +235,18 @@ const Page = () => {
                   <option value="sold">Sold</option>
                 </select>
               </div>
+            </div>
+
+            <div className="flex flex-col gap-2 w-full">
+              <label htmlFor="listing" className="text-sm font-bold">
+                Upload Images*
+              </label>
+              <input
+                type="file"
+                multiple
+                accept="image/*"
+                className="border border-gray-200 rounded-xl px-4 py-2 bg-gray-50"
+              />
             </div>
 
             {/* Conditional Fields */}
