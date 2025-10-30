@@ -13,7 +13,7 @@ import {
   TbHome,
   TbCircleCheck,
   TbSofa,
-  TbSquareCheckFilled,
+  TbSquareCheck,
 } from "react-icons/tb";
 
 interface Listing {
@@ -208,7 +208,7 @@ const Hero = () => {
               {listing.sqft} Sqft.
             </p>
             <p className="flex items-center gap-2">
-              <TbSquareCheckFilled size={22} className="text-orange-400" />
+              <TbSquareCheck size={22} className="text-orange-400" />
               {listing.perches} Perch
             </p>
             <p className="flex items-center gap-2">
