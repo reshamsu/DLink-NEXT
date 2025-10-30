@@ -19,6 +19,7 @@ import {
 interface Listing {
   id: string;
   property_title: string;
+  property_subtitle: string,
   city: string;
   location: string;
   bedrooms: number;
@@ -147,6 +148,7 @@ const Hero = () => {
           <h1 className="text-xl md:text-3xl font-bold drop-shadow-md">
             {listing.property_title}
           </h1>
+          <p className="text-sm"> {listing.property_subtitle}</p>
           <div className="flex items-center justify-between">
             <p className="text-sm opacity-90 flex items-center gap-2">
               <TbMapPin size={18} /> {listing.city} - {listing.location}
@@ -255,7 +257,7 @@ const Hero = () => {
         </div>
 
         {/* Contact Card */}
-        <div className="bg-white shadow-lg border-2 border-orange-200 rounded-3xl p-10 flex flex-col gap-6 h-fit">
+        <div className="bg-white shadow-lg border-2 border-orange-200 rounded-3xl p-8 md:p-10 flex flex-col gap-6 h-fit">
           <div className="flex flex-col gap-2">
             <h3 className="text-xl font-extrabold mb-2">Price</h3>
             <p className="text-3xl font-bold text-orange-500">

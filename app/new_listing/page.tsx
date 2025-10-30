@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import React, { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
@@ -6,6 +7,7 @@ import { supabase } from "@/lib/supabaseClient";
 const Page = () => {
   const [formData, setFormData] = useState({
     property_title: "",
+    property_subtitle: "",
     property_type: "apartment",
     listing_type: "sale",
     city: "dehiwela",
@@ -49,49 +51,59 @@ const Page = () => {
     try {
       let imageUrls: string[] = [];
 
-      // Upload images
+      // Upload images if any
       if (images && images.length > 0) {
         const uploads = Array.from(images).map(async (file) => {
           const fileName = `${Date.now()}-${file.name}`;
-          const { data, error } = await supabase.storage
+
+          // Upload file
+          const { error: uploadError } = await supabase.storage
             .from("listings")
             .upload(fileName, file);
 
-          if (error) throw error;
+          if (uploadError) throw uploadError;
 
+          // Get public URL
           const { data: publicUrlData } = supabase.storage
             .from("listings")
             .getPublicUrl(fileName);
 
-          return publicUrlData.publicUrl;
+          return publicUrlData.publicUrl || null;
         });
 
-        imageUrls = await Promise.all(uploads);
+        // Wait for all uploads and filter out nulls
+        imageUrls = (await Promise.all(uploads)).filter(
+          (url): url is string => !!url
+        );
       }
 
-      // Insert data
-      const { error: insertError } = await supabase.from("listings").insert([
-        {
-          ...formData,
-          bedrooms: parseInt(formData.bedrooms) || null,
-          bathrooms: parseInt(formData.bathrooms) || null,
-          perches: parseInt(formData.perches) || null,
-          sqft: parseInt(formData.sqft) || null,
-          floors: parseInt(formData.floors) || null,
-          price: parseInt(formData.price) || null,
-          image_urls: imageUrls,
-        },
-      ]);
+      // Prepare data for insertion
+      const insertData = {
+        ...formData,
+        bedrooms: parseInt(formData.bedrooms) || null,
+        bathrooms: parseInt(formData.bathrooms) || null,
+        perches: parseInt(formData.perches) || null,
+        sqft: parseInt(formData.sqft) || null,
+        floors: parseInt(formData.floors) || null,
+        price: parseInt(formData.price) || null,
+        image_urls: imageUrls.length ? imageUrls : [],
+        status: formData.status || "available",
+      };
+
+      const { error: insertError } = await supabase
+        .from("listings")
+        .insert([insertData]);
 
       if (insertError) throw insertError;
 
       setMessage("✅ Listing added successfully!");
       setFormData({
         property_title: "",
-        property_type: "",
-        listing_type: "",
-        city: "",
-        location: "",
+        property_subtitle: "",
+        property_type: "apartment",
+        listing_type: "sale",
+        city: "dehiwela",
+        location: "land_side",
         owner: "",
         description: "",
         bedrooms: "",
@@ -105,14 +117,17 @@ const Page = () => {
         amenities: "",
         remarks: "",
         status: "available",
-        is_furnished: "",
+        is_furnished: "unfurnished",
       });
       setImages(null);
-    } catch (err: any) {
-      console.error(err);
-      setMessage(`❌ Error: ${err.message}`);
-    } finally {
-      setLoading(false);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.warn("Upload failed:", err.message);
+        setMessage(`❌ Error: ${err.message}`);
+      } else {
+        console.warn("Upload failed:", err);
+        setMessage("❌ Error: Unknown error occurred");
+      }
     }
   };
 
@@ -148,6 +163,8 @@ const Page = () => {
                 </label>
                 <input
                   name="property_title"
+                  value={formData.property_title}
+                  onChange={handleChange}
                   type="text"
                   placeholder="Enter Title"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -163,8 +180,9 @@ const Page = () => {
                   Property Subtitle*
                 </label>
                 <input
-                  id="property_subtitle"
                   name="property_subtitle"
+                  value={formData.property_subtitle}
+                  onChange={handleChange}
                   placeholder="Enter Subtitle"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                   required
@@ -178,7 +196,6 @@ const Page = () => {
                   </label>
                   <select
                     name="property_type"
-                    id="property_type"
                     value={formData.property_type}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -195,7 +212,6 @@ const Page = () => {
                   </label>
                   <select
                     name="listing_type"
-                    id="listing_type"
                     value={formData.listing_type}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -213,7 +229,6 @@ const Page = () => {
                 </label>
                 <select
                   name="city"
-                  id="city"
                   value={formData.city}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -230,8 +245,9 @@ const Page = () => {
                   Description*
                 </label>
                 <textarea
-                  id="description"
                   name="description"
+                  value={formData.description}
+                  onChange={handleChange}
                   placeholder="Enter Description"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                   required
@@ -240,13 +256,12 @@ const Page = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-              <div className="flex flex-col gap-2 w-ful">
+              <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="location" className="text-sm font-bold">
                   Location*
                 </label>
                 <select
                   name="location"
-                  id="location"
                   value={formData.location}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -255,13 +270,12 @@ const Page = () => {
                   <option value="sea_side">Sea Side</option>
                 </select>
               </div>
-              <div className="flex flex-col gap-2 w-ful">
+              <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="is_furnished" className="text-sm font-bold">
                   Furnishing*
                 </label>
                 <select
                   name="is_furnished"
-                  id="is_furnished"
                   value={formData.is_furnished}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -274,12 +288,14 @@ const Page = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
-              <div className="flex flex-col gap-2 w-ful">
+              <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="bedrooms" className="text-sm font-bold">
                   Bedrooms*
                 </label>
                 <input
                   name="bedrooms"
+                  value={formData.bedrooms}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Bedrooms"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -291,6 +307,8 @@ const Page = () => {
                 </label>
                 <input
                   name="bathrooms"
+                  value={formData.bathrooms}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Bathrooms"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -302,6 +320,8 @@ const Page = () => {
                 </label>
                 <input
                   name="floors"
+                  value={formData.floors}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Floors"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -315,6 +335,8 @@ const Page = () => {
                 </label>
                 <input
                   name="sqft"
+                  value={formData.sqft}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Enter Sqft."
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -327,6 +349,8 @@ const Page = () => {
                 </label>
                 <input
                   name="perches"
+                  value={formData.perches}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Perches"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -337,11 +361,13 @@ const Page = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
               <div className="flex flex-col gap-2 w-full">
-                <label htmlFor="perches" className="text-sm font-bold">
+                <label htmlFor="building_age" className="text-sm font-bold">
                   Building Age*
                 </label>
                 <input
                   name="building_age"
+                  value={formData.building_age}
+                  onChange={handleChange}
                   type="number"
                   placeholder="Building Age"
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -353,7 +379,6 @@ const Page = () => {
                 </label>
                 <select
                   name="status"
-                  id="status"
                   value={formData.status}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -370,7 +395,9 @@ const Page = () => {
                 Price (LKR)*
               </label>
               <input
-                id="price"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
                 type="number"
                 placeholder="Enter Price"
                 className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -391,11 +418,11 @@ const Page = () => {
               />
             </div>
 
-             {message && (
-                <p className="text-sm text-center text-gray-600 mt-2 w-full">
-                  {message}
-                </p>
-              )}
+            {message && (
+              <p className="text-sm text-center text-gray-600 mt-2 w-full">
+                {message}
+              </p>
+            )}
 
             {/* Submit */}
             <div className="flex items-end w-full">
@@ -406,7 +433,6 @@ const Page = () => {
               >
                 {loading ? "Uploading..." : "Submit Listing"}
               </button>
-             
             </div>
           </form>
 
