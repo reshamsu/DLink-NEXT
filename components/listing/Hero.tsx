@@ -14,6 +14,7 @@ import {
   TbCircleCheck,
   TbSofa,
   TbSquareCheck,
+  TbBuilding,
 } from "react-icons/tb";
 
 interface Listing {
@@ -24,6 +25,7 @@ interface Listing {
   location: string;
   bedrooms: number;
   bathrooms: number;
+  floors: number;
   is_furnished: boolean;
   property_type: string;
   price: number;
@@ -127,7 +129,7 @@ const Hero = () => {
   const currentImage = images[currentIndex];
 
   return (
-    <div className="max-w-7xl mx-auto px-0 md:px-6 2xl:p-0">
+    <div className="max-w-7xl mx-auto px-0 xl:px-6 2xl:px-0">
       {/* Hero Slider Section */}
       <div
         className="relative h-[60vh] w-full overflow-hidden select-none"
@@ -139,13 +141,13 @@ const Hero = () => {
           src={currentImage}
           alt={listing.property_title}
           fill
-          className="object-cover transition-all duration-700 ease-in-out 2xl:rounded-b-4xl"
+          className="object-cover transition-all duration-700 ease-in-out xl:rounded-b-4xl"
           priority
         />
-        <div className="absolute inset-0 bg-black/40 2xl:rounded-b-4xl" />
+        <div className="absolute inset-0 bg-black/40 xl:rounded-b-4xl" />
 
-        <div className="absolute inset-0 flex flex-col justify-end gap-1 text-white z-10 p-6 py-12 2xl:p-10">
-          <h1 className="text-xl md:text-3xl font-bold drop-shadow-md">
+        <div className="absolute inset-0 flex flex-col justify-end gap-1 text-white z-10 p-6 md:p-8 2xl:p-10">
+          <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold drop-shadow-md">
             {listing.property_title}
           </h1>
           <p className="text-sm"> {listing.property_subtitle}</p>
@@ -176,7 +178,7 @@ const Hero = () => {
       </div>
 
       {/* Property Details */}
-      <div className="max-w-7xl mx-auto p-6 md:p-10 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
+      <div className="max-w-7xl mx-auto p-6 md:p-10 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 2xl:gap-10">
         <div className="flex flex-col gap-8">
           <div className="flex items-center gap-4 text-sm text-gray-500">
             <p>Listed on {new Date(listing.created_at).toLocaleDateString()}</p>
@@ -196,7 +198,7 @@ const Hero = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-3 items-center text-sm font-bold border-b border-gray-200 pb-6">
+          <div className="grid grid-cols-3 lg:grid-cols-4 gap-3 items-center text-sm capitalize font-bold border-b border-gray-200 pb-6">
             <p className="flex items-center gap-2">
               <TbBed size={22} className="text-orange-400" />
               {listing.bedrooms} Beds
@@ -204,6 +206,10 @@ const Hero = () => {
             <p className="flex items-center gap-2">
               <TbBath size={22} className="text-orange-400" />
               {listing.bathrooms} Baths
+            </p>
+             <p className="flex items-center gap-2">
+              <TbBuilding size={22} className="text-orange-400" />
+              {listing.floors} Floors
             </p>
             <p className="flex items-center gap-2">
               <TbRulerMeasure size={22} className="text-orange-400" />
@@ -219,7 +225,7 @@ const Hero = () => {
             </p>
             <p className="flex items-center gap-2">
               <TbSofa size={22} className="text-orange-400" />
-              {listing.is_furnished ? "Furnished" : "Unfurnished"}
+              {listing.is_furnished ? "Furnished" : "Un-furnished"}
             </p>
           </div>
 
@@ -282,15 +288,15 @@ const Hero = () => {
             <p>
               Furnishing:{" "}
               <span className="font-semibold text-gray-800">
-                {listing.is_furnished ? "Furnished" : "Unfurnished"}
+                {listing.is_furnished ? "Furnished" : "UnFurnished"}
               </span>
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center gap-4 mt-4">
+          <div className="flex flex-col lg:flex-row items-center gap-4 mt-4">
             <Link
               href="tel:+94761676603"
-              className="btn-orange-base btn-dynamic text-center select-none"
+              className="btn-orange-sm btn-dynamic text-center select-none"
             >
               Contact Agent
             </Link>

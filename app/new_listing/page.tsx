@@ -5,15 +5,40 @@ import React, { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { TbSend2 } from "react-icons/tb";
 
+interface Listing {
+  property_title: string;
+  property_subtitle: string;
+  property_type: string;
+  listing_type: string;
+  city: string;
+  location: string;
+  description: string;
+  bedrooms: string;
+  bathrooms: string;
+  perches: string;
+  sqft: string;
+  floors: string;
+  building_age: string;
+  price: string;
+  amenities: string[];
+  status: string;
+  is_furnished: string;
+  image_urls: string[];
+}
+
 const Page = () => {
-  const [formData, setFormData] = useState({
+  const [, setListings] = useState<Listing[]>([]); // removed unused variable warning
+  const [uploading, setUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const [newListing, setNewListing] = useState<Listing>({
     property_title: "",
     property_subtitle: "",
     property_type: "",
     listing_type: "",
     city: "",
     location: "",
-    owner: "",
     description: "",
     bedrooms: "",
     bathrooms: "",
@@ -21,91 +46,119 @@ const Page = () => {
     sqft: "",
     floors: "",
     building_age: "",
-    maintain_fee: "",
     price: "",
-    amenities: "",
-    remarks: "",
-    status: "available",
+    amenities: [],
+    status: "Available",
     is_furnished: "",
+    image_urls: [],
   });
 
   const [images, setImages] = useState<FileList | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
-  // Input handler
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type } = e.target;
+
+    if (type === "checkbox") {
+      const target = e.target as HTMLInputElement;
+      setNewListing((prev) => ({
+        ...prev,
+        amenities: target.checked
+          ? [...prev.amenities, target.value]
+          : prev.amenities.filter((f) => f !== target.value),
+      }));
+    } else {
+      setNewListing((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
-  // Upload + insert
+  const handleImageUpload = async (): Promise<string[]> => {
+    if (!images || images.length === 0) return [];
+
+    try {
+      setUploading(true);
+      const uploadedUrls: string[] = [];
+
+      for (let i = 0; i < images.length; i++) {
+        const file = images[i];
+
+        if (file.size > 5 * 1024 * 1024) {
+          alert(`${file.name} is too large! Max 5MB.`);
+          continue;
+        }
+
+        const filePath = `images/${Date.now()}_${file.name}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from("listings")
+          .upload(filePath, file, { cacheControl: "3600", upsert: false });
+
+        if (uploadError) {
+          console.error("Upload error:", uploadError.message);
+          continue;
+        }
+
+        const { data: publicUrlData } = supabase.storage
+          .from("listings")
+          .getPublicUrl(filePath);
+
+        uploadedUrls.push(publicUrlData.publicUrl);
+      }
+
+      setMessage(`${uploadedUrls.length} image(s) uploaded successfully`);
+      return uploadedUrls;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error uploading images:", error.message);
+      } else {
+        console.error("Unknown upload error:", error);
+      }
+      setMessage("Error uploading images");
+      return [];
+    } finally {
+      setUploading(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setMessage("");
 
-    try {
-      let imageUrls: string[] = [];
+    const uploadedUrls = images ? await handleImageUpload() : [];
 
-      // Upload images if any
-      if (images && images.length > 0) {
-        const uploads = Array.from(images).map(async (file) => {
-          const fileName = `${Date.now()}-${file.name}`;
+    const payload = {
+      ...newListing,
+      bedrooms: newListing.bedrooms ? Number(newListing.bedrooms) : null,
+      bathrooms: newListing.bathrooms ? Number(newListing.bathrooms) : null,
+      perches: newListing.perches ? Number(newListing.perches) : null,
+      sqft: newListing.sqft ? Number(newListing.sqft) : null,
+      floors: newListing.floors ? Number(newListing.floors) : null,
+      price: newListing.price ? Number(newListing.price) : null,
+      image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
+    };
 
-          // Upload file
-          const { error: uploadError } = await supabase.storage
-            .from("listings")
-            .upload(fileName, file);
+    const { data, error } = await supabase
+      .from("listings")
+      .insert([payload])
+      .select()
+      .single();
 
-          if (uploadError) throw uploadError;
-
-          // Get public URL
-          const { data: publicUrlData } = supabase.storage
-            .from("listings")
-            .getPublicUrl(fileName);
-
-          return publicUrlData.publicUrl || null;
-        });
-
-        // Wait for all uploads and filter out nulls
-        imageUrls = (await Promise.all(uploads)).filter(
-          (url): url is string => !!url
-        );
-      }
-
-      // Prepare data for insertion
-      const insertData = {
-        ...formData,
-        bedrooms: parseInt(formData.bedrooms) || null,
-        bathrooms: parseInt(formData.bathrooms) || null,
-        perches: parseInt(formData.perches) || null,
-        sqft: parseInt(formData.sqft) || null,
-        floors: parseInt(formData.floors) || null,
-        price: parseInt(formData.price) || null,
-        image_urls: imageUrls.length ? imageUrls : [],
-        status: formData.status || "available",
-      };
-
-      const { error: insertError } = await supabase
-        .from("listings")
-        .insert([insertData]);
-
-      if (insertError) throw insertError;
-
-      setMessage("✅ Listing added successfully!");
-      setFormData({
+    if (error) {
+      console.error("Error adding listing:", error.message);
+      alert("Failed to add listing. Check console for details.");
+    } else {
+      setListings((prev) => [...prev, data]);
+      setNewListing({
         property_title: "",
         property_subtitle: "",
         property_type: "",
         listing_type: "",
         city: "",
         location: "",
-        owner: "",
         description: "",
         bedrooms: "",
         bathrooms: "",
@@ -113,23 +166,18 @@ const Page = () => {
         sqft: "",
         floors: "",
         building_age: "",
-        maintain_fee: "",
         price: "",
-        amenities: "",
-        remarks: "",
-        status: "available",
+        amenities: [],
+        status: "Available",
         is_furnished: "",
+        image_urls: [],
       });
       setImages(null);
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.warn("Upload failed:", err.message);
-        setMessage(`❌ Error: ${err.message}`);
-      } else {
-        console.warn("Upload failed:", err);
-        setMessage("❌ Error: Unknown error occurred");
-      }
+      setMessage("Listing added successfully!");
+      alert("Listing added successfully!");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -138,7 +186,6 @@ const Page = () => {
         <div className="bg-white border-none md:border-2 border-gray-100 relative w-full h-full md:h-fit md:rounded-3xl overflow-hidden shadow-none md:shadow-lg flex flex-col justify-between md:justify-normal">
           <div className="flex flex-col text-center md:text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
             <h2 className="text-lg font-bold">
-              {" "}
               Add a New Listing to{" "}
               <span className="text-orange-400">D-Link Colombo</span>
             </h2>
@@ -165,7 +212,7 @@ const Page = () => {
                   </label>
                   <input
                     name="property_title"
-                    value={formData.property_title}
+                    value={newListing.property_title}
                     onChange={handleChange}
                     type="text"
                     placeholder="Enter Title"
@@ -183,7 +230,7 @@ const Page = () => {
                   </label>
                   <input
                     name="property_subtitle"
-                    value={formData.property_subtitle}
+                    value={newListing.property_subtitle}
                     onChange={handleChange}
                     placeholder="Enter Subtitle"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -197,17 +244,17 @@ const Page = () => {
                   </label>
                   <select
                     name="property_type"
-                    value={formData.property_type}
+                    value={newListing.property_type}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                   >
                     <option value="" disabled>
                       Select Type
                     </option>
-                    <option value="apartment">Apartment</option>
-                    <option value="house">House</option>
-                    <option value="land">Lands</option>
-                    <option value="villa">Villas</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="House">House</option>
+                    <option value="Land">Lands</option>
+                    <option value="Villa">Villas</option>
                   </select>
                 </div>
 
@@ -217,17 +264,17 @@ const Page = () => {
                   </label>
                   <select
                     name="city"
-                    value={formData.city}
+                    value={newListing.city}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                   >
                     <option value="" disabled>
                       Select City
                     </option>
-                    <option value="dehiwela">Dehiwela</option>
-                    <option value="wellawatta">Wellawatta</option>
-                    <option value="mount_lavinia">Mount Lavinia</option>
-                    <option value="bambalapitiya">Bambalapitiya</option>
+                    <option value="Dehiwela">Dehiwela</option>
+                    <option value="Wellawatta">Wellawatta</option>
+                    <option value="Mount_lavinia">Mount Lavinia</option>
+                    <option value="Bambalapitiya">Bambalapitiya</option>
                   </select>
                 </div>
 
@@ -237,7 +284,7 @@ const Page = () => {
                   </label>
                   <textarea
                     name="description"
-                    value={formData.description}
+                    value={newListing.description}
                     onChange={handleChange}
                     placeholder="Enter Description"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
@@ -246,6 +293,7 @@ const Page = () => {
                 </div>
               </div>
 
+              {/* Bedrooms & Bathrooms */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="bedrooms" className="text-sm font-bold">
@@ -253,7 +301,7 @@ const Page = () => {
                   </label>
                   <input
                     name="bedrooms"
-                    value={formData.bedrooms}
+                    value={newListing.bedrooms}
                     onChange={handleChange}
                     type="number"
                     placeholder="Bedrooms"
@@ -266,7 +314,7 @@ const Page = () => {
                   </label>
                   <input
                     name="bathrooms"
-                    value={formData.bathrooms}
+                    value={newListing.bathrooms}
                     onChange={handleChange}
                     type="number"
                     placeholder="Bathrooms"
@@ -275,6 +323,7 @@ const Page = () => {
                 </div>
               </div>
 
+              {/* Floors & Age */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="floors" className="text-sm font-bold">
@@ -282,7 +331,7 @@ const Page = () => {
                   </label>
                   <input
                     name="floors"
-                    value={formData.floors}
+                    value={newListing.floors}
                     onChange={handleChange}
                     type="number"
                     placeholder="Floors"
@@ -295,7 +344,7 @@ const Page = () => {
                   </label>
                   <input
                     name="building_age"
-                    value={formData.building_age}
+                    value={newListing.building_age}
                     onChange={handleChange}
                     type="number"
                     placeholder="Building Age"
@@ -304,6 +353,7 @@ const Page = () => {
                 </div>
               </div>
 
+              {/* Sqft & Perches */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="sqft" className="text-sm font-bold">
@@ -311,7 +361,7 @@ const Page = () => {
                   </label>
                   <input
                     name="sqft"
-                    value={formData.sqft}
+                    value={newListing.sqft}
                     onChange={handleChange}
                     type="number"
                     placeholder="Enter Sqft."
@@ -325,7 +375,7 @@ const Page = () => {
                   </label>
                   <input
                     name="perches"
-                    value={formData.perches}
+                    value={newListing.perches}
                     onChange={handleChange}
                     type="number"
                     placeholder="Perches"
@@ -335,14 +385,17 @@ const Page = () => {
                 </div>
               </div>
             </div>
+
+            {/* Right column */}
             <div className="flex flex-col gap-6">
+              {/* Price */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="price" className="text-sm font-bold">
                   Price (LKR)*
                 </label>
                 <input
                   name="price"
-                  value={formData.price}
+                  value={newListing.price}
                   onChange={handleChange}
                   type="number"
                   placeholder="Enter Price"
@@ -351,163 +404,117 @@ const Page = () => {
                 />
               </div>
 
+              {/* Location */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="location" className="text-sm font-bold">
                   Location*
                 </label>
                 <select
                   name="location"
-                  value={formData.location}
+                  value={newListing.location}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                 >
                   <option value="" disabled>
-                      Select Area
-                    </option>
-                  <option value="land_side">Land Side</option>
-                  <option value="sea_side">Sea Side</option>
+                    Select Area
+                  </option>
+                  <option value="Land Side">Land Side</option>
+                  <option value="Sea Side">Sea Side</option>
                 </select>
               </div>
 
+              {/* Listing Type */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="listing_type" className="text-sm font-bold">
                   Listing Type*
                 </label>
                 <select
                   name="listing_type"
-                  value={formData.listing_type}
+                  value={newListing.listing_type}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                 >
                   <option value="" disabled>
-                      Select Type
-                    </option>
-                  <option value="sale">Sale</option>
-                  <option value="rent">Rent</option>
-                  <option value="lease">Lease</option>
+                    Select Type
+                  </option>
+                  <option value="Sale">Sale</option>
+                  <option value="Rent">Rent</option>
+                  <option value="Lease">Lease</option>
                 </select>
               </div>
 
+              {/* Furnishing */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="is_furnished" className="text-sm font-bold">
                   Furnishing*
                 </label>
                 <select
                   name="is_furnished"
-                  value={formData.is_furnished}
+                  value={newListing.is_furnished}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                 >
                   <option value="" disabled>
-                      Select Furnishing
-                    </option>
-                  <option value="furnished">Furnished</option>
-                  <option value="unfurnished">UnFurnished</option>
-                  <option value="fully-furnished">Fully-Furnished</option>
+                    Select Furnishing
+                  </option>
+                  <option value="Furnished">Furnished</option>
+                  <option value="UnFurnished">Un-Furnished</option>
                 </select>
               </div>
 
+              {/* Status */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="status" className="text-sm font-bold">
                   Status
                 </label>
                 <select
                   name="status"
-                  value={formData.status}
+                  value={newListing.status}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                 >
-                  <option value="available">Available</option>
-                  <option value="unavailable">Unavailable</option>
-                  <option value="sold">Sold</option>
+                  <option value="Available">Available</option>
+                  <option value="Unavailable">Unavailable</option>
+                  <option value="Sold">Sold</option>
                 </select>
               </div>
 
+              {/* Amenities */}
               <div className="flex flex-col gap-4 w-full">
-                <label htmlFor="status" className="text-sm font-bold">
+                <label htmlFor="amenities" className="text-sm font-bold">
                   Amenities
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-semibold">
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      24/7 Lift Access
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      Secure Parking
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      High-Speed Internet
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      Gym & Fitness Center
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      Swimming Pool
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      Air Conditioning
-                    </span>
-                  </label>
-                  <label className="flex items-center space-x-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      name="support"
-                      value="24/7 Support"
-                      className="accent-blue-600 w-4 h-4"
-                    />
-                    <span className="text-gray-700 text-[15px]">
-                      Security Systems
-                    </span>
-                  </label>
+                  {[
+                    "24/7 Lift Access",
+                    "Secure Parking",
+                    "High-Speed Internet",
+                    "Gym & Fitness Center",
+                    "Swimming Pool",
+                    "Air Conditioning",
+                    "Security Systems",
+                  ].map((amenity) => (
+                    <label
+                      key={amenity}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        name="amenities"
+                        value={amenity}
+                        checked={newListing.amenities.includes(amenity)}
+                        onChange={handleChange}
+                        className="accent-blue-600 w-4 h-4"
+                      />
+                      <span className="text-gray-700 text-[15px]">
+                        {amenity}
+                      </span>
+                    </label>
+                  ))}
                 </div>
               </div>
 
+              {/* Upload Images */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="upload" className="text-sm font-bold">
                   Upload Images*
@@ -520,6 +527,7 @@ const Page = () => {
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
                 />
               </div>
+
               {message && (
                 <p className="text-sm text-center text-gray-600 mt-2 w-full">
                   {message}
@@ -530,10 +538,10 @@ const Page = () => {
               <div className="flex items-end justify-end">
                 <button
                   type="submit"
-                  disabled={loading}
-                  className="select-none btn-orange-base btn-dynamic"
+                  disabled={loading || uploading}
+                  className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
                 >
-                  {loading ? "Uploading..." : "Submit Listing"}
+                  {loading || uploading ? "Uploading..." : "Submit Listing"}
                   <TbSend2 size={22} />
                 </button>
               </div>
