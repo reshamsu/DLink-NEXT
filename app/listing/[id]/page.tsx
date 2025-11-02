@@ -108,10 +108,10 @@ const Page = () => {
 
   // Add fallback images if fewer than 5
   const fallbackImages = [
-    "/assets/banner/property1.webp",
-    "/assets/banner/property2.jpeg",
-    "/assets/banner/property3.jpeg",
-    "/assets/banner/property4.jpg",
+    "/assets/banner/property5.jpg",
+    "/assets/banner/property5.jpg",
+    "/assets/banner/property5.jpg",
+    "/assets/banner/property5.jpg",
     "/assets/banner/property5.jpg",
   ];
   if (images.length < 5) {
@@ -140,7 +140,7 @@ const Page = () => {
   const currentImage = images[currentIndex];
 
   return (
-    <div className="max-w-7xl mx-auto px-0 xl:px-6 2xl:px-0">
+    <div className="max-w-7xl mx-auto mt-18 px-0 xl:px-6 2xl:px-0">
       {/* Hero Slider Section */}
       <div
         className="relative h-[60vh] w-full overflow-hidden select-none"
@@ -157,18 +157,27 @@ const Page = () => {
         />
         <div className="absolute inset-0 bg-black/40 xl:rounded-b-4xl" />
 
-        <div className="absolute inset-0 flex flex-col justify-end gap-1 text-white z-10 p-6 md:p-8 2xl:p-10">
-          <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold drop-shadow-md">
-            {listing.property_title}
-          </h1>
-          <p className="text-sm"> {listing.property_subtitle}</p>
-          <div className="flex items-center justify-between">
-            <p className="text-sm opacity-90 flex items-center gap-2">
-              <TbMapPin size={18} /> {listing.city} - {listing.location}
-            </p>
-            <p className="flex items-center gap-1 text-lg font-extrabold text-orange-400">
-              LKR {listing.price?.toLocaleString()}
-            </p>
+        <div className="absolute inset-0 flex flex-col justify-between gap-1 text-white z-10 p-6 pb-10 md:p-8 2xl:p-10">
+          <p className="text-sm font-bold opacity-90 flex items-center gap-2">
+            <TbMapPin size={24} className="text-orange-400" /> {listing.city} -{" "}
+            {listing.location}
+          </p>
+
+          <div className="space-y-1">
+            <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold drop-shadow-lg line-clamp-1">
+              {listing.property_title}
+            </h1>
+
+            <div className="flex flex-col md:flex-row justify-between gap-1">
+              <p className="text-sm md:text-base text-gray-200 line-clamp-1">
+                {listing.property_subtitle}
+              </p>
+              <p className="text-lg md:text-xl font-extrabold text-orange-500 whitespace-nowrap">
+                {listing.price
+                  ? `LKR ${listing.price.toLocaleString("en-LK")}`
+                  : "Price on Request"}
+              </p>
+            </div>
           </div>
         </div>
 

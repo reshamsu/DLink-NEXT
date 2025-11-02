@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
-import { TbBed, TbBath } from "react-icons/tb";
+import { TbBuilding, TbSquareCheck } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
@@ -15,6 +15,8 @@ interface SupabaseListing {
   is_furnished: boolean;
   bedrooms: number;
   bathrooms: number;
+  floors: number;
+  perches: number;
   property_type: string;
   status: string;
   image_urls: string[] | string | null;
@@ -28,6 +30,8 @@ interface Listing {
   is_furnished: boolean;
   bedrooms: number;
   bathrooms: number;
+  floors: number;
+  perches: number;
   type: string;
   status: string;
   image: string;
@@ -87,10 +91,12 @@ const Listings: React.FC = () => {
               is_furnished: listing.is_furnished,
               bedrooms: listing.bedrooms,
               bathrooms: listing.bathrooms,
+              floors: listing.floors,
+              perches: listing.perches,
               type: listing.property_type,
               status: listing.status,
               image:
-                images.length > 0 ? images[0] : "/assets/banner/property1.webp", // fallback
+                images.length > 0 ? images[0] : "/assets/banner/property5.webp", // fallback
             };
           }
         );
@@ -164,15 +170,15 @@ const Listings: React.FC = () => {
 
                 <p className="text-xs text-gray-600 my-1">{listing.location}</p>
 
-                <div className="flex items-center gap-3 text-xs font-bold flex-wrap my-2">
+                <div className="flex items-center gap-2 text-xs font-bold flex-wrap my-2">
                   <p className="flex items-center gap-1.5">
-                    <TbBed size={18} className="text-orange-300" />
-                    {listing.bedrooms} Bed
+                    <TbBuilding size={18} className="text-orange-300" />
+                    {listing.floors} Floors
                   </p>
                   <span className="text-gray-300">|</span>
                   <p className="flex items-center gap-1.5">
-                    <TbBath size={18} className="text-orange-300" />
-                    {listing.bathrooms} Bath
+                    <TbSquareCheck size={18} className="text-orange-300" />
+                    {listing.perches} Perches
                   </p>
                 </div>
 

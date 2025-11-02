@@ -88,7 +88,7 @@ const Page = () => {
       for (let i = 0; i < images.length; i++) {
         const file = images[i];
 
-        if (file.size > 5 * 1024 * 1024) {
+        if (file.size > 5 * 2048 * 2048) {
           alert(`${file.name} is too large! Max 5MB.`);
           continue;
         }
