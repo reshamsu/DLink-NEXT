@@ -252,6 +252,7 @@ const Page = () => {
                     value={newListing.property_type}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   >
                     <option value="" disabled>
                       Select Type
@@ -272,6 +273,7 @@ const Page = () => {
                     value={newListing.city}
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   >
                     <option value="" disabled>
                       Select City
@@ -311,6 +313,7 @@ const Page = () => {
                     type="number"
                     placeholder="Bedrooms"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
@@ -324,6 +327,7 @@ const Page = () => {
                     type="number"
                     placeholder="Bathrooms"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   />
                 </div>
               </div>
@@ -341,6 +345,7 @@ const Page = () => {
                     type="number"
                     placeholder="Floors"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
@@ -354,6 +359,7 @@ const Page = () => {
                     type="number"
                     placeholder="Building Age"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    required
                   />
                 </div>
               </div>
@@ -419,6 +425,7 @@ const Page = () => {
                   value={newListing.location}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  required
                 >
                   <option value="" disabled>
                     Select Area
@@ -438,6 +445,7 @@ const Page = () => {
                   value={newListing.listing_type}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  required
                 >
                   <option value="" disabled>
                     Select Type
@@ -458,6 +466,7 @@ const Page = () => {
                   value={newListing.is_furnished}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  required
                 >
                   <option value="" disabled>
                     Select Furnishing
@@ -477,6 +486,7 @@ const Page = () => {
                   value={newListing.status}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  required
                 >
                   <option value="Available">Available</option>
                   <option value="Unavailable">Unavailable</option>
@@ -510,6 +520,7 @@ const Page = () => {
                         checked={newListing.amenities.includes(amenity)}
                         onChange={handleChange}
                         className="accent-blue-600 w-4 h-4"
+                        required
                       />
                       <span className="text-gray-700 text-[15px]">
                         {amenity}
@@ -530,6 +541,7 @@ const Page = () => {
                   accept="image/*"
                   onChange={(e) => setImages(e.target.files)}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  required
                 />
               </div>
 
