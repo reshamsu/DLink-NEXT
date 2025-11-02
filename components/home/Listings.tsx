@@ -59,12 +59,12 @@ const Listings: React.FC = () => {
       }
 
       const { data, error } = await supabase
-        .from("listings")
+        .from("listing")
         .select("*")
         .order("created_at", { ascending: false });
 
       if (error) {
-        console.error("Error fetching listings:", error);
+        console.error("Error fetching listing:", error);
         setListingsData([]);
       } else if (data) {
         const formattedData: Listing[] = (data as SupabaseListing[]).map(
@@ -89,9 +89,8 @@ const Listings: React.FC = () => {
               bathrooms: listing.bathrooms,
               type: listing.property_type,
               status: listing.status,
-              image: images.length > 0
-                ? images[0]
-                : "/assets/banner/property1.webp", // fallback
+              image:
+                images.length > 0 ? images[0] : "/assets/banner/property1.webp", // fallback
             };
           }
         );
@@ -113,7 +112,9 @@ const Listings: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>
-          <p className="text-[#f09712] text-base font-extrabold mb-1">LISTINGS</p>
+          <p className="text-[#f09712] text-base font-extrabold mb-1">
+            LISTINGS
+          </p>
           <h1 className="text-2xl font-bold mb-0">Featured Listings</h1>
         </div>
       </div>
@@ -142,8 +143,8 @@ const Listings: React.FC = () => {
               {/* Image */}
               <div className="w-full h-64 md:h-50 lg:h-55 relative overflow-hidden rounded-3xl">
                 <Image
-                  src={listing.image}
-                  alt={listing.title}
+                  src={listing.image || "/assets/banner/property1.webp"}
+                  alt={listing.title || "Property Image"}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-3xl"
@@ -161,9 +162,7 @@ const Listings: React.FC = () => {
                   {listing.title}
                 </Link>
 
-                <p className="text-xs text-gray-600 my-1">
-                  {listing.location}
-                </p>
+                <p className="text-xs text-gray-600 my-1">{listing.location}</p>
 
                 <div className="flex items-center gap-3 text-xs font-bold flex-wrap my-2">
                   <p className="flex items-center gap-1.5">
@@ -185,7 +184,9 @@ const Listings: React.FC = () => {
                   <span className="inline-block bg-green-300 text-[11px] font-bold px-3 py-1.5 rounded-lg">
                     {listing.status}
                   </span>
-                  <p className="text-sm text-[#f09712] font-bold">{listing.type}</p>
+                  <p className="text-sm text-[#f09712] font-bold">
+                    {listing.type}
+                  </p>
                 </div>
               </div>
             </motion.div>

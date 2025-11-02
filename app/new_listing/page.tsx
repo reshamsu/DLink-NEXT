@@ -27,7 +27,7 @@ interface Listing {
 }
 
 const Page = () => {
-  const [, setListings] = useState<Listing[]>([]); // removed unused variable warning
+  const [, setListing] = useState<Listing[]>([]); // removed unused variable warning
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -56,7 +56,9 @@ const Page = () => {
   const [images, setImages] = useState<FileList | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value, type } = e.target;
 
@@ -94,7 +96,7 @@ const Page = () => {
         const filePath = `images/${Date.now()}_${file.name}`;
 
         const { error: uploadError } = await supabase.storage
-          .from("listings")
+          .from("listing")
           .upload(filePath, file, { cacheControl: "3600", upsert: false });
 
         if (uploadError) {
@@ -103,7 +105,7 @@ const Page = () => {
         }
 
         const { data: publicUrlData } = supabase.storage
-          .from("listings")
+          .from("listing")
           .getPublicUrl(filePath);
 
         uploadedUrls.push(publicUrlData.publicUrl);
@@ -137,12 +139,15 @@ const Page = () => {
       perches: newListing.perches ? Number(newListing.perches) : null,
       sqft: newListing.sqft ? Number(newListing.sqft) : null,
       floors: newListing.floors ? Number(newListing.floors) : null,
+      building_age: newListing.building_age
+        ? Number(newListing.building_age)
+        : null,
       price: newListing.price ? Number(newListing.price) : null,
       image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
     };
 
     const { data, error } = await supabase
-      .from("listings")
+      .from("listing")
       .insert([payload])
       .select()
       .single();
@@ -151,7 +156,7 @@ const Page = () => {
       console.error("Error adding listing:", error.message);
       alert("Failed to add listing. Check console for details.");
     } else {
-      setListings((prev) => [...prev, data]);
+      setListing((prev) => [...prev, data]);
       setNewListing({
         property_title: "",
         property_subtitle: "",
