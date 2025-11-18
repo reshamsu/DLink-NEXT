@@ -141,7 +141,7 @@ const Footer = () => {
               <ul className="flex flex-col gap-3">
                 <li>
                   <button
-                    onClick={() => handleNavClick("/apartments")}
+                    onClick={() => handleNavClick("/rent")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Apartments
@@ -149,7 +149,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/houses")}
+                    onClick={() => handleNavClick("/buy")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Homes
@@ -157,7 +157,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/commercial_property")}
+                    onClick={() => handleNavClick("/invest")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Commercial Property

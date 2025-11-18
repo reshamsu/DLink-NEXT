@@ -22,45 +22,47 @@ const Navbar = () => {
   return (
     <header className="fixed z-40 w-full shadow-sm">
       <nav className="max-w-7xl mx-auto flex items-center justify-between py-2.5 px-4 2xl:px-0">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="relative w-14 h-14">
-            <Image
-              src="/favicon.ico"
-              alt="DC"
-              fill
-              className="object-contain"
-            />
-          </div>
-          <div>
-            <h1 className="text-base 2xl:text-lg font-extrabold">D-Link</h1>
-            <p className="text-xs">Colombo</p>
-          </div>
-        </Link>
+        <div className="flex items-center gap-10">
+          <Link href="/" className="flex items-center gap-2">
+            <div className="relative w-14 h-14">
+              <Image
+                src="/favicon.ico"
+                alt="DC"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <div>
+              <h1 className="text-base 2xl:text-lg font-extrabold">D-Link</h1>
+              <p className="text-xs">Colombo</p>
+            </div>
+          </Link>
 
-        {/* Desktop Nav */}
-        <ul className="hidden h-full gap-1 lg:flex text-[15px]">
-          {Nav_Links.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <li key={link.key}>
-                <Link
-                  href={link.href}
-                  className={`flex items-center cursor-pointer transition-all duration-500 py-2.5 px-4
+          {/* Desktop Nav */}
+          <ul className="hidden h-full gap-2 lg:flex text-[15px]">
+            {Nav_Links.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.key}>
+                  <Link
+                    href={link.href}
+                    className={`flex items-center cursor-pointer transition-all duration-500 py-3 px-4 rounded-lg
                       ${
                         isActive
-                          ? "font-bold text-orange-400"
-                          : "hover:font-bold text-black"
+                          ? "font-bold text-orange-400 bg-orange-50"
+                          : "hover:font-bold text-black hover:text-orange-400 hover:bg-orange-50"
                       }`}
-                >
-                  {link.label}
-                  {link.key === "find-property" && (
-                    <TbChevronDown size={16} className="ml-1" />
-                  )}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                  >
+                    {link.label}
+                    {link.key === "find-property" && (
+                      <TbChevronDown size={16} className="ml-1" />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex text-sm">

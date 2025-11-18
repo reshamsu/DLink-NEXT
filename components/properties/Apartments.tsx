@@ -48,7 +48,7 @@ const rowVariants: Variants = {
   }),
 };
 
-const Listings: React.FC = () => {
+const Apartments: React.FC = () => {
   const [listingsData, setListingsData] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -56,51 +56,49 @@ const Listings: React.FC = () => {
     const fetchListings = async () => {
       setLoading(true);
 
-      if (!supabase) {
-        console.warn("Supabase client is not initialized.");
-        setLoading(false);
-        return;
-      }
-
       const { data, error } = await supabase
         .from("listing")
         .select("*")
+        .eq("property_type", "Apartment") // FILTER ONLY APARTMENTS
         .order("created_at", { ascending: false });
 
       if (error) {
         console.error("Error fetching listing:", error);
         setListingsData([]);
-      } else if (data) {
-        const formattedData: Listing[] = (data as SupabaseListing[]).map(
-          (listing) => {
-            let images: string[] = [];
+        setLoading(false);
+        return;
+      }
 
-            if (Array.isArray(listing.image_urls)) images = listing.image_urls;
-            else if (typeof listing.image_urls === "string") {
-              try {
-                images = JSON.parse(listing.image_urls);
-              } catch {
-                images = [];
-              }
+      if (data) {
+        const formatted: Listing[] = (data as SupabaseListing[]).map((l) => {
+          let images: string[] = [];
+
+          if (Array.isArray(l.image_urls)) images = l.image_urls;
+          else if (typeof l.image_urls === "string") {
+            try {
+              images = JSON.parse(l.image_urls);
+            } catch {
+              images = [];
             }
-
-            return {
-              id: listing.id,
-              title: listing.property_title,
-              location: `${listing.city} - ${listing.location}`,
-              is_furnished: listing.is_furnished,
-              bedrooms: listing.bedrooms,
-              bathrooms: listing.bathrooms,
-              floors: listing.floors,
-              perches: listing.perches,
-              type: listing.property_type,
-              status: listing.status,
-              image:
-                images.length > 0 ? images[0] : "/assets/banner/property5.webp", // fallback
-            };
           }
-        );
-        setListingsData(formattedData);
+
+          return {
+            id: l.id,
+            title: l.property_title,
+            location: `${l.city} - ${l.location}`,
+            is_furnished: l.is_furnished,
+            bedrooms: l.bedrooms,
+            bathrooms: l.bathrooms,
+            floors: l.floors,
+            perches: l.perches,
+            type: l.property_type,
+            status: l.status,
+            image:
+              images.length > 0 ? images[0] : "/assets/banner/property5.webp",
+          };
+        });
+
+        setListingsData(formatted);
       }
 
       setLoading(false);
@@ -110,7 +108,6 @@ const Listings: React.FC = () => {
   }, []);
 
   const scrollToTop = () =>
-    typeof window !== "undefined" &&
     window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
@@ -119,20 +116,20 @@ const Listings: React.FC = () => {
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>
           <p className="text-[#f09712] text-base font-extrabold mb-1">
-            LISTINGS
+            APARTMENTS
           </p>
-          <h1 className="text-2xl font-bold mb-0">Featured Listings</h1>
+          <h1 className="text-2xl font-bold mb-0">Available Apartments</h1>
         </div>
       </div>
 
-      {/* Loader / Empty / Data */}
+      {/* Loader */}
       {loading ? (
         <div className="flex justify-center items-center py-20">
           <div className="w-8 h-8 border-4 border-[#f09712] border-t-transparent rounded-full animate-spin"></div>
-          <p className="ml-3 text-gray-500">Loading listings...</p>
+          <p className="ml-3 text-gray-500">Loading apartments...</p>
         </div>
       ) : listingsData.length === 0 ? (
-        <p className="text-center text-gray-500 py-20">No listings found.</p>
+        <p className="text-center text-gray-500 py-8 h-screen">No apartments found.</p>
       ) : (
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
@@ -147,15 +144,15 @@ const Listings: React.FC = () => {
               className="bg-white rounded-xl overflow-hidden group duration-300 transition-transform flex flex-col h-full"
             >
               {/* Image */}
-              <div className="w-full h-64 md:h-50 lg:h-55 relative overflow-hidden rounded-3xl">
+              <div className="w-full h-64 relative overflow-hidden rounded-3xl">
                 <Image
-                  src={listing.image || "/assets/banner/property1.webp"}
-                  alt={listing.title || "Property Image"}
+                  src={listing.image}
+                  alt={listing.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-3xl"
                 />
-                <div className="absolute inset-0 bg-black/90 opacity-20 group-hover:bg-black/0 transition-opacity duration-700 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-black/90 opacity-20 group-hover:opacity-0 transition-opacity duration-700 rounded-3xl"></div>
               </div>
 
               {/* Content */}
@@ -203,4 +200,4 @@ const Listings: React.FC = () => {
   );
 };
 
-export default Listings;
+export default Apartments;
