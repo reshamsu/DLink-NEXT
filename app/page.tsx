@@ -15,7 +15,6 @@ export default function Home() {
   return (
      <div className="relative z-30 pt-10 lg:pt-14">
       <Hero />
-      <Form />
       <Listings />
       <WhyChooseUs />
       <Analytics />

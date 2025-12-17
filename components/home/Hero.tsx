@@ -17,9 +17,9 @@ const Hero = () => {
           />
           <div className="absolute inset-0 bg-orange-950/30" />
         </div>
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* <div className="relative h-90 w-full overflow-hidden flex items-center justify-center text-center"> */}
-          <div className="relative h-screen lg:h-[60vh] inset-0 flex flex-col justify-center items-center text-center text-white z-10 gap-14 px-6 md:px-20 lg:px-40">
+          <div className="relative h-[74vh] inset-0 flex flex-col justify-center items-center text-center text-white z-10 gap-14 px-6 md:px-20 lg:px-40">
             <div className="flex flex-col gap-4">
               <h1 className="text-3xl md:text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
                 Find your Next{" "}
@@ -31,7 +31,7 @@ const Hero = () => {
                   loop
                 />
               </h1>
-              <p className="text-sm 2xl:text-lg font-medium max-w-3xl">
+              <p className="text-xs md:text-sm font-medium max-w-3xl">
                 Find Properties for Sale, Rent or Invest
               </p>
             </div>

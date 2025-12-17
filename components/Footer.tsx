@@ -20,12 +20,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-100 text-gray-600 border-t border-black/5 relative">
-      <div className="max-w-7xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
-        <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-300">
+    <footer className="bg-gray-950 text-gray-500 border-t border-black/5 relative">
+      <div className="max-w-6xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
+        <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
           {/* Logo + Socials */}
           <div className="flex flex-col items-center text-center gap-6 w-full md:w-xs">
-            <Link href="/" className="flex items-center gap-2 text-black">
+            <Link href="/" className="flex items-center gap-2 text-white">
               <div className="relative w-14 h-14">
                 <Image
                   src="/favicon.ico"
@@ -83,10 +83,10 @@ const Footer = () => {
           </div>
 
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 w-full text-xs 2xl:text-sm">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full text-xs 2xl:text-sm">
             {/* Support */}
-            <div className="ml-0 xl:ml-6">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-3 text-black">
+            <div className="ml-0 xl:ml-16">
+              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
                 Support
               </h6>
               <ul className="flex flex-col gap-3">
@@ -108,34 +108,9 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Explore */}
-            <div className="ml-0 xl:ml-4">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-3 text-black">
-                Explore
-              </h6>
-              <ul className="flex flex-col gap-3">
-                {[
-                  "Write a Review",
-                  "Community Forum",
-                  "Assisting Resources",
-                  "Buyer's Preference",
-                  "Blogs",
-                ].map((item, i) => (
-                  <li key={i}>
-                    <Link
-                      href="/NotFound"
-                      className="hover:text-orange-400 hover:underline"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Products */}
-            <div className="ml-0 xl:ml-4">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-3 text-black">
+            <div className="ml-0 xl:ml-10">
+              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
                 Products
               </h6>
               <ul className="flex flex-col gap-3">
@@ -183,8 +158,8 @@ const Footer = () => {
             </div>
 
             {/* Company */}
-            <div>
-              <h6 className="text-sm 2xl:text-base font-semibold mb-3 text-black">
+            <div className="ml-0 xl:ml-6">
+              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
                 D-Link Colombo
               </h6>
               <ul className="flex flex-col gap-3">

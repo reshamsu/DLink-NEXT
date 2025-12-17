@@ -64,7 +64,6 @@ const Page = () => {
     if (id) fetchListing();
   }, [id]);
 
-  // 🌀 Auto-slide every 5 minutes (300,000ms)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % 5);

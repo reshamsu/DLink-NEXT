@@ -22,7 +22,7 @@ import Image from "next/image";
 const WhyChooseUs = () => {
   return (
     <div className="bg-gray-950 text-gray-50">
-      <div className="max-w-7xl mx-auto py-10 px-6 2xl:px-0">
+      <div className="max-w-6xl mx-auto py-10 px-6 2xl:px-0">
         <div className="grid  grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-14 md:gap-4 py-8">
           {/* Image with dark overlay */}
           <motion.div
@@ -32,7 +32,7 @@ const WhyChooseUs = () => {
             className="absolute md:relative left-0 w-full h-[60vh] sm:h-[70vh]"
           >
             <Image
-              src="/assets/banner/banner2.jpg"
+              src="/assets/banner/property5.jpg"
               alt="Why Choose Us"
               width={800}
               height={800}
