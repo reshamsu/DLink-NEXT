@@ -50,8 +50,8 @@ const Navbar = () => {
                   className={`flex items-center cursor-pointer transition-all duration-500 py-2.5 px-4 rounded-full
                       ${
                         isActive
-                          ? "font-bold text-orange-400 bg-orange-50"
-                          : "hover:font-bold text-black hover:text-orange-400 hover:bg-orange-50"
+                          ? "font-bold text-[#f08651] bg-orange-50"
+                          : "hover:font-bold text-black hover:text-[#F28C38] hover:bg-orange-50"
                       }`}
                 >
                   {link.label}
@@ -102,7 +102,7 @@ const Navbar = () => {
                   className={`flex items-center justify-between transition-all duration-500 w-full py-3 px-6 
                     ${
                       isActive
-                        ? "font-bold text-orange-400"
+                        ? "font-bold text-[#F28C38]"
                         : "hover:font-bold text-black"
                     }`}
                 >

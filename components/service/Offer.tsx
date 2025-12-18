@@ -6,7 +6,7 @@ import Link from "next/link";
 const Offer = () => {
   return (
     <section className="bg-white text-gray-800 relative">
-      <div className="max-w-7xl mx-auto py-20 px-6 2xl:px-0 flex flex-col gap-12 2xl:gap-16">
+      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 flex flex-col gap-12 2xl:gap-16">
         <div className="flex flex-col items-center text-center gap-4">
           <h1 className="text-3xl lg:text-4xl font-extrabold">
             Our <span className="text-orange-400">Expertise</span>

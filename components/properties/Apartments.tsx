@@ -111,7 +111,7 @@ const Apartments: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className="max-w-6xl mx-auto py-14 px-6 2xl:px-0 text-gray-800">
+    <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 text-gray-800">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>
@@ -144,7 +144,7 @@ const Apartments: React.FC = () => {
               className="bg-white rounded-xl overflow-hidden group duration-300 transition-transform flex flex-col h-full"
             >
               {/* Image */}
-              <div className="w-full h-64 relative overflow-hidden rounded-3xl">
+              <div className="w-full h-64 md:h-50 lg:h-55 relative overflow-hidden rounded-3xl">
                 <Image
                   src={listing.image}
                   alt={listing.title}

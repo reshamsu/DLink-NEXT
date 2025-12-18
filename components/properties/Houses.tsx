@@ -111,7 +111,7 @@ const Houses: React.FC = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <div className="max-w-6xl mx-auto py-14 px-6 2xl:px-0 text-gray-800">
+    <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 text-gray-800">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
         <div>

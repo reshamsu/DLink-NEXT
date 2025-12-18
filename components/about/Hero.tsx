@@ -3,8 +3,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="bg-gradient-to-b from-[#fdb089] via-[#ffffff] to-[#ffffff] text-gray-800 relative">
-      <div className="max-w-6xl mx-auto py-16 px-6 2xl:px-0 flex flex-col gap-10">
+    <div className="bg-gradient-to-b from-[#fdb089]/70 via-[#ffffff] to-[#ffffff] text-gray-800 relative">
+      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 flex flex-col gap-10">
         
         {/* Header */}
         <div className="flex flex-col items-center text-center gap-4">

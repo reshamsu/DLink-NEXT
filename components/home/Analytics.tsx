@@ -42,7 +42,7 @@ const cardVariants: Variants = {
 const Analytics: React.FC = () => {
   return (
     <div className="bg-white text-black">
-      <div className="max-w-6xl mx-auto py-14 px-6 2xl:px-0">
+      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
         <div className="mb-12 px-2 text-center">
           <p className="text-[#f09712] text-lg font-extrabold">SERVICE</p>
           <h1 className="text-3xl md:text-4xl font-extrabold my-3">

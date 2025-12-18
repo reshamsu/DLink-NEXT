@@ -22,7 +22,7 @@ import Image from "next/image";
 const WhyChooseUs = () => {
   return (
     <div className="bg-gray-950 text-gray-50">
-      <div className="max-w-6xl mx-auto py-10 px-6 2xl:px-0">
+      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
         <div className="grid  grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-14 md:gap-4 py-8">
           {/* Image with dark overlay */}
           <motion.div

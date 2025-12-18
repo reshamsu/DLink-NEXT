@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const CTA = () => {
   return (
-    <div className="bg-gray-50 text-gray-800 relative">
-      <div className="max-w-6xl mx-auto py-12 px-6 2xl:px-0 flex flex-col gap-6">
+    <div className="bg-orange-500/10 text-gray-800 relative">
+      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-center lg:text-start h-full
           bg-white
@@ -15,8 +15,7 @@ const CTA = () => {
           {/* Left Section */}
           <div className="flex flex-col justify-center gap-6 h-fit z-10">
             <h1 className="text-2xl md:text-3xl 2xl:text-4xl font-extrabold leading-tight">
-              Ready to Invest? {" "}
-              <i className="text-orange-400">Call Us..</i>
+              Ready to Invest? <i className="text-orange-400">Call Us..</i>
             </h1>
             <p className="text-sm 2xl:text-base font-medium text-gray-800">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
@@ -33,10 +32,7 @@ const CTA = () => {
               >
                 Book Now <FaArrowRight size={18} />
               </Link>
-               <Link
-                href="/contact"
-                className="select-none btn-orange-outline"
-              >
+              <Link href="/contact" className="select-none btn-orange-outline">
                 Contact Us
               </Link>
             </div>
