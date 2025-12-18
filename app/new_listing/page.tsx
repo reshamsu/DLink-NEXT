@@ -221,7 +221,7 @@ const Page = () => {
                     onChange={handleChange}
                     type="text"
                     placeholder="Enter Title"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
@@ -238,7 +238,7 @@ const Page = () => {
                     value={newListing.property_subtitle}
                     onChange={handleChange}
                     placeholder="Enter Subtitle"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
@@ -251,7 +251,7 @@ const Page = () => {
                     name="property_type"
                     value={newListing.property_type}
                     onChange={handleChange}
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   >
                     <option value="" disabled>
@@ -272,16 +272,28 @@ const Page = () => {
                     name="city"
                     value={newListing.city}
                     onChange={handleChange}
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   >
                     <option value="" disabled>
                       Select City
                     </option>
-                    <option value="Dehiwela">Dehiwela</option>
-                    <option value="Wellawatta">Wellawatta</option>
-                    <option value="Mount_lavinia">Mount Lavinia</option>
-                    <option value="Bambalapitiya">Bambalapitiya</option>
+                    <optgroup label="Colombo City">
+                      <option value="Colombo 03">Colombo 03</option>
+                      <option value="Colombo 04">Colombo 04</option>
+                      <option value="Colombo 05">Colombo 05</option>
+                      <option value="Colombo 06">Colombo 06</option>
+                      <option value="Colombo 07">Colombo 07</option>
+                    </optgroup>
+
+                    <optgroup label="Suburbs & Coastal">
+                      <option value="Dehiwela">Dehiwela</option>
+                      <option value="Mount Lavinia">Mount Lavinia</option>
+                      <option value="Wellawatta">Wellawatta</option>
+                      <option value="Bambalapitiya">Bambalapitiya</option>
+                      <option value="Ratmalana">Ratmalana</option>
+                      <option value="Moratuwa">Moratuwa</option>
+                    </optgroup>
                   </select>
                 </div>
 
@@ -294,14 +306,14 @@ const Page = () => {
                     value={newListing.description}
                     onChange={handleChange}
                     placeholder="Enter Description"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
               </div>
 
               {/* Bedrooms & Bathrooms */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="bedrooms" className="text-sm font-bold">
                     Bedrooms*
@@ -312,7 +324,7 @@ const Page = () => {
                     onChange={handleChange}
                     type="number"
                     placeholder="Bedrooms"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
@@ -326,14 +338,14 @@ const Page = () => {
                     onChange={handleChange}
                     type="number"
                     placeholder="Bathrooms"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
               </div>
 
               {/* Floors & Age */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="floors" className="text-sm font-bold">
                     Floors*
@@ -342,9 +354,8 @@ const Page = () => {
                     name="floors"
                     value={newListing.floors}
                     onChange={handleChange}
-                    type="number"
                     placeholder="Floors"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
@@ -356,16 +367,15 @@ const Page = () => {
                     name="building_age"
                     value={newListing.building_age}
                     onChange={handleChange}
-                    type="number"
                     placeholder="Building Age"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
               </div>
 
               {/* Sqft & Perches */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="sqft" className="text-sm font-bold">
                     Sqft.*
@@ -376,9 +386,23 @@ const Page = () => {
                     onChange={handleChange}
                     type="number"
                     placeholder="Enter Sqft."
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name="amenities"
+                      value=""
+                      // checked="newListing.amenities.includes(amenity)}"
+                      onChange={handleChange}
+                      className="accent-blue-600 w-4 h-4"
+                      required
+                    />{" "}
+                    <label htmlFor="sqft" className="text-xs font-semibold">
+                      Approx
+                    </label>
+                  </div>
                 </div>
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="perches" className="text-sm font-bold">
@@ -390,7 +414,7 @@ const Page = () => {
                     onChange={handleChange}
                     type="number"
                     placeholder="Perches"
-                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
                 </div>
@@ -408,52 +432,66 @@ const Page = () => {
                   name="price"
                   value={newListing.price}
                   onChange={handleChange}
-                  type="number"
                   placeholder="Enter Price"
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                   required
                 />
+                <div className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    name="amenities"
+                    value=""
+                    // checked="newListing.amenities.includes(amenity)}"
+                    onChange={handleChange}
+                    className="accent-blue-600 w-4 h-4"
+                    required
+                  />{" "}
+                  <label htmlFor="sqft" className="text-xs font-semibold">
+                    Negotiable
+                  </label>
+                </div>
               </div>
 
-              {/* Location */}
-              <div className="flex flex-col gap-2 w-full">
-                <label htmlFor="location" className="text-sm font-bold">
-                  Location*
-                </label>
-                <select
-                  name="location"
-                  value={newListing.location}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
-                  required
-                >
-                  <option value="" disabled>
-                    Select Area
-                  </option>
-                  <option value="Land Side">Land Side</option>
-                  <option value="Sea Side">Sea Side</option>
-                </select>
-              </div>
+              {/* Location & Listing Type */}
+              <div className="grid grid-cols-2 gap-6 w-full">
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="location" className="text-sm font-bold">
+                    Location*
+                  </label>
+                  <select
+                    name="location"
+                    value={newListing.location}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Area
+                    </option>
+                    <option value="Land Side">Land Side</option>
+                    <option value="Sea Side">Sea Side</option>
+                  </select>
+                </div>
 
-              {/* Listing Type */}
-              <div className="flex flex-col gap-2 w-full">
-                <label htmlFor="listing_type" className="text-sm font-bold">
-                  Listing Type*
-                </label>
-                <select
-                  name="listing_type"
-                  value={newListing.listing_type}
-                  onChange={handleChange}
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
-                  required
-                >
-                  <option value="" disabled>
-                    Select Type
-                  </option>
-                  <option value="Sale">Sale</option>
-                  <option value="Rent">Rent</option>
-                  <option value="Lease">Lease</option>
-                </select>
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="listing_type" className="text-sm font-bold">
+                    Listing Type*
+                  </label>
+                  <select
+                    name="listing_type"
+                    value={newListing.listing_type}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select Type
+                    </option>
+                    <option value="Sale">Sale</option>
+                    <option value="Rent">Rent</option>
+                    <option value="Lease">Lease</option>
+                  </select>
+                </div>
               </div>
 
               {/* Furnishing */}
@@ -465,13 +503,14 @@ const Page = () => {
                   name="is_furnished"
                   value={newListing.is_furnished}
                   onChange={handleChange}
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                   required
                 >
                   <option value="" disabled>
                     Select Furnishing
                   </option>
                   <option value="Furnished">Furnished</option>
+                  <option value="Semi-Furnished">Semi-Furnished</option>
                   <option value="UnFurnished">Un-Furnished</option>
                 </select>
               </div>
@@ -485,7 +524,7 @@ const Page = () => {
                   name="status"
                   value={newListing.status}
                   onChange={handleChange}
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5"
+                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                   required
                 >
                   <option value="Available">Available</option>

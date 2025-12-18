@@ -139,7 +139,7 @@ const Page = () => {
   const currentImage = images[currentIndex];
 
   return (
-    <div className="max-w-7xl mx-auto mt-18 px-0 xl:px-6 2xl:px-0">
+    <div className="max-w-6xl mx-auto mt-18 px-0 xl:px-6 2xl:px-0">
       {/* Hero Slider Section */}
       <div
         className="relative h-[60vh] w-full overflow-hidden select-none"
