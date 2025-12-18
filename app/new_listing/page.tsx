@@ -535,13 +535,14 @@ const Page = () => {
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-semibold">
                   {[
-                    "24/7 Lift Access",
-                    "Secure Parking",
-                    "High-Speed Internet",
+                    "24/7 Security", 
+                    "Lift Access (1, 2, 3 Radio's)",
+                    "Vehicle Parking",
+                    // "High-Speed Internet",
                     "Gym & Fitness Center",
                     "Swimming Pool",
                     "Air Conditioning",
-                    "Security Systems",
+                    "CCTV Systems",
                   ].map((amenity) => (
                     <label
                       key={amenity}
