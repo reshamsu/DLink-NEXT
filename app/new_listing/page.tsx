@@ -20,6 +20,9 @@ interface Listing {
   floors: string;
   building_age: string;
   price: string;
+  full_price: string;
+  property_documents: string;
+  remarks: string;
   amenities: string[];
   status: string;
   is_furnished: string;
@@ -47,6 +50,9 @@ const Page = () => {
     floors: "",
     building_age: "",
     price: "",
+    full_price: "",
+    property_documents: "",
+    remarks: "",
     amenities: [],
     status: "Available",
     is_furnished: "",
@@ -167,6 +173,9 @@ const Page = () => {
         floors: "",
         building_age: "",
         price: "",
+        full_price: "",
+        property_documents: "",
+        remarks: "",
         amenities: [],
         status: "Available",
         is_furnished: "",
@@ -447,6 +456,20 @@ const Page = () => {
                 </div>
               </div>
 
+              <div className="flex flex-col gap-2 w-full">
+                <label htmlFor="price" className="text-sm font-bold">
+                  Price in Full (LKR)*
+                </label>
+                <input
+                  name="full_price"
+                  value={newListing.full_price}
+                  onChange={handleChange}
+                  placeholder="Enter Lakhs Amount"
+                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  required
+                />
+              </div>
+
               {/* Location & Listing Type */}
               <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
@@ -489,6 +512,51 @@ const Page = () => {
                 </div>
               </div>
 
+              <div className="flex flex-col gap-4 w-full">
+                <label htmlFor="amenities" className="text-sm font-bold">
+                  Property Documents
+                </label>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-semibold">
+                  {["Sales Agreement", "Deed", "COC"].map(
+                    (propery_documents) => (
+                      <label
+                        key={propery_documents}
+                        className="flex items-center space-x-2 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          name="amenities"
+                          value={propery_documents}
+                          checked={newListing.property_documents.includes(
+                            propery_documents
+                          )}
+                          onChange={handleChange}
+                          className="accent-blue-600 w-4 h-4"
+                          required
+                        />
+                        <span className="text-gray-700 text-[15px]">
+                          {propery_documents}
+                        </span>
+                      </label>
+                    )
+                  )}
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="remarks" className="text-sm font-bold">
+                    Remarks
+                  </label>
+                  <input
+                    name="remarks"
+                    value={newListing.remarks}
+                    onChange={handleChange}
+                    placeholder="Enter Remarks"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                    required
+                  />
+                </div>
+              </div>
+
               {/* Furnishing */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="is_furnished" className="text-sm font-bold">
@@ -504,7 +572,7 @@ const Page = () => {
                   <option value="" disabled>
                     Select Furnishing
                   </option>
-                  <option value="Furnished">Furnished</option>
+                  <option value="Fully-Furnished">Fully-Furnished</option>
                   <option value="Semi-Furnished">Semi-Furnished</option>
                   <option value="UnFurnished">Un-Furnished</option>
                 </select>
@@ -535,14 +603,15 @@ const Page = () => {
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-semibold">
                   {[
-                    "24/7 Security", 
+                    "24/7 Security",
                     "Lift Access (1, 2, 3 Radio's)",
-                    "Vehicle Parking",
+                    "Vehicle Parking (1, 2, 3 Radio's)",
                     // "High-Speed Internet",
                     "Gym & Fitness Center",
                     "Swimming Pool",
                     "Air Conditioning",
                     "CCTV Systems",
+                    "Backup Generator",
                   ].map((amenity) => (
                     <label
                       key={amenity}
