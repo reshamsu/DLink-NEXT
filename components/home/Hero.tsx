@@ -86,7 +86,7 @@ const Hero = () => {
           <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
             Find your Next{" "}
             <ReactTyped
-              className="text-4xl 2xl:text-5xl font-extrabold text-[#F28C38]"
+              className="text-4xl 2xl:text-5xl font-extrabold text-orange-400"
               strings={["Property", "Home", "Apartment", "Villa", "Land"]}
               typeSpeed={200}
               backSpeed={140}

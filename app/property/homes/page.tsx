@@ -1,6 +1,6 @@
 "use client";
 
-import Houses from "@/components/properties/Houses";
+import Houses from "@/components/property/Houses";
 
 export default function Buy() {
   return (

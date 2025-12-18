@@ -23,10 +23,10 @@ interface Listing {
   property_subtitle: string;
   city: string;
   location: string;
-  bedrooms: number;
-  bathrooms: number;
-  floors: number;
-  is_furnished: boolean;
+  bedrooms: string;
+  bathrooms: string;
+  floors: string;
+  is_furnished: "Furnished" | "Semi-Furnished" | "Unfurnished";
   property_type: string;
   price: number;
   amenities: string[] | string;
@@ -136,6 +136,13 @@ const Page = () => {
     }
   };
 
+  const furnishingLabel =
+    listing.is_furnished === "Furnished"
+      ? "Furnished"
+      : listing.is_furnished === "Semi-Furnished"
+      ? "Semi-Furnished"
+      : "UnFurnished";
+
   const currentImage = images[currentIndex];
 
   return (
@@ -217,7 +224,7 @@ const Page = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-3 lg:grid-cols-4 gap-3 items-center text-sm capitalize font-bold border-b border-gray-200 pb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 items-center text-sm capitalize font-bold border-b border-gray-200 pb-6">
             <p className="flex items-center gap-2">
               <TbBed size={22} className="text-orange-400" />
               {listing.bedrooms} Beds
@@ -231,8 +238,8 @@ const Page = () => {
               {listing.floors} Floors
             </p>
             <p className="flex items-center gap-2">
-              <TbRulerMeasure size={22} className="text-orange-400" />
-              {listing.sqft} Sqft.
+              <TbSofa size={22} className="text-orange-400" />
+              {furnishingLabel}
             </p>
             <p className="flex items-center gap-2">
               <TbSquareCheck size={22} className="text-orange-400" />
@@ -242,9 +249,10 @@ const Page = () => {
               <TbHome size={22} className="text-orange-400" />
               {listing.property_type}
             </p>
+
             <p className="flex items-center gap-2">
-              <TbSofa size={22} className="text-orange-400" />
-              {listing.is_furnished ? "Furnished" : "Un-furnished"}
+              <TbRulerMeasure size={22} className="text-orange-400" />
+              {listing.sqft} Sqft.
             </p>
           </div>
 
@@ -304,7 +312,7 @@ const Page = () => {
             <p>
               Furnishing:{" "}
               <span className="font-semibold text-gray-800">
-                {listing.is_furnished ? "Furnished" : "UnFurnished"}
+                {furnishingLabel}
               </span>
             </p>
           </div>

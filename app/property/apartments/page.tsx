@@ -1,6 +1,6 @@
 "use client";
 
-import Apartments from "@/components/properties/Apartments";
+import Apartments from "@/components/property/Apartments";
 
 export default function Rent() {
   return (

@@ -138,11 +138,6 @@ const Page = () => {
       bathrooms: newListing.bathrooms ? Number(newListing.bathrooms) : null,
       perches: newListing.perches ? Number(newListing.perches) : null,
       sqft: newListing.sqft ? Number(newListing.sqft) : null,
-      floors: newListing.floors ? Number(newListing.floors) : null,
-      building_age: newListing.building_age
-        ? Number(newListing.building_age)
-        : null,
-      price: newListing.price ? Number(newListing.price) : null,
       image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
     };
 
@@ -400,7 +395,7 @@ const Page = () => {
                       required
                     />{" "}
                     <label htmlFor="sqft" className="text-xs font-semibold">
-                      Approx
+                      Approx.
                     </label>
                   </div>
                 </div>

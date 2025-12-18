@@ -7,12 +7,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 
+/* ----------------------------------
+   TYPES
+----------------------------------- */
+
+type FurnishingStatus = "Furnished" | "Semi-Furnished" | "UnFurnished";
 interface SupabaseListing {
   id: number;
   property_title: string;
+  property_subtitle: string;
   city: string;
   location: string;
-  is_furnished: boolean;
+  is_furnished: FurnishingStatus;
   bedrooms: number;
   bathrooms: number;
   floors: number;
@@ -26,8 +32,9 @@ interface SupabaseListing {
 interface Listing {
   id: number;
   title: string;
+  subtitle: string;
   location: string;
-  is_furnished: boolean;
+  is_furnished: FurnishingStatus;
   bedrooms: number;
   bathrooms: number;
   floors: number;
@@ -48,6 +55,17 @@ const rowVariants: Variants = {
   }),
 };
 
+const getFurnishingLabel = (value: FurnishingStatus) => {
+  switch (value) {
+    case "Furnished":
+      return "Furnished";
+    case "Semi-Furnished":
+      return "Semi-Furnished";
+    default:
+      return "Unfurnished";
+  }
+};
+
 const Listings: React.FC = () => {
   const [listingsData, setListingsData] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
@@ -57,7 +75,7 @@ const Listings: React.FC = () => {
       setLoading(true);
 
       if (!supabase) {
-        console.warn("Supabase client is not initialized.");
+        console.warn("Supabase client not initialized.");
         setLoading(false);
         return;
       }
@@ -68,67 +86,74 @@ const Listings: React.FC = () => {
         .order("created_at", { ascending: false });
 
       if (error) {
-        console.error("Error fetching listing:", error);
+        console.error("Error fetching listings:", error.message);
         setListingsData([]);
-      } else if (data) {
-        const formattedData: Listing[] = (data as SupabaseListing[]).map(
-          (listing) => {
-            let images: string[] = [];
-
-            if (Array.isArray(listing.image_urls)) images = listing.image_urls;
-            else if (typeof listing.image_urls === "string") {
-              try {
-                images = JSON.parse(listing.image_urls);
-              } catch {
-                images = [];
-              }
-            }
-
-            return {
-              id: listing.id,
-              title: listing.property_title,
-              location: `${listing.city} - ${listing.location}`,
-              is_furnished: listing.is_furnished,
-              bedrooms: listing.bedrooms,
-              bathrooms: listing.bathrooms,
-              floors: listing.floors,
-              perches: listing.perches,
-              type: listing.property_type,
-              status: listing.status,
-              image:
-                images.length > 0 ? images[0] : "/assets/banner/property5.webp", // fallback
-            };
-          }
-        );
-        setListingsData(formattedData);
+        setLoading(false);
+        return;
       }
 
+      const formatted: Listing[] = (data as SupabaseListing[]).map(
+        (listing) => {
+          let images: string[] = [];
+
+          if (Array.isArray(listing.image_urls)) {
+            images = listing.image_urls;
+          } else if (typeof listing.image_urls === "string") {
+            try {
+              const parsed = JSON.parse(listing.image_urls);
+              if (Array.isArray(parsed)) images = parsed;
+            } catch {
+              images = [];
+            }
+          }
+
+          return {
+            id: listing.id,
+            title: listing.property_title,
+            subtitle: listing.property_subtitle,
+            location: `${listing.city} - ${listing.location}`,
+            is_furnished: listing.is_furnished,
+            bedrooms: listing.bedrooms,
+            bathrooms: listing.bathrooms,
+            floors: listing.floors,
+            perches: listing.perches,
+            type: listing.property_type,
+            status: listing.status,
+            image:
+              images.length > 0 ? images[0] : "/assets/banner/property5.webp",
+          };
+        }
+      );
+
+      setListingsData(formatted);
       setLoading(false);
     };
 
     fetchListings();
   }, []);
 
-  const scrollToTop = () =>
-    typeof window !== "undefined" &&
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+  /* ----------------------------------
+     UI
+  ----------------------------------- */
 
   return (
     <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 text-gray-800">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-start mb-8 gap-4">
+      {/* HEADER */}
+      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 text-center md:text-start">
         <div>
           <p className="text-[#f09712] text-base font-extrabold mb-1">
             LISTINGS
           </p>
-          <h1 className="text-2xl font-bold mb-0">Featured Listings</h1>
+          <h1 className="text-2xl font-bold">Featured Listings</h1>
         </div>
       </div>
 
-      {/* Loader / Empty / Data */}
+      {/* STATES */}
       {loading ? (
         <div className="flex justify-center items-center py-20">
-          <div className="w-8 h-8 border-4 border-[#f09712] border-t-transparent rounded-full animate-spin"></div>
+          <div className="w-8 h-8 border-4 border-[#f09712] border-t-transparent rounded-full animate-spin" />
           <p className="ml-3 text-gray-500">Loading listings...</p>
         </div>
       ) : listingsData.length === 0 ? (
@@ -144,50 +169,52 @@ const Listings: React.FC = () => {
               key={listing.id}
               custom={index}
               variants={rowVariants}
-              className="bg-white rounded-xl overflow-hidden group duration-300 transition-transform flex flex-col h-full"
+              className="bg-white rounded-xl overflow-hidden group flex flex-col h-full"
             >
-              {/* Image */}
-              <div className="w-full h-64 md:h-50 lg:h-55 relative overflow-hidden rounded-3xl">
+              {/* IMAGE */}
+              <div className="relative h-64 overflow-hidden rounded-3xl">
                 <Image
-                  src={listing.image || "/assets/banner/property1.webp"}
-                  alt={listing.title || "Property Image"}
+                  src={listing.image}
+                  alt={listing.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-110 rounded-3xl"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black/90 opacity-20 group-hover:bg-black/0 transition-opacity duration-700 rounded-3xl"></div>
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-3xl" />
               </div>
 
-              {/* Content */}
+              {/* CONTENT */}
               <div className="flex flex-col flex-1 py-4 px-2">
                 <Link
                   href={`/listing/${listing.id}`}
                   onClick={scrollToTop}
-                  className="text-base lg:text-sm font-bold hover:text-[#f09712] hover:underline line-clamp-1"
+                  className="text-sm font-bold hover:text-[#f09712] line-clamp-1"
                 >
                   {listing.title}
                 </Link>
 
-                <p className="text-xs text-gray-600 my-1">{listing.location}</p>
+                <p className="text-xs text-gray-600 my-1 line-clamp-1">
+                  {listing.subtitle}
+                </p>
 
-                <div className="flex items-center gap-2 text-xs font-bold flex-wrap my-2">
+                <div className="flex items-center gap-2 text-xs font-bold my-2">
                   <p className="flex items-center gap-1.5">
-                    <TbBuilding size={18} className="text-orange-300" />
+                    <TbBuilding size={16} className="text-orange-300" />
                     {listing.floors} Floors
                   </p>
                   <span className="text-gray-300">|</span>
                   <p className="flex items-center gap-1.5">
-                    <TbSquareCheck size={18} className="text-orange-300" />
+                    <TbSquareCheck size={16} className="text-orange-300" />
                     {listing.perches} Perches
                   </p>
                 </div>
 
+                {/* ✅ FIXED FURNISHING */}
                 <p className="text-xs text-blue-500 font-bold">
-                  {listing.is_furnished ? "Furnished" : "Unfurnished"}
+                  {getFurnishingLabel(listing.is_furnished)}
                 </p>
 
                 <div className="flex justify-between items-center mt-3">
-                  <span className="inline-block bg-green-300 text-[11px] font-bold px-3 py-1.5 rounded-lg">
+                  <span className="bg-green-300 text-[11px] font-bold px-3 py-1.5 rounded-lg">
                     {listing.status}
                   </span>
                   <p className="text-sm text-[#f09712] font-bold">
