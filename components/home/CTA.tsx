@@ -15,13 +15,13 @@ const CTA = () => {
           {/* Left Section */}
           <div className="flex flex-col justify-center gap-6 h-fit z-10">
             <h1 className="text-2xl md:text-3xl 2xl:text-4xl font-extrabold leading-tight">
-              Ready to Invest? <i className="text-orange-400">Call Us..</i>
+              Ready to Invest?{" "}
+              <i className="text-orange-400">Speak With an Expert.</i>
             </h1>
             <p className="text-sm 2xl:text-base font-medium text-gray-800">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error,
-              eveniet placeat! Delectus blanditiis tempora reiciendis eum
-              aliquid nihil illo, quo voluptates itaque, voluptatibus quis nobis
-              libero, accusamus corrupti aut veniam.
+              Get personalized guidance on buying, selling, or investing in
+              property. We help you evaluate opportunities, avoid costly
+              mistakes, and make decisions backed by real market insight.
             </p>
 
             {/* Buttons */}

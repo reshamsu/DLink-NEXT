@@ -12,8 +12,9 @@ const Offer = () => {
             Our <span className="text-orange-400">Expertise</span>
           </h1>
           <p className="text-sm 2xl:text-base text-gray-600 max-w-3xl">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
-            doloribus iure similique dolorem aperiam?
+            We specialize in connecting clients with carefully selected
+            residential and land properties, backed by market insight,
+            transparency, and long-term value.
           </p>
         </div>
 
@@ -23,10 +24,11 @@ const Offer = () => {
               Apartments
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reiciendis ipsa nisi quasi necessitatibus exercitationem esse
-              fugit dolor maxime neque mollitia adipisci cum eligendi
-              praesentium iusto aspernatur accusamus quam, velit voluptatum?
+              From modern city residences to premium high-rise developments, our
+              apartment portfolio offers comfort, convenience, and strong
+              investment potential. Whether you’re buying your first home or
+              expanding your property portfolio, we help you find apartments
+              that match your lifestyle and financial goals.
             </p>
             <Link
               href="/apartments"
@@ -65,10 +67,10 @@ const Offer = () => {
               Houses
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Provident, ea esse quia ex eos similique qui consectetur, ipsam ut
-              cumque tempora, nihil beatae. Cumque alias corrupti perspiciatis
-              totam tempore expedita?
+              Explore a range of independent houses designed for privacy, space,
+              and long-term living. We assist clients in finding well-located
+              homes that balance functionality, design, and future value — ideal
+              for families and long-term ownership.
             </p>
             <Link
               href="/homes"
@@ -85,10 +87,10 @@ const Offer = () => {
               Lands
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Reiciendis ipsa nisi quasi necessitatibus exercitationem esse
-              fugit dolor maxime neque mollitia adipisci cum eligendi
-              praesentium iusto aspernatur accusamus quam, velit voluptatum?
+              Secure land opportunities with strong growth potential. From
+              residential plots to development-ready land, we guide you through
+              location analysis, legal clarity, and investment feasibility to
+              help you make confident decisions.
             </p>
             <Link
               href="/lands"
