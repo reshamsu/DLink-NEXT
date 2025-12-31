@@ -26,9 +26,10 @@ interface Listing {
   bedrooms: string;
   bathrooms: string;
   floors: string;
-  is_furnished: "Furnished" | "Semi-Furnished" | "Unfurnished";
+  is_furnished: "Fully-Furnished" | "Semi-Furnished" | "Unfurnished";
   property_type: string;
   price: number;
+  full_price: string;
   amenities: string[] | string;
   sqft: number;
   perches: number;
@@ -137,8 +138,8 @@ const Page = () => {
   };
 
   const furnishingLabel =
-    listing.is_furnished === "Furnished"
-      ? "Furnished"
+    listing.is_furnished === "Fully-Furnished"
+      ? "Fully-Furnished"
       : listing.is_furnished === "Semi-Furnished"
       ? "Semi-Furnished"
       : "UnFurnished";
@@ -224,7 +225,7 @@ const Page = () => {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 items-center text-sm capitalize font-bold border-b border-gray-200 pb-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 items-center text-sm capitalize font-bold border-b border-gray-200 pb-6">
             <p className="flex items-center gap-2">
               <TbBed size={22} className="text-orange-400" />
               {listing.bedrooms} Beds
@@ -235,7 +236,7 @@ const Page = () => {
             </p>
             <p className="flex items-center gap-2">
               <TbBuilding size={22} className="text-orange-400" />
-              {listing.floors} Floors
+              {listing.floors} 
             </p>
             <p className="flex items-center gap-2">
               <TbSofa size={22} className="text-orange-400" />
@@ -293,7 +294,10 @@ const Page = () => {
             <p className="text-3xl font-bold text-orange-500">
               LKR {listing.price?.toLocaleString()}
             </p>
-            <p className="text-sm text-gray-500">(Negotiable)</p>
+            <p className="text-base font-semibold text-gray-700">
+              {" "}
+              ({listing.full_price} - Negotiable)
+            </p>
           </div>
 
           <div className="flex flex-col gap-2 text-sm text-gray-500 pt-6 border-t border-gray-200">

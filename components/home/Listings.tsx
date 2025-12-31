@@ -11,7 +11,7 @@ import { supabase } from "@/lib/supabaseClient";
    TYPES
 ----------------------------------- */
 
-type FurnishingStatus = "Furnished" | "Semi-Furnished" | "UnFurnished";
+type FurnishingStatus = "Fully-Furnished" | "Semi-Furnished" | "UnFurnished";
 interface SupabaseListing {
   id: number;
   property_title: string;
@@ -57,8 +57,8 @@ const rowVariants: Variants = {
 
 const getFurnishingLabel = (value: FurnishingStatus) => {
   switch (value) {
-    case "Furnished":
-      return "Furnished";
+    case "Fully-Furnished":
+      return "Fully-Furnished";
     case "Semi-Furnished":
       return "Semi-Furnished";
     default:
@@ -199,7 +199,7 @@ const Listings: React.FC = () => {
                 <div className="flex items-center gap-2 text-xs font-bold my-2">
                   <p className="flex items-center gap-1.5">
                     <TbBuilding size={16} className="text-orange-300" />
-                    {listing.floors} Floors
+                    {listing.floors}
                   </p>
                   <span className="text-gray-300">|</span>
                   <p className="flex items-center gap-1.5">

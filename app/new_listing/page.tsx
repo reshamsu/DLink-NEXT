@@ -13,23 +13,41 @@ interface Listing {
   city: string;
   location: string;
   description: string;
+
   bedrooms: string;
   bathrooms: string;
   perches: string;
   sqft: string;
+
   floors: string;
   building_age: string;
+
   price: string;
   full_price: string;
-  property_documents: string;
+  price_negotiable: boolean;
+
+  property_documents: string[];
+  lift_access: string;
+  vehicle_park: string;
   remarks: string;
+  approx: boolean;
   amenities: string[];
+
   status: string;
   is_furnished: string;
+
   image_urls: string[];
 }
 
 const Page = () => {
+  if (!supabase) {
+    return (
+      <div className="p-10 text-center text-teal-600">
+        Supabase not configured.
+      </div>
+    );
+  }
+
   const [, setListing] = useState<Listing[]>([]); // removed unused variable warning
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,7 +69,11 @@ const Page = () => {
     building_age: "",
     price: "",
     full_price: "",
-    property_documents: "",
+    approx: false,
+    price_negotiable: false,
+    property_documents: [],
+    lift_access: "",
+    vehicle_park: "",
     remarks: "",
     amenities: [],
     status: "Available",
@@ -66,22 +88,55 @@ const Page = () => {
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
     >
   ) => {
-    const { name, value, type } = e.target;
+    const target = e.target;
+    const { name, value } = target;
 
-    if (type === "checkbox") {
-      const target = e.target as HTMLInputElement;
-      setNewListing((prev) => ({
-        ...prev,
-        amenities: target.checked
-          ? [...prev.amenities, target.value]
-          : prev.amenities.filter((f) => f !== target.value),
-      }));
-    } else {
-      setNewListing((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
+    // ✅ Handle checkboxes safely
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      const checked = target.checked;
+
+      if (name === "amenities") {
+        setNewListing((prev) => ({
+          ...prev,
+          amenities: checked
+            ? [...prev.amenities, value]
+            : prev.amenities.filter((a) => a !== value),
+        }));
+        return;
+      }
+
+      if (name === "property_documents") {
+        setNewListing((prev) => ({
+          ...prev,
+          property_documents: checked
+            ? [...prev.property_documents, value]
+            : prev.property_documents.filter((d) => d !== value),
+        }));
+        return;
+      }
+
+      if (name === "approx") {
+        setNewListing((prev) => ({
+          ...prev,
+          approx: checked,
+        }));
+        return;
+      }
+
+      if (name === "price_negotiable") {
+        setNewListing((prev) => ({
+          ...prev,
+          price_negotiable: checked,
+        }));
+        return;
+      }
     }
+
+    // ✅ Default handler (text / select / textarea)
+    setNewListing((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleImageUpload = async (): Promise<string[]> => {
@@ -132,6 +187,10 @@ const Page = () => {
     }
   };
 
+  const handleRadio = (name: string, value: number) => {
+    setNewListing((p) => ({ ...p, [name]: value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -144,6 +203,14 @@ const Page = () => {
       bathrooms: newListing.bathrooms ? Number(newListing.bathrooms) : null,
       perches: newListing.perches ? Number(newListing.perches) : null,
       sqft: newListing.sqft ? Number(newListing.sqft) : null,
+
+      floors: newListing.floors || null,
+      building_age: newListing.building_age || null,
+
+      price: newListing.price || null,
+      full_price: newListing.full_price || null,
+      approx: newListing.approx || null,
+
       image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
     };
 
@@ -174,7 +241,11 @@ const Page = () => {
         building_age: "",
         price: "",
         full_price: "",
-        property_documents: "",
+        approx: false,
+        price_negotiable: false,
+        property_documents: [],
+        lift_access: "None",
+        vehicle_park: "",
         remarks: "",
         amenities: [],
         status: "Available",
@@ -396,14 +467,16 @@ const Page = () => {
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
-                      name="amenities"
-                      value=""
-                      // checked="newListing.amenities.includes(amenity)}"
-                      onChange={handleChange}
-                      className="accent-blue-600 w-4 h-4"
-                      required
-                    />{" "}
-                    <label htmlFor="sqft" className="text-xs font-semibold">
+                      checked={newListing.approx}
+                      onChange={(e) =>
+                        setNewListing((p) => ({
+                          ...p,
+                          approx: e.target.checked,
+                        }))
+                      }
+                    />
+
+                    <label htmlFor="approx" className="text-xs font-semibold">
                       Approx.
                     </label>
                   </div>
@@ -423,10 +496,7 @@ const Page = () => {
                   />
                 </div>
               </div>
-            </div>
 
-            {/* Right column */}
-            <div className="flex flex-col gap-6">
               {/* Price */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="price" className="text-sm font-bold">
@@ -443,19 +513,26 @@ const Page = () => {
                 <div className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    name="amenities"
-                    value=""
-                    // checked="newListing.amenities.includes(amenity)}"
-                    onChange={handleChange}
-                    className="accent-blue-600 w-4 h-4"
-                    required
-                  />{" "}
-                  <label htmlFor="sqft" className="text-xs font-semibold">
+                    checked={newListing.price_negotiable}
+                    onChange={(e) =>
+                      setNewListing((p) => ({
+                        ...p,
+                        price_negotiable: e.target.checked,
+                      }))
+                    }
+                  />
+                  <label
+                    htmlFor="price_negotiable"
+                    className="text-xs font-semibold"
+                  >
                     Negotiable
                   </label>
                 </div>
               </div>
+            </div>
 
+            {/* Right column */}
+            <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="price" className="text-sm font-bold">
                   Price in Full (LKR)*
@@ -516,26 +593,25 @@ const Page = () => {
                 <label htmlFor="amenities" className="text-sm font-bold">
                   Property Documents
                 </label>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-semibold">
+                <div className="grid grid-cols-2 gap-4 font-semibold">
                   {["Sales Agreement", "Deed", "COC"].map(
-                    (propery_documents) => (
+                    (property_documents) => (
                       <label
-                        key={propery_documents}
+                        key={property_documents}
                         className="flex items-center space-x-2 cursor-pointer"
                       >
                         <input
                           type="checkbox"
-                          name="amenities"
-                          value={propery_documents}
+                          name="property_documents"
+                          value={property_documents}
                           checked={newListing.property_documents.includes(
-                            propery_documents
+                            property_documents
                           )}
                           onChange={handleChange}
                           className="accent-blue-600 w-4 h-4"
-                          required
                         />
                         <span className="text-gray-700 text-[15px]">
-                          {propery_documents}
+                          {property_documents}
                         </span>
                       </label>
                     )
@@ -552,7 +628,6 @@ const Page = () => {
                     onChange={handleChange}
                     placeholder="Enter Remarks"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
-                    required
                   />
                 </div>
               </div>
@@ -597,15 +672,13 @@ const Page = () => {
               </div>
 
               {/* Amenities */}
-              <div className="flex flex-col gap-4 w-full">
+              <div className="flex flex-col gap-3 w-full">
                 <label htmlFor="amenities" className="text-sm font-bold">
                   Amenities
                 </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 font-semibold">
+                <div className="grid grid-cols-1 gap-3 font-semibold">
                   {[
                     "24/7 Security",
-                    "Lift Access (1, 2, 3 Radio's)",
-                    "Vehicle Parking (1, 2, 3 Radio's)",
                     // "High-Speed Internet",
                     "Gym & Fitness Center",
                     "Swimming Pool",
@@ -624,13 +697,71 @@ const Page = () => {
                         checked={newListing.amenities.includes(amenity)}
                         onChange={handleChange}
                         className="accent-blue-600 w-4 h-4"
-                        required
                       />
                       <span className="text-gray-700 text-[15px]">
                         {amenity}
                       </span>
                     </label>
                   ))}
+                </div>
+              </div>
+
+              {/* Lift Access */}
+              <div className="flex flex-col gap-3 w-full">
+                <label className="text-sm font-bold">Lift Access</label>
+                <div className="grid grid-cols-4 gap-4">
+                  {["None", "1 Lift", "2 Lifts", "3 Lifts"].map((option) => (
+                    <label
+                      key={option}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <input
+                        type="radio"
+                        name="lift_access"
+                        value={option}
+                        checked={newListing.lift_access === option}
+                        onChange={(e) =>
+                          setNewListing((p) => ({
+                            ...p,
+                            lift_access: e.target.value,
+                          }))
+                        }
+                        className="accent-blue-600 w-4 h-4"
+                        required
+                      />
+                      <span className="text-gray-700 text-sm">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Vehicle Park */}
+              <div className="flex flex-col gap-3 w-full">
+                <label className="text-sm font-bold">Vehicle Parking</label>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {["None", "1 Parking", "2 Parking", "3 Parking"].map(
+                    (option) => (
+                      <label
+                        key={option}
+                        className="flex items-center gap-2 cursor-pointer"
+                      >
+                        <input
+                          type="radio"
+                          name="vehicle_park"
+                          value={option}
+                          checked={newListing.vehicle_park === option}
+                          onChange={(e) =>
+                            setNewListing((p) => ({
+                              ...p,
+                              vehicle_park: e.target.value,
+                            }))
+                          }
+                          className="accent-blue-600 w-4 h-4"
+                        />
+                        <span className="text-gray-700 text-sm">{option}</span>
+                      </label>
+                    )
+                  )}
                 </div>
               </div>
 
