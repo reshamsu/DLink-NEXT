@@ -276,8 +276,8 @@ const Page = () => {
   };
 
   return (
-    <div className="bg-gray-200 text-gray-800 relative">
-      <div className="max-w-4xl mx-auto pt-26 md:pb-10 h-full">
+    <div className="bg-gray-100 text-gray-800 relative">
+      <div className="max-w-5xl mx-auto lg:ml-80 md:px-6 pt-24 lg:pt-16 pb-10 flex flex-col gap-6">
         <div className="bg-white border-none md:border-2 border-gray-100 relative w-full h-full md:h-fit md:rounded-3xl overflow-hidden shadow-none md:shadow-lg flex flex-col justify-between md:justify-normal">
           <div className="flex flex-col text-center md:text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
             <h2 className="text-lg font-bold">

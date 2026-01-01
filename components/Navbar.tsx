@@ -98,7 +98,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4 text-sm select-none">
           <div className="flex gap-2">
             <Link
-              href="/new_listing"
+              href="/login"
               className="select-none btn-dark-sm btn-dynamic"
             >
               {" "}
