@@ -7,9 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 
-/* ----------------------------------
-   TYPES
------------------------------------ */
 
 type FurnishingStatus = "Fully-Furnished" | "Semi-Furnished" | "UnFurnished";
 interface SupabaseListing {
@@ -69,7 +66,7 @@ const getFurnishingLabel = (value: FurnishingStatus) => {
 };
 
 const Listings: React.FC = () => {
-  const [listingsData, setListingsData] = useState<Listing[]>([]);
+  const [listings, setListingsData] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -137,10 +134,6 @@ const Listings: React.FC = () => {
 
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-  /* ----------------------------------
-     UI
-  ----------------------------------- */
-
   return (
     <div className=" bg-gray-100 text-gray-800">
       <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
@@ -160,7 +153,7 @@ const Listings: React.FC = () => {
             <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
             <p className="ml-3 text-gray-500">Loading listings...</p>
           </div>
-        ) : listingsData.length === 0 ? (
+        ) : listings.length === 0 ? (
           <p className="text-center text-gray-500 py-20">No listings found.</p>
         ) : (
           <motion.div
@@ -168,7 +161,7 @@ const Listings: React.FC = () => {
             initial="hidden"
             animate="visible"
           >
-            {listingsData.map((listing, index) => (
+            {listings.map((listing, index) => (
               <motion.div
                 key={listing.id}
                 custom={index}
@@ -231,7 +224,7 @@ const Listings: React.FC = () => {
                     <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
                       {listing.status}
                     </span>
-                    <p className="text-xs text-orange-500 font-bold">
+                    <p className="text-sm text-orange-500 font-bold">
                       LKR {listing.price}
                     </p>
                   </div>

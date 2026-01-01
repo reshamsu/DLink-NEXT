@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
+import { TbBuilding, TbSquareCheck, TbBed, TbBath, TbShare } from "react-icons/tb";
 import Image from "next/image";
-import { supabase } from "@/lib/supabaseClient";
 import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
 
+type FurnishingStatus = "Fully-Furnished" | "Semi-Furnished" | "UnFurnished";
 interface Listings {
   id: number;
   property_title: string;
@@ -37,7 +39,7 @@ interface Listings {
   amenities: string[];
 
   status: string;
-  is_furnished: string;
+    is_furnished: FurnishingStatus;
 
   image_urls: string[];
 }
@@ -53,30 +55,39 @@ const rowVariants: Variants = {
   }),
 };
 
-const Destinations: React.FC = () => {
-  if (!supabase) {
-    return (
-      <div className="p-10 text-center text-teal-600">
-        Supabase not configured. Check environment variables.
-      </div>
-    );
+const getFurnishingLabel = (value: FurnishingStatus) => {
+  switch (value) {
+    case "Fully-Furnished":
+      return "Fully-Furnished";
+    case "Semi-Furnished":
+      return "Semi-Furnished";
+    default:
+      return "Unfurnished";
   }
+};
 
-  const [listings, setDestinations] = useState<Listings[]>([]);
+const Listings: React.FC = () => {
+  const [listings, setListingsData] = useState<Listings[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchDestinations = async () => {
+    const fetchListings = async () => {
       setLoading(true);
+
+      if (!supabase) {
+        console.warn("Supabase client not initialized.");
+        setLoading(false);
+        return;
+      }
 
       const { data, error } = await supabase
         .from("listing")
         .select("*")
-        .order("created_at", { ascending: true });
+        .order("created_at", { ascending: false });
 
       if (error) {
-        console.error("Error fetching destinations:", error.message);
-        setDestinations([]);
+        console.error("Error fetching listings:", error.message);
+        setListingsData([]);
         setLoading(false);
         return;
       }
@@ -90,18 +101,14 @@ const Destinations: React.FC = () => {
           : [],
       }));
 
-      setDestinations(formatted);
+      setListingsData(formatted);
       setLoading(false);
     };
 
-    fetchDestinations();
+    fetchListings();
   }, []);
 
-  const slugify = (text: string) =>
-    text
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9\-]/g, "");
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <div className="bg-gray-100 text-gray-700">
@@ -117,63 +124,109 @@ const Destinations: React.FC = () => {
         </div>
 
         <p className="text-xs lg:text-sm font-normal text-justify text-gray-600">
-          From bustling metropolises to serene landscapes, our global adventure
-          awaits.
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         </p>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6 mt-4">
-          {loading && (
-            <p className="text-gray-500 col-span-full text-center h-screen">
-              Loading listings...
-            </p>
-          )}
-
-          {!loading &&
-            listings.map((item, index) => (
+        {/* STATES */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <p className="ml-3 text-gray-500">Loading listings...</p>
+          </div>
+        ) : listings.length === 0 ? (
+          <p className="text-center text-gray-500 py-20">No listings found.</p>
+        ) : (
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            initial="hidden"
+            animate="visible"
+          >
+            {listings.map((listing, index) => (
               <motion.div
-                key={item.id}
+                key={listing.id}
                 custom={index}
                 variants={rowVariants}
                 initial="hidden"
                 animate="visible"
-                className="relative rounded-4xl overflow-hidden h-[55vh] group shadow-lg hover:scale-105 duration-700"
+                className="bg-white p-4 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
               >
-                <Image
-                  src={item.image_urls?.[0] || "/assets/banner/property1.webp"}
-                  alt={item.property_title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-
-                <div className="absolute inset-0 bg-black/60 lg:bg-black/10 transition-all duration-700 group-hover:bg-black/70" />
-
-                <div className="relative z-10 h-full flex flex-col justify-end gap-3.5 p-8 text-white">
-                  <p className="text-xs text-[#f2836f] font-semibold">
-                    {item.property_type} • {item.listing_type}
-                  </p>
-                  <h3 className="text-xl font-bold">{item.property_title}</h3>
-                  <p className="text-xs text-gray-300">
-                    {item.city} · {item.location}
-                  </p>
+                <div className="relative h-64 overflow-hidden rounded-3xl">
+                  <Image
+                    src={
+                      listing.image_urls?.[0] || "/assets/banner/property1.webp"
+                    }
+                    alt={listing.property_title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
+                  <Link href="/dashboard/listings" className="absolute top-3 right-3 bg-white hover:bg-orange-500 hover:text-white p-2 rounded-xl hover:scale-105 transition-all duration-500"><TbShare size={22}/></Link>
                 </div>
 
-                <p className="text-xs text-gray-300 line-clamp-3">
-                  {item.description}
-                </p>
+                {/* CONTENT */}
+                <div className="flex flex-col gap-2.5 pt-4 pb-1.5 px-2">
+                  <div>
+                    <Link
+                      href={`/listing/${listing.id}`}
+                      onClick={scrollToTop}
+                      className="text-sm font-bold hover:text-orange-500 line-clamp-1"
+                    >
+                      {listing.property_title}
+                    </Link>
+                    <p className="text-xs text-gray-600 my-1 line-clamp-1">
+                      {listing.property_subtitle}
+                    </p>
+                  </div>
 
-                <Link
-                  href={`/listing/${item.id}`}
-                  className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
+                  <div className="grid grid-cols-2 gap-2 text-xs font-bold py-2.5 border-t border-b border-gray-100">
+                    <p className="flex items-center gap-1.5">
+                      <TbBuilding size={16} className="text-orange-500" />
+                      {listing.floors}
+                    </p>
+
+                    <p className="flex items-center gap-1.5">
+                      <TbSquareCheck size={16} className="text-orange-500" />
+                      {listing.perches} Perch
+                    </p>
+                    <p className="flex items-center gap-1.5">
+                      <TbBed size={16} className="text-orange-500" />
+                      {listing.bedrooms} Bed
+                    </p>
+                    <p className="flex items-center gap-1.5">
+                      <TbBath size={16} className="text-orange-500" />
+                      {listing.bathrooms} Bath
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-blue-500 font-bold">
+                      {getFurnishingLabel(listing.is_furnished)}
+                    </p>
+                  </div>
+
+                  <div className="flex justify-between items-end mt-1">
+                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
+                      {listing.status}
+                    </span>
+                    <p className="text-sm text-orange-500 font-bold">
+                      LKR {listing.price}
+                    </p>
+                  </div>
+                </div>
+
+                {/* <Link
+                  href={`/listing/${listing.id}`}
+                  className="select-none btn-light-sm btn-dynamic"
                 >
-                  View Listing →
-                </Link>
+                  View Listing
+                </Link> */}
               </motion.div>
             ))}
-        </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Destinations;
+export default Listings;
