@@ -172,7 +172,7 @@ const Hero = () => {
       <div className="max-w-4xl mx-auto -mt-24 bg-white px-8 md:px-12 py-12 lg:shadow-xl border-2 border-gray-100 flex flex-col gap-12 rounded-4xl relative z-30">
         <div className="flex flex-col items-center text-center gap-4">
           <div className="flex flex-col gap-1">
-            <label className="text-base lg:text-lg font-bold text-orange-400">
+            <label className="text-base lg:text-lg font-extrabold text-orange-500">
               CONNECT
             </label>
             <h2 className="text-2xl lg:text-3xl font-bold text-gray-700">

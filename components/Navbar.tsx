@@ -50,11 +50,11 @@ const Navbar = () => {
               <li key={link.key} className="relative group">
                 {link.submenu ? (
                   <button
-                    className={`flex items-center cursor-pointer font-medium transition-all duration-500 rounded-full py-2.5 px-4
+                    className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-500/10 font-medium text-orange-500"
-                          : "hover:font-bold text-gray-900 hover:text-orange-500/70"
+                          ? "bg-orange-500/10 font-semibold text-orange-500"
+                          : "hover:font-bold text-gray-900 hover:text-orange-600/70"
                       }`}
                   >
                     {link.label}
@@ -63,11 +63,11 @@ const Navbar = () => {
                 ) : (
                   <Link
                     href={link.href}
-                    className={`flex items-center cursor-pointer font-medium transition-all duration-500 rounded-full py-2.5 px-4
+                    className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-500/10 font-medium text-orange-500"
-                          : "hover:font-bold text-gray-900 hover:text-orange-500/80"
+                          ? "bg-orange-500/10 font-semibold text-orange-500"
+                          : "hover:font-bold text-gray-900 hover:text-orange-600/80"
                       }`}
                   >
                     {link.label}

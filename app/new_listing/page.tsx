@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { TbSend2 } from "react-icons/tb";
@@ -19,6 +20,7 @@ interface Listing {
   perches: string;
   sqft: string;
 
+  floor_reference: string;
   floors: string;
   building_age: string;
 
@@ -53,6 +55,8 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  const router = useRouter();
+
   const [newListing, setNewListing] = useState<Listing>({
     property_title: "",
     property_subtitle: "",
@@ -65,6 +69,7 @@ const Page = () => {
     bathrooms: "",
     perches: "",
     sqft: "",
+    floor_reference: "",
     floors: "",
     building_age: "",
     price: "",
@@ -204,6 +209,7 @@ const Page = () => {
       perches: newListing.perches ? Number(newListing.perches) : null,
       sqft: newListing.sqft ? Number(newListing.sqft) : null,
 
+      floor_reference: newListing.floor_reference || null,
       floors: newListing.floors || null,
       building_age: newListing.building_age || null,
 
@@ -237,6 +243,7 @@ const Page = () => {
         bathrooms: "",
         perches: "",
         sqft: "",
+        floor_reference: "",
         floors: "",
         building_age: "",
         price: "",
@@ -257,6 +264,14 @@ const Page = () => {
       alert("Listing added successfully!");
     }
 
+    if (error) {
+      console.error("Error adding listing:", error.message);
+      alert("Failed to add listing. Check console for details.");
+    } else {
+      // ✅ redirect to the newly created listing
+      router.push(`/listing/${data.id}`);
+    }
+
     setLoading(false);
   };
 
@@ -267,9 +282,9 @@ const Page = () => {
           <div className="flex flex-col text-center md:text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
             <h2 className="text-lg font-bold">
               Add a New Listing to{" "}
-              <span className="text-orange-400">D-Link Colombo</span>
+              <span className="text-orange-500">D-Link Colombo</span>
             </h2>
-            <p className="text-sm text-gray-400 max-w-3xl">
+            <p className="text-xs text-gray-400 max-w-3xl">
               Send your Listing Info for display on{" "}
               <Link href="/" className="underline">
                 D-Link Colombo
@@ -419,6 +434,23 @@ const Page = () => {
                 </div>
               </div>
 
+              <div className="flex flex-col gap-2 w-full">
+                <label htmlFor="floor_reference" className="text-sm font-bold">
+                  Floor Reference*
+                </label>
+                <input
+                  name="floor_reference"
+                  value={newListing.floor_reference}
+                  onChange={handleChange}
+                  placeholder="Floors in detail"
+                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  required
+                />
+                <p className="text-[10px] text-gray-500">
+                  For personal references Only. Not publicly displayed*
+                </p>
+              </div>
+
               {/* Floors & Age */}
               <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
@@ -529,10 +561,6 @@ const Page = () => {
                   </label>
                 </div>
               </div>
-            </div>
-
-            {/* Right column */}
-            <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="price" className="text-sm font-bold">
                   Price in Full (LKR)*
@@ -546,7 +574,10 @@ const Page = () => {
                   required
                 />
               </div>
+            </div>
 
+            {/* Right column */}
+            <div className="flex flex-col gap-6">
               {/* Location & Listing Type */}
               <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">

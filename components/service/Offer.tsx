@@ -9,7 +9,7 @@ const Offer = () => {
       <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0 flex flex-col gap-12 2xl:gap-16">
         <div className="flex flex-col items-center text-center gap-4">
           <h1 className="text-3xl lg:text-4xl font-extrabold">
-            Our <span className="text-orange-400">Expertise</span>
+            Our <span className="text-orange-500">Expertise</span>
           </h1>
           <p className="text-sm 2xl:text-base text-gray-600 max-w-3xl">
             We specialize in connecting clients with carefully selected
@@ -20,7 +20,7 @@ const Offer = () => {
 
         <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-6 2xl:gap-14 px-2 md:px-0 items-center">
           <div className="flex flex-col gap-4 lg:gap-6 py-4 md:py-0 md:px-8">
-            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-400 w-10 pb-4">
+            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-500 w-10 pb-4">
               Apartments
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">
@@ -63,7 +63,7 @@ const Offer = () => {
           </div>
 
           <div className="flex flex-col gap-4 lg:gap-6 py-4 md:py-0 md:px-8">
-            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-400 w-10 pb-4">
+            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-500 w-10 pb-4">
               Houses
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">
@@ -83,7 +83,7 @@ const Offer = () => {
 
         <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-6 2xl:gap-14 px-2 md:px-0 items-center">
           <div className="flex flex-col gap-4 lg:gap-6 py-4 md:py-0 md:px-8">
-            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-400 w-10 pb-4">
+            <h2 className="text-2xl md:text-xl 2xl:text-3xl font-extrabold border-b-4 border-orange-500 w-10 pb-4">
               Lands
             </h2>
             <p className="text-sm md:text-xs 2xl:text-base text-gray-500 leading-relaxed">

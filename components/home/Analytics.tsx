@@ -44,7 +44,7 @@ const Analytics: React.FC = () => {
     <div className="bg-white text-black">
       <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
         <div className="mb-12 px-2 text-center">
-          <p className="text-[#f09712] text-lg font-extrabold">SERVICE</p>
+          <p className="text-orange-500 text-lg font-extrabold">SERVICE</p>
           <h1 className="text-3xl md:text-4xl font-extrabold my-3">
             Our Expertise
           </h1>
@@ -64,7 +64,7 @@ const Analytics: React.FC = () => {
               variants={cardVariants}
               className="bg-white p-10 rounded-3xl flex flex-col items-center text-center hover:scale-105 duration-300 transition-all shadow-xl hover:shadow-2xl"
             >
-              <div className="w-24 h-24 mb-4 flex items-center justify-center bg-[#f09712] rounded-full shadow-inner relative">
+              <div className="w-24 h-24 mb-4 flex items-center justify-center bg-orange-500 rounded-full shadow-inner relative">
                 <Image
                   src={card.icon}
                   alt={card.title}

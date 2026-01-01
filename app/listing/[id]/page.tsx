@@ -169,23 +169,6 @@ const Page = () => {
             <TbMapPin size={24} className="text-orange-400" /> {listing.city} -{" "}
             {listing.location}
           </p>
-
-          <div className="space-y-1">
-            <h1 className="text-xl md:text-2xl 2xl:text-3xl font-bold drop-shadow-lg line-clamp-1">
-              {listing.property_title}
-            </h1>
-
-            <div className="flex flex-col md:flex-row justify-between gap-1">
-              <p className="text-sm md:text-base text-gray-200 line-clamp-1">
-                {listing.property_subtitle}
-              </p>
-              <p className="text-lg md:text-xl font-extrabold text-orange-500 whitespace-nowrap">
-                {listing.price
-                  ? `LKR ${listing.price.toLocaleString("en-LK")}`
-                  : "Price on Request"}
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Slider Dots */}
@@ -205,12 +188,13 @@ const Page = () => {
       </div>
 
       {/* Property Details */}
-      <div className="max-w-7xl mx-auto p-6 md:p-10 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 2xl:gap-10">
-        <div className="flex flex-col gap-8">
-          <div className="flex items-center gap-4 text-sm text-gray-500">
-            <p>Listed on {new Date(listing.created_at).toLocaleDateString()}</p>
-            <span>|</span>
-            <p>
+      <div className="max-w-7xl mx-auto p-6 md:py-10 md:px-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 2xl:gap-10">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 text-sm border-b border-gray-200 pb-6">
+            {/* <p>Listed on {new Date(listing.created_at).toLocaleDateString()}</p>
+            <span>|</span> */}
+
+            <p className="text-xs text-gray-500">
               Status:{" "}
               <span
                 className={`font-semibold ${
@@ -222,6 +206,17 @@ const Page = () => {
                 {listing.status}
               </span>
             </p>
+            <div className="space-y-1">
+              <h1 className="text-xl md:text-2xl font-bold drop-shadow-lg line-clamp-1">
+                {listing.property_title}
+              </h1>
+
+              <div className="flex flex-col md:flex-row justify-between gap-1">
+                <p className="ext-sm text-gray-600 line-clamp-1">
+                  {listing.property_subtitle}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Specs */}
@@ -236,7 +231,7 @@ const Page = () => {
             </p>
             <p className="flex items-center gap-2">
               <TbBuilding size={22} className="text-orange-400" />
-              {listing.floors} 
+              {listing.floors}
             </p>
             <p className="flex items-center gap-2">
               <TbSofa size={22} className="text-orange-400" />

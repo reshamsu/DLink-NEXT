@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
               viewport={{ once: true }}
               className="mb-14 text-center"
             >
-              <p className="text-[#f09712] text-base lg:text-lg font-bold">
+              <p className="text-orange-400 text-base lg:text-lg font-bold">
                 OUR EXPERTISE
               </p>
               <h1 className="text-3xl lg:text-4xl font-extrabold my-6">
@@ -67,21 +67,21 @@ const WhyChooseUs = () => {
               {[
                 {
                   icon: (
-                    <FaSearchLocation className="text-[#f09712] text-7xl" />
+                    <FaSearchLocation className="text-orange-400 text-7xl" />
                   ),
                   title: "Personalized Property Search",
                   text: "We tailor each property search to match your unique needs, preferences, and budget—no guesswork, just results.",
                 },
                 {
                   icon: (
-                    <FaCity className="text-[#f09712] text-7xl" />
+                    <FaCity className="text-orange-400 text-7xl" />
                   ),
                   title: "Prime Listings in Colombo",
                   text: "Gain access to verified, high-value properties across the most sought-after locations in Colombo and beyond.",
                 },
                 {
                   icon: (
-                    <FaHandshake className="text-[#f09712] text-7xl" />
+                    <FaHandshake className="text-orange-400 text-7xl" />
                   ),
                   title: "Trusted Guidance & Support",
                   text: "From first viewing to final paperwork, our expert team is by your side—transparent, responsive, and reliable.",

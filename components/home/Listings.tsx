@@ -147,7 +147,7 @@ const Listings: React.FC = () => {
         {/* HEADER */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4 text-center md:text-start">
           <div>
-            <p className="text-[#f09712] text-base font-extrabold mb-1">
+            <p className="text-orange-500 text-base font-extrabold mb-1">
               LISTINGS
             </p>
             <h1 className="text-2xl font-bold">Featured Listings</h1>
@@ -157,7 +157,7 @@ const Listings: React.FC = () => {
         {/* STATES */}
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-8 h-8 border-4 border-[#f09712] border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
             <p className="ml-3 text-gray-500">Loading listings...</p>
           </div>
         ) : listingsData.length === 0 ? (
@@ -173,10 +173,10 @@ const Listings: React.FC = () => {
                 key={listing.id}
                 custom={index}
                 variants={rowVariants}
-                className="bg-white p-4 rounded-3xl shadow-lg overflow-hidden group flex flex-col h-full"
+                className="bg-white p-4 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden rounded-2xl">
+                <div className="relative h-64 overflow-hidden rounded-3xl">
                   <Image
                     src={listing.image}
                     alt={listing.title}
@@ -192,7 +192,7 @@ const Listings: React.FC = () => {
                     <Link
                       href={`/listing/${listing.id}`}
                       onClick={scrollToTop}
-                      className="text-sm font-bold hover:text-[#f09712] line-clamp-1"
+                      className="text-sm font-bold hover:text-orange-500 line-clamp-1"
                     >
                       {listing.title}
                     </Link>
@@ -203,20 +203,20 @@ const Listings: React.FC = () => {
 
                   <div className="grid grid-cols-2 gap-2 text-xs font-bold py-2.5 border-t border-b border-gray-100">
                     <p className="flex items-center gap-1.5">
-                      <TbBuilding size={16} className="text-orange-400" />
+                      <TbBuilding size={16} className="text-orange-500" />
                       {listing.floors}
                     </p>
 
                     <p className="flex items-center gap-1.5">
-                      <TbSquareCheck size={16} className="text-orange-400" />
+                      <TbSquareCheck size={16} className="text-orange-500" />
                       {listing.perches} Perch
                     </p>
                     <p className="flex items-center gap-1.5">
-                      <TbBed size={16} className="text-orange-400" />
+                      <TbBed size={16} className="text-orange-500" />
                       {listing.bedrooms} Bed
                     </p>
                     <p className="flex items-center gap-1.5">
-                      <TbBath size={16} className="text-orange-400" />
+                      <TbBath size={16} className="text-orange-500" />
                       {listing.bathrooms} Bath
                     </p>
                   </div>
@@ -228,7 +228,7 @@ const Listings: React.FC = () => {
                   </div>
 
                   <div className="flex justify-between items-end mt-1">
-                    <span className="bg-green-300 text-[11px] font-bold px-3 py-1.5 rounded-lg">
+                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
                       {listing.status}
                     </span>
                     <p className="text-xs text-orange-500 font-bold">
