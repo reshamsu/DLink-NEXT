@@ -40,9 +40,9 @@ export default function Login() {
             </Link>
 
             <div className="flex flex-col gap-1 mb-4">
-              <h2 className="text-xl font-bold">Welcome Back</h2>
+              <h2 className="text-xl font-bold">Welcome to D-Link Colombo</h2>
               <p className="text-sm text-gray-400 max-w-3xl">
-                Sign in to continue to D-Link Colombo
+                Start using D-Link Colombo to Explore Listings
               </p>
             </div>
 
@@ -72,12 +72,12 @@ export default function Login() {
             <div className="flex flex-col gap-5 w-full md:px-6">
               <input
                 type="email"
-                placeholder="Enter email or username"
+                placeholder="Enter email address"
                 className="text-[14px] bg-gray-50 border border-gray-200 rounded-xl px-4 py-3.5"
                 required
               />
               <button type="submit" className="select-none btn-dark-sm">
-                Continue
+                Sign Up
               </button>
 
               <p className="text-xs text-gray-400 py-2">
@@ -96,10 +96,10 @@ export default function Login() {
             <label className="flex items-center justify-center gap-1 text-sm font-semibold">
               Don't have an account?
               <Link
-                href="/signup"
-                className="text-orange-500 font-bold hover:border-b-2"
+                href="/login"
+                className="text-orange-600 font-bold hover:border-b-2"
               >
-                Sign up
+                Sign in
               </Link>{" "}
             </label>
           </form>

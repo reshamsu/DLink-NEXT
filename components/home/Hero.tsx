@@ -100,7 +100,7 @@ const Hero = () => {
 
         <form
           method="post"
-          className="max-w-4xl mx-auto -mb-40 md:mb-0 relative z-30 bg-white text-gray-900 text-[15px] p-2 rounded-3xl md:rounded-full shadow-xl hover:scale-105 duration-1000 w-full flex flex-col justify-between lg:flex-row"
+          className="max-w-4xl mx-auto relative bg-white text-gray-900 text-[15px] p-2 rounded-3xl md:rounded-full shadow-xl hover:scale-105 duration-1000 w-full flex flex-col justify-between gap-4 lg:flex-row"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
             {/* Search Property */}
@@ -109,7 +109,7 @@ const Hero = () => {
                 id="property"
                 type="text"
                 placeholder="City. Building or Name"
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-8 py-4 rounded-t-3xl lg:rounded-l-full"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-8 py-3 rounded-t-3xl lg:rounded-l-full"
                 required
               />
             </div>
@@ -120,7 +120,7 @@ const Hero = () => {
                 id="type"
                 name="type"
                 defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-4"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3"
                 required
               >
                 <option value="" disabled>
@@ -140,7 +140,7 @@ const Hero = () => {
                 id="bed-bath"
                 name="bed-bath"
                 defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border-l border-black/10 px-6 py-4"
+                className="bg-white/40 hover:bg-white duration-500 transition-all border-l border-black/10 px-6 py-3"
                 required
               >
                 <option value="" disabled>

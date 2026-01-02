@@ -53,7 +53,7 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-500/10 font-semibold text-orange-500"
+                          ? "bg-orange-600/15 font-semibold text-orange-500"
                           : "hover:font-bold text-gray-900 hover:text-orange-600/70"
                       }`}
                   >
@@ -66,7 +66,7 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-500/10 font-semibold text-orange-500"
+                          ? "bg-orange-600/15 font-semibold text-orange-500"
                           : "hover:font-bold text-gray-900 hover:text-orange-600/80"
                       }`}
                   >
@@ -96,7 +96,7 @@ const Navbar = () => {
 
         {/* Desktop Right Side */}
         <div className="flex items-center gap-4 text-sm select-none">
-          <div className="flex gap-2">
+          <div className="hidden lg:flex gap-2 ">
             <Link
               href="/login"
               className="select-none btn-dark-sm btn-dynamic"
@@ -160,7 +160,13 @@ const Navbar = () => {
               )}
             </li>
           ))}
-          <div className="p-4 flex md:hidden items-center gap-4 text-sm">
+            <div className="p-4 flex md:hidden items-center gap-4 text-sm">
+            <Link
+              href="/login"
+              className="select-none btn-dark-glass btn-dynamic"
+            >
+              <TbUser size={22} />
+            </Link>
             <Link
               href="https://wa.me/94761676603"
               className="select-none btn-orange-sm btn-dynamic"
