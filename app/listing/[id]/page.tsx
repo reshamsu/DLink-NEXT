@@ -162,7 +162,7 @@ const Page = () => {
           className="object-cover transition-all duration-700 ease-in-out xl:rounded-b-4xl"
           priority
         />
-        <div className="absolute inset-0 bg-black/40 xl:rounded-b-4xl" />
+        <div className="absolute inset-0 bg-black/15 xl:rounded-b-4xl" />
 
         <div className="absolute inset-0 flex flex-col justify-between gap-1 text-white z-10 p-6 pb-10 md:p-8 2xl:p-10">
           <p className="text-sm font-bold opacity-90 flex items-center gap-2">

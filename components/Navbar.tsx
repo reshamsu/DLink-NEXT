@@ -160,7 +160,7 @@ const Navbar = () => {
               )}
             </li>
           ))}
-            <div className="p-4 flex md:hidden items-center gap-4 text-sm">
+            <div className="p-4 flex lg:hidden items-center gap-4 text-sm">
             <Link
               href="/login"
               className="select-none btn-dark-glass btn-dynamic"

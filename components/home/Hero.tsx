@@ -100,9 +100,9 @@ const Hero = () => {
 
         <form
           method="post"
-          className="max-w-4xl mx-auto relative bg-white text-gray-900 text-[15px] p-2 rounded-3xl md:rounded-full shadow-xl hover:scale-105 duration-1000 w-full flex flex-col justify-between gap-4 lg:flex-row"
+          className="max-w-4xl mx-6 md:mx-40 lg:mx-auto relative bg-white text-gray-900 text-[15px] p-2 rounded-3xl lg:rounded-full shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-2 lg:flex-row"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-3 w-full">
             {/* Search Property */}
             <div className="flex flex-col justify-center gap-2">
               <input
