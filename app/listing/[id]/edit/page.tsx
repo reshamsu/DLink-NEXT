@@ -16,7 +16,6 @@ import {
   TbSofa,
   TbSquareCheck,
   TbBuilding,
-  TbPhone,
 } from "react-icons/tb";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -208,9 +207,9 @@ const Page = () => {
 
         <div className="absolute inset-0 flex items-start justify-between gap-1 text-white z-10 p-6 pb-10 md:p-8 2xl:p-10">
           <p className="text-sm font-bold opacity-90 flex items-center gap-2">
-            <TbMapPin size={24} className="text-orange-500" /> {listing.city}
+            <TbMapPin size={24} className="text-orange-500" /> {listing.city} 
           </p>
-          <p className="md:text-base font-extrabold uppercase text-amber-400 py-1">
+          <p className="text-sm font-extrabold uppercase text-orange-500 py-1">
             {listing.property_type}
           </p>
         </div>
@@ -295,49 +294,6 @@ const Page = () => {
               {listing.sqft} Sqft.
             </p>
           </div>
-
-          {/* <div className="flex flex-col gap-4 border-b border-gray-200 pb-6">
-            <div className="bg-white shadow-lg border-2 border-orange-400 rounded-3xl py-4 flex flex-col gap-3 px-6 h-fit">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1>Zain Jay</h1>
-                  <p className="whitespace-pre-line text-xs text-gray-500 leading-relaxed">
-                    Property Owner
-                  </p>
-                </div>
-                <Link
-                  href="tel:+94123456789"
-                  className="bg-gray-100 p-3 rounded-full shadow-md hover:scale-105 transition-all"
-                >
-                  <TbPhone size={22} className="text-orange-500" />
-                </Link>
-              </div>
-
-              <i className="text-sm whitespace-pre-line text-orange-600 leading-relaxed">
-                Span Tower Marine Drive
-              </i>
-            </div>
-             <div className="bg-white shadow-lg border-2 border-orange-400 rounded-3xl py-4 flex flex-col gap-3 px-6 h-fit">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h1>Zain Jay</h1>
-                  <p className="whitespace-pre-line text-xs text-gray-500 leading-relaxed">
-                    Agent Information
-                  </p>
-                </div>
-                <Link
-                  href="tel:+94123456789"
-                  className="bg-gray-100 p-3 rounded-full shadow-md hover:scale-105 transition-all"
-                >
-                  <TbPhone size={22} className="text-orange-500" />
-                </Link>
-              </div>
-
-              <i className="text-sm whitespace-pre-line text-orange-600 leading-relaxed">
-                Span Tower Marine Drive
-              </i>
-            </div>
-          </div> */}
 
           {/* Description */}
           <div className="flex flex-col gap-3 border-b border-gray-200 pb-8">

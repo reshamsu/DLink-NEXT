@@ -2,7 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
-import { TbBuilding, TbSquareCheck, TbBed, TbBath, TbShare } from "react-icons/tb";
+import {
+  TbBuilding,
+  TbSquareCheck,
+  TbBed,
+  TbBath,
+  TbShare,
+  TbPencil,
+} from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
@@ -39,7 +46,7 @@ interface Listings {
   amenities: string[];
 
   status: string;
-    is_furnished: FurnishingStatus;
+  is_furnished: FurnishingStatus;
 
   image_urls: string[];
 }
@@ -160,7 +167,20 @@ const Listings: React.FC = () => {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
-                  <Link href="/dashboard/listings" className="absolute top-3 right-3 bg-white hover:bg-orange-500 hover:text-white p-2 rounded-xl hover:scale-105 transition-all duration-500"><TbShare size={22}/></Link>
+                  <div>
+                    <Link
+                   href={`/listing/${listing.id}/edit`}
+                      className="absolute top-3 right-3 bg-white hover:bg-gray-100 hover:text-orange-500 p-2 rounded-xl hover:scale-105 transition-all duration-500"
+                    >
+                      <TbPencil size={22} />
+                    </Link>
+                    <Link
+                      href="/dashboard/listings"
+                      className="absolute top-3 right-14 bg-white hover:bg-gray-100 hover:text-orange-500 p-2 rounded-xl hover:scale-105 transition-all duration-500"
+                    >
+                      <TbShare size={22} />
+                    </Link>
+                  </div>
                 </div>
 
                 {/* CONTENT */}

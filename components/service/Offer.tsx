@@ -31,7 +31,7 @@ const Offer = () => {
               that match your lifestyle and financial goals.
             </p>
             <Link
-              href="/apartments"
+              href="/property/apartments"
               className="flex items-center justify-center text-sm 2xl:text-base font-extrabold py-1.5 hover:p-2 duration-500 transition-all text-black border-b-2 w-fit"
             >
               Learn More
@@ -73,7 +73,7 @@ const Offer = () => {
               for families and long-term ownership.
             </p>
             <Link
-              href="/homes"
+              href="/property/homes"
               className="flex items-center justify-center text-sm 2xl:text-base font-extrabold py-1.5 hover:p-2 duration-500 transition-all text-black border-b-2 w-fit"
             >
               Learn More
@@ -93,7 +93,7 @@ const Offer = () => {
               help you make confident decisions.
             </p>
             <Link
-              href="/lands"
+              href="/property/lands"
               className="flex items-center justify-center text-sm 2xl:text-base font-extrabold py-1.5 hover:p-2 duration-500 transition-all text-black border-b-2 w-fit"
             >
               Learn More

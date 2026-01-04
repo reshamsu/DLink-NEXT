@@ -20,7 +20,7 @@ interface Listing {
   perches: string;
   sqft: string;
 
-  floor_reference: string;
+  actual_floor: string;
   floors: string;
   building_age: string;
 
@@ -37,6 +37,11 @@ interface Listing {
 
   status: string;
   is_furnished: string;
+
+  owner_name: string;
+  property_location: string;
+  property_identity: string;
+  contact_number: string;
 
   image_urls: string[];
 }
@@ -69,7 +74,7 @@ const Page = () => {
     bathrooms: "",
     perches: "",
     sqft: "",
-    floor_reference: "",
+    actual_floor: "",
     floors: "",
     building_age: "",
     price: "",
@@ -83,6 +88,10 @@ const Page = () => {
     amenities: [],
     status: "Available",
     is_furnished: "",
+    owner_name: "",
+    property_location: "",
+    property_identity: "",
+    contact_number: "",
     image_urls: [],
   });
 
@@ -206,16 +215,15 @@ const Page = () => {
       ...newListing,
       bedrooms: newListing.bedrooms ? Number(newListing.bedrooms) : null,
       bathrooms: newListing.bathrooms ? Number(newListing.bathrooms) : null,
-      perches: newListing.perches ? Number(newListing.perches) : null,
       sqft: newListing.sqft ? Number(newListing.sqft) : null,
 
-      floor_reference: newListing.floor_reference || null,
       floors: newListing.floors || null,
       building_age: newListing.building_age || null,
 
       price: newListing.price || null,
       full_price: newListing.full_price || null,
       approx: newListing.approx || null,
+      contact_number: newListing.contact_number || null,
 
       image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
     };
@@ -243,7 +251,7 @@ const Page = () => {
         bathrooms: "",
         perches: "",
         sqft: "",
-        floor_reference: "",
+        actual_floor: "",
         floors: "",
         building_age: "",
         price: "",
@@ -256,6 +264,10 @@ const Page = () => {
         remarks: "",
         amenities: [],
         status: "Available",
+        owner_name: "",
+        property_location: "",
+        property_identity: "",
+        contact_number: "",
         is_furnished: "",
         image_urls: [],
       });
@@ -434,23 +446,6 @@ const Page = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-2 w-full">
-                <label htmlFor="floor_reference" className="text-sm font-bold">
-                  Floor Reference*
-                </label>
-                <input
-                  name="floor_reference"
-                  value={newListing.floor_reference}
-                  onChange={handleChange}
-                  placeholder="Floors in detail"
-                  className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
-                  required
-                />
-                <p className="text-[10px] text-gray-500">
-                  For personal references Only. Not publicly displayed*
-                </p>
-              </div>
-
               {/* Floors & Age */}
               <div className="grid grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
@@ -467,14 +462,14 @@ const Page = () => {
                   />
                 </div>
                 <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="building_age" className="text-sm font-bold">
-                    Building Age*
+                  <label htmlFor="perches" className="text-sm font-bold">
+                    Perches*
                   </label>
                   <input
-                    name="building_age"
-                    value={newListing.building_age}
+                    name="perches"
+                    value={newListing.perches}
                     onChange={handleChange}
-                    placeholder="Building Age"
+                    placeholder="Perches"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
@@ -514,18 +509,33 @@ const Page = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="perches" className="text-sm font-bold">
-                    Perches*
+                  <label htmlFor="building_age" className="text-sm font-bold">
+                    Building Age*
                   </label>
                   <input
-                    name="perches"
-                    value={newListing.perches}
+                    name="building_age"
+                    value={newListing.building_age}
                     onChange={handleChange}
-                    type="number"
-                    placeholder="Perches"
+                    placeholder="Building Age"
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={newListing.approx}
+                      onChange={(e) =>
+                        setNewListing((p) => ({
+                          ...p,
+                          approx: e.target.checked,
+                        }))
+                      }
+                    />
+
+                    <label htmlFor="approx" className="text-xs font-semibold">
+                      Approx.
+                    </label>
+                  </div>
                 </div>
               </div>
 
@@ -622,31 +632,35 @@ const Page = () => {
 
               <div className="flex flex-col gap-4 w-full">
                 <label htmlFor="amenities" className="text-sm font-bold">
-                  Property Documents
+                  Property Documents*
                 </label>
                 <div className="grid grid-cols-2 gap-4 font-semibold">
-                  {["Sales Agreement", "Deed", "COC"].map(
-                    (property_documents) => (
-                      <label
-                        key={property_documents}
-                        className="flex items-center space-x-2 cursor-pointer"
-                      >
-                        <input
-                          type="checkbox"
-                          name="property_documents"
-                          value={property_documents}
-                          checked={newListing.property_documents.includes(
-                            property_documents
-                          )}
-                          onChange={handleChange}
-                          className="accent-blue-600 w-4 h-4"
-                        />
-                        <span className="text-gray-700 text-[15px]">
-                          {property_documents}
-                        </span>
-                      </label>
-                    )
-                  )}
+                  {[
+                    "Sales Agreement",
+                    "Deed",
+                    "COC",
+                    "Bimsaviya Certificate",
+                  ].map((property_documents) => (
+                    <label
+                      key={property_documents}
+                      className="flex items-center space-x-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        name="property_documents"
+                        value={property_documents}
+                        checked={newListing.property_documents.includes(
+                          property_documents
+                        )}
+                        onChange={handleChange}
+                        className="accent-blue-600 w-4 h-4"
+                        required
+                      />
+                      <span className="text-gray-700 text-[15px]">
+                        {property_documents}
+                      </span>
+                    </label>
+                  ))}
                 </div>
 
                 <div className="flex flex-col gap-2 w-full">
@@ -666,14 +680,13 @@ const Page = () => {
               {/* Furnishing */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="is_furnished" className="text-sm font-bold">
-                  Furnishing*
+                  Furnishing
                 </label>
                 <select
                   name="is_furnished"
                   value={newListing.is_furnished}
                   onChange={handleChange}
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
-                  required
                 >
                   <option value="" disabled>
                     Select Furnishing
@@ -687,7 +700,7 @@ const Page = () => {
               {/* Status */}
               <div className="flex flex-col gap-2 w-full">
                 <label htmlFor="status" className="text-sm font-bold">
-                  Status
+                  Status*
                 </label>
                 <select
                   name="status"
@@ -716,6 +729,8 @@ const Page = () => {
                     "Air Conditioning",
                     "CCTV Systems",
                     "Backup Generator",
+                    "Solar Power & Hot Water",
+                    "Roller Shutter Gates",
                   ].map((amenity) => (
                     <label
                       key={amenity}
@@ -769,8 +784,8 @@ const Page = () => {
               {/* Vehicle Park */}
               <div className="flex flex-col gap-3 w-full">
                 <label className="text-sm font-bold">Vehicle Parking</label>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  {["None", "1 Parking", "2 Parking", "3 Parking"].map(
+                <div className="grid grid-cols-2 gap-4">
+                  {["None", "1 Parking", "2 Parking", "3 Parking & above"].map(
                     (option) => (
                       <label
                         key={option}
@@ -825,6 +840,135 @@ const Page = () => {
                   className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
                 >
                   {loading || uploading ? "Uploading..." : "Submit Listing"}
+                  <TbSend2 size={22} />
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <p className="text-xs bg-gray-50 text-gray-400 text-center p-6">
+            By continuing, you agree to D-Link Colombo&apos;s{" "}
+            <Link href="/new_listing" className="underline">
+              Terms
+            </Link>{" "}
+            and{" "}
+            <Link href="/new_listing" className="underline">
+              Privacy Policy
+            </Link>
+            .
+          </p>
+        </div>
+        <div className="bg-white border-none md:border-2 border-gray-100 relative w-full h-full md:h-fit md:rounded-3xl overflow-hidden shadow-none md:shadow-lg flex flex-col justify-between md:justify-normal">
+          <div className="flex flex-col text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
+            <h2 className="text-base font-bold">
+              Add Contact Info to Listing for{" "}
+              <span className="text-orange-500">D-Link Colombo</span>
+            </h2>
+            <p className="text-xs text-gray-400 max-w-3xl">
+              Send your Listing Info for display on{" "}
+              <Link href="/" className="underline">
+                D-Link Colombo
+              </Link>
+            </p>
+          </div>
+
+          <form
+            className="flex flex-col gap-10 w-full 2xl:text-base overflow-hidden group p-8 md:p-10 border-b-2 border-gray-100"
+            id="listingForm"
+            method="post"
+          >
+            <div className="flex flex-col gap-6">
+              {/* Common Fields */}
+              <div className="flex flex-col md:grid-cols-2 gap-6 w-full">
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="property_title" className="text-sm font-bold">
+                    Property Ownership's Name
+                  </label>
+                  <input
+                    name="owner_name"
+                    value={newListing.owner_name}
+                    onChange={handleChange}
+                    placeholder="Enter Name"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="property_title" className="text-sm font-bold">
+                    Apartment Name/Location
+                  </label>
+                  <input
+                    name="property_location"
+                    value={newListing.property_location}
+                    onChange={handleChange}
+                    placeholder="Enter Location"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="actual_floor" className="text-sm font-bold">
+                    Actual Floor
+                  </label>
+                  <input
+                    name="actual_floor"
+                    value={newListing.actual_floor}
+                    onChange={handleChange}
+                    placeholder="Enter Floor"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  />
+                  <p className="text-[10px] text-gray-500">
+                    For personal references Only. Not publicly displayed*
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="is_furnished" className="text-sm font-bold">
+                    Property Identity
+                  </label>
+                  <select
+                    name="property_identity"
+                    value={newListing.property_identity}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  >
+                    <option value="" disabled>
+                      Select Identity
+                    </option>
+                    <option value="Owner">Owner</option>
+                    <option value="Agent">Agent</option>
+                    <option value="Investor">Investor</option>
+                  </select>
+                </div>
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="property_title" className="text-sm font-bold">
+                    Contact Number
+                  </label>
+                  <input
+                    name="contact_number"
+                    value={newListing.contact_number}
+                    onChange={handleChange}
+                    type="number"
+                    placeholder="Enter Contact Number"
+                    className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+                  />
+                </div>
+              </div>
+              {message && (
+                <p className="text-sm text-center text-gray-600 mt-2 w-full">
+                  {message}
+                </p>
+              )}
+
+              {/* Submit */}
+              <div className="flex flex-col items-end justify-end">
+                <button
+                  type="submit"
+                  disabled={loading || uploading}
+                  className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
+                >
+                  {loading || uploading ? "Uploading..." : "Submit Contact"}
                   <TbSend2 size={22} />
                 </button>
               </div>

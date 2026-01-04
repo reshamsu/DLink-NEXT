@@ -25,7 +25,7 @@ const CTA = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex items-center text-sm 2xl:text-base gap-4 flex-wrap justify-center lg:justify-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 text-sm 2xl:text-base gap-4">
               <Link
                 href="https://wa.me/94761676603"
                 className="select-none btn-dark-base"

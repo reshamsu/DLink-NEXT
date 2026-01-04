@@ -53,7 +53,7 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-600/15 font-semibold text-orange-500"
+                          ? "bg-orange-600/10 font-semibold text-orange-500"
                           : "hover:font-bold text-gray-900 hover:text-orange-600/70"
                       }`}
                   >
@@ -66,7 +66,7 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-600/15 font-semibold text-orange-500"
+                          ? "bg-orange-600/10 font-semibold text-orange-500"
                           : "hover:font-bold text-gray-900 hover:text-orange-600/80"
                       }`}
                   >
@@ -76,11 +76,11 @@ const Navbar = () => {
 
                 {/* Desktop Dropdown */}
                 {link.submenu && (
-                  <ul className="absolute top-full left-0 mt-2 w-44 p-2.5 bg-white backdrop-blur-3xl font-medium rounded-xl shadow-lg invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <ul className="absolute top-full left-0 mt-2 w-55 p-2.5 bg-white backdrop-blur-3xl font-medium rounded-xl shadow-lg invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300">
                     {link.submenu.map((sublink) => (
                       <li
                         key={sublink.href}
-                        className="py-2.5 px-4 rounded-xl text-black hover:text-[#f2836f] hover:bg-[#f2836f]/10 transition"
+                        className="py-2.5 px-4 rounded-xl text-black hover:text-orange-600 hover:bg-orange-600/10 transition"
                       >
                         <Link href={sublink.href} className="block w-full">
                           {sublink.label}
@@ -141,7 +141,7 @@ const Navbar = () => {
                         <Link
                           href={sublink.href}
                           onClick={() => setIsOpen(false)}
-                          className="block hover:text-[#f2836f]"
+                          className="block hover:text-orange-600"
                         >
                           {sublink.label}
                         </Link>

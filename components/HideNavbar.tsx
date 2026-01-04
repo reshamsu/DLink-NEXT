@@ -12,6 +12,7 @@ const HideNavbar = () => {
     "/dashboard/listings",
     "/dashboard/listings/all",
     "/dashboard/listings/add",
+    "/dashboard/listings/edit",
   ];
 
   if (noNavRoutes.includes(pathname)) return null;
