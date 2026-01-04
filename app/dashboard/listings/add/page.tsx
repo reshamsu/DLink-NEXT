@@ -856,13 +856,13 @@ const Page = () => {
             </p>
           </div>
 
-          <form
+          {/* <form
             className="flex flex-col gap-10 w-full 2xl:text-base overflow-hidden group p-8 md:p-10 border-b-2 border-gray-100"
-            id="listingForm"
-            method="post"
+            // id="listingForm"
+            // method="post"
           >
             <div className="flex flex-col gap-6">
-              {/* Common Fields */}
+           
               <div className="flex flex-col md:grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="property_title" className="text-sm font-bold">
@@ -946,8 +946,8 @@ const Page = () => {
                 </p>
               )}
 
-              {/* Submit */}
-              {/* <div className="flex flex-col items-end justify-end">
+          
+              <div className="flex flex-col items-end justify-end">
                 <button
                   type="submit"
                   disabled={loading || uploading}
@@ -956,7 +956,7 @@ const Page = () => {
                   {loading || uploading ? "Uploading..." : "Submit Contact"}
                   <TbSend2 size={22} />
                 </button>
-              </div> */}
+              </div>
             </div>
           </form>
 
@@ -970,7 +970,7 @@ const Page = () => {
               Privacy Policy
             </Link>
             .
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
