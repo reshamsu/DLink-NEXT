@@ -491,23 +491,8 @@ const Page = () => {
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                     required
                   />
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      checked={newListing.approx}
-                      onChange={(e) =>
-                        setNewListing((p) => ({
-                          ...p,
-                          approx: e.target.checked,
-                        }))
-                      }
-                    />
-
-                    <label htmlFor="approx" className="text-xs font-semibold">
-                      Approx.
-                    </label>
-                  </div>
                 </div>
+
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="building_age" className="text-sm font-bold">
                     Building Age*
@@ -654,7 +639,6 @@ const Page = () => {
                         )}
                         onChange={handleChange}
                         className="accent-blue-600 w-4 h-4"
-                        required
                       />
                       <span className="text-gray-700 text-[15px]">
                         {property_documents}
@@ -955,6 +939,7 @@ const Page = () => {
                   />
                 </div>
               </div>
+              
               {message && (
                 <p className="text-sm text-center text-gray-600 mt-2 w-full">
                   {message}
@@ -962,7 +947,7 @@ const Page = () => {
               )}
 
               {/* Submit */}
-              <div className="flex flex-col items-end justify-end">
+              {/* <div className="flex flex-col items-end justify-end">
                 <button
                   type="submit"
                   disabled={loading || uploading}
@@ -971,7 +956,7 @@ const Page = () => {
                   {loading || uploading ? "Uploading..." : "Submit Contact"}
                   <TbSend2 size={22} />
                 </button>
-              </div>
+              </div> */}
             </div>
           </form>
 
