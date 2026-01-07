@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 export default function GoogleProvider({ children }: { children: ReactNode }) {
   return (
-    <GoogleOAuthProvider clientId="454373247918-uk8j5em60iu73367qho1vdfpaddma36c.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="314289367130-rbn1rsehinifmife9k76ng0gcbulhfrb.apps.googleusercontent.com">
       {children}
     </GoogleOAuthProvider>
   );
