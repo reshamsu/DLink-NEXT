@@ -201,9 +201,9 @@ const Page = () => {
     }
   };
 
-  const handleRadio = (name: string, value: number) => {
-    setNewListing((p) => ({ ...p, [name]: value }));
-  };
+  // const handleRadio = (name: string, value: number) => {
+  //   setNewListing((p) => ({ ...p, [name]: value }));
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -213,19 +213,20 @@ const Page = () => {
 
     const payload = {
       ...newListing,
-      bedrooms: newListing.bedrooms ? Number(newListing.bedrooms) : null,
-      bathrooms: newListing.bathrooms ? Number(newListing.bathrooms) : null,
-      sqft: newListing.sqft ? Number(newListing.sqft) : null,
+      bedrooms: Number(newListing.bedrooms),
+      bathrooms: Number(newListing.bathrooms),
+      sqft: Number(newListing.sqft),
+      perches: newListing.perches || null,
 
       floors: newListing.floors || null,
       building_age: newListing.building_age || null,
 
-      price: newListing.price || null,
-      full_price: newListing.full_price || null,
-      approx: newListing.approx || null,
-      contact_number: newListing.contact_number || null,
+      price: newListing.price,
+      full_price: newListing.full_price,
+      approx: newListing.approx,
+      price_negotiable: newListing.price_negotiable,
 
-      image_urls: uploadedUrls.length ? uploadedUrls : newListing.image_urls,
+      image_urls: uploadedUrls,
     };
 
     const { data, error } = await supabase
@@ -842,6 +843,7 @@ const Page = () => {
             .
           </p>
         </div>
+
         <div className="bg-white border-none md:border-2 border-gray-100 relative w-full h-full md:h-fit md:rounded-3xl overflow-hidden shadow-none md:shadow-lg flex flex-col justify-between md:justify-normal">
           <div className="flex flex-col text-start gap-1 border-b-2 border-gray-100 p-8 pb-6">
             <h2 className="text-base font-bold">

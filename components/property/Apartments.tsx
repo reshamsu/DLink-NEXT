@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants, Transition } from "framer-motion";
-import { TbBuilding, TbSquareCheck, TbBed, TbBath } from "react-icons/tb";
+import {
+  TbBuilding,
+  TbSquareCheck,
+  TbBed,
+  TbBath,
+  TbArrowRight,
+} from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
-
-/* ----------------------------------
-   TYPES
------------------------------------ */
 
 type FurnishingStatus = "Fully-Furnished" | "Semi-Furnished" | "UnFurnished";
 
@@ -46,10 +48,6 @@ interface Listing {
   status: string;
   image: string;
 }
-
-/* ----------------------------------
-   ANIMATION
------------------------------------ */
 
 const easeOut: Transition["ease"] = [0.25, 0.1, 0.25, 1];
 
@@ -129,6 +127,7 @@ const Listings: React.FC = () => {
             title: listing.property_title,
             subtitle: listing.property_subtitle,
             location: `${listing.city} - ${listing.location}`,
+            property_type: listing.property_type,
             is_furnished: listing.is_furnished,
             bedrooms: listing.bedrooms,
             bathrooms: listing.bathrooms,
@@ -190,7 +189,7 @@ const Listings: React.FC = () => {
                 key={listing.id}
                 custom={index}
                 variants={rowVariants}
-                className="bg-white p-4 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
+                className="bg-white p-3 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
               >
                 {/* IMAGE */}
                 <div className="relative h-64 overflow-hidden rounded-3xl">
@@ -201,6 +200,12 @@ const Listings: React.FC = () => {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-3xl" />
+                  <span className="absolute top-3 right-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
+                    {listing.property_type}
+                  </span>
+                  <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
+                    LKR {listing.price}
+                  </span>
                 </div>
 
                 {/* CONTENT */}
@@ -248,9 +253,12 @@ const Listings: React.FC = () => {
                     <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
                       {listing.status}
                     </span>
-                    <p className="text-xs text-orange-500 font-bold">
-                      LKR {listing.price}
-                    </p>
+                    <Link
+                      href={`/listing/${listing.id}`}
+                      className="btn-light-sm"
+                    >
+                      View <TbArrowRight size={18} />
+                    </Link>
                   </div>
                 </div>
               </motion.div>

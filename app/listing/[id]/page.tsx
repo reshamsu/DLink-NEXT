@@ -210,9 +210,9 @@ const Page = () => {
           <p className="text-sm font-bold opacity-90 flex items-center gap-2">
             <TbMapPin size={24} className="text-orange-500" /> {listing.city}
           </p>
-          <p className="md:text-base font-extrabold uppercase text-amber-400 py-1">
+          <span className="absolute top-6 right-6 bg-orange-500/60 text-sm text-white font-bold px-6 py-2.5 shadow-2xl rounded-3xl">
             {listing.property_type}
-          </p>
+          </span>
         </div>
 
         {/* Slider Dots */}
@@ -412,7 +412,7 @@ const Page = () => {
             </Link>
             <Link
               href="/"
-              className="btn-light-sm btn-dynamic text-center select-none"
+              className="btn-light-base btn-dynamic text-center select-none"
             >
               Back to Listings
             </Link>

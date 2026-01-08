@@ -9,6 +9,7 @@ import {
   TbBath,
   TbShare,
   TbPencil,
+  TbArrowRight,
 } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
@@ -167,9 +168,15 @@ const Listings: React.FC = () => {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
+                  <span className="absolute top-3 left-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
+                    {listing.property_type}
+                  </span>
+                  <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
+                    LKR {listing.price}
+                  </span>
                   <div>
                     <Link
-                   href={`/listing/${listing.id}/edit`}
+                      href={`/listing/${listing.id}/edit`}
                       className="absolute top-3 right-3 bg-white hover:bg-gray-100 hover:text-orange-500 p-2 rounded-xl hover:scale-105 transition-all duration-500"
                     >
                       <TbPencil size={22} />
@@ -228,18 +235,14 @@ const Listings: React.FC = () => {
                     <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
                       {listing.status}
                     </span>
-                    <p className="text-sm text-orange-500 font-bold">
-                      LKR {listing.price}
-                    </p>
+                    <Link
+                      href={`/listing/${listing.id}`}
+                      className="btn-light-sm"
+                    >
+                      View <TbArrowRight size={18} />
+                    </Link>
                   </div>
                 </div>
-
-                {/* <Link
-                  href={`/listing/${listing.id}`}
-                  className="select-none btn-light-sm btn-dynamic"
-                >
-                  View Listing
-                </Link> */}
               </motion.div>
             ))}
           </motion.div>
