@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, Variants, Transition } from "framer-motion";
 import {
   TbBuilding,
@@ -72,14 +73,36 @@ const Listings: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
   const [loading, setLoading] = useState(true);
 
+  const searchParams = useSearchParams();
+
+  const keyword = searchParams.get("q");
+  const type = searchParams.get("type");
+  const beds = searchParams.get("beds");
+
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
 
-      const { data, error } = await supabase
+      let query = supabase
         .from("listing")
         .select("*")
         .order("created_at", { ascending: false });
+
+      if (keyword) {
+        query = query.or(
+          `city.ilike.%${keyword}%,location.ilike.%${keyword}%,property_title.ilike.%${keyword}%`
+        );
+      }
+
+      if (type) {
+        query = query.eq("property_type", type);
+      }
+
+      if (beds) {
+        query = query.gte("bedrooms", Number(beds));
+      }
+
+      const { data, error } = await query;
 
       if (error || !data) {
         console.error("Error fetching listings:", error?.message);
@@ -125,12 +148,13 @@ const Listings: React.FC = () => {
     };
 
     fetchListings();
-  }, []);
+  }, [keyword, type, beds]);
 
   const visibleListings = listings.slice(0, visibleCount);
   const hasMore = visibleCount < listings.length;
+
   return (
-    <div className=" bg-gray-100 text-gray-800">
+    <div className="bg-gray-100 text-gray-800" id="listings">
       <div className="max-w-6xl mx-auto flex flex-col gap-8 py-20 px-6 2xl:px-0">
         {/* HEADER */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-start">
@@ -217,15 +241,15 @@ const Listings: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
+                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
+                      {listing.status}
+                    </span>
                     <p className="text-xs text-blue-500 font-bold">
                       {getFurnishingLabel(listing.is_furnished)}
                     </p>
                   </div>
 
                   <div className="flex justify-between items-end mt-1">
-                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
-                      {listing.status}
-                    </span>
                     <Link
                       href={`/listing/${listing.id}`}
                       className="btn-light-sm"

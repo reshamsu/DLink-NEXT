@@ -245,15 +245,15 @@ const Listings: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
+                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
+                      {listing.status}
+                    </span>
                     <p className="text-xs text-blue-500 font-bold">
                       {getFurnishingLabel(listing.is_furnished)}
                     </p>
                   </div>
 
                   <div className="flex justify-between items-end mt-1">
-                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
-                      {listing.status}
-                    </span>
                     <Link
                       href={`/listing/${listing.id}`}
                       className="btn-light-sm"

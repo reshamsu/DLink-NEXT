@@ -3,74 +3,98 @@
 import Image from "next/image";
 import { ReactTyped } from "react-typed";
 import { TbSearch } from "react-icons/tb";
-// import { supabase } from "@/lib/supabaseClient";
-
-// const FALLBACK_IMAGES = ["/assets/hero/.jpg"];
-
-// interface HeroRow {
-//   title: string;
-//   subtitle: string;
-//   page_type: string[];
-//   image_urls: string[];
-// }
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabaseClient";
 
 const Hero = () => {
-  //   const [current, setCurrent] = useState(0);
-  //   const [images, setImages] = useState<string[]>(FALLBACK_IMAGES);
-  //   const [title, setTitle] = useState(
-  //     "Let Us Unfold Your Extraordinary Travel Story"
-  //   );
-  //   const [subtitle, setSubtitle] = useState(
-  //     "Discover thousands of beautiful places around the world."
-  //   );
-  //   const [pageType, setPageType] = useState("Homepage");
+  const router = useRouter();
 
-  //   useEffect(() => {
-  //     if (!supabase) return;
+  // 🔹 Search states
+  const [keyword, setKeyword] = useState("");
+  const [propertyType, setPropertyType] = useState("");
+  const [beds, setBeds] = useState("");
 
-  //     const fetchHero = async () => {
-  //       const { data, error } = await supabase
-  //         .from("hero")
-  //         .select("*")
-  //         .contains("page_type", ["Homepage"])
-  //         .order("created_at", { ascending: true })
-  //         .limit(1)
-  //         .single();
+  // 🔹 Autofilter states
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [loadingSuggest, setLoadingSuggest] = useState(false);
 
-  //       if (error || !data) {
-  //         console.warn("Using fallback hero content");
-  //         return;
-  //       }
+  /* -------------------------------------------------------
+     🔍 AUTOFILTER (debounced)
+  ------------------------------------------------------- */
+  useEffect(() => {
+    if (!keyword || keyword.length < 2) {
+      setSuggestions([]);
+      return;
+    }
 
-  //       const hero = data as HeroRow;
+    const timer = setTimeout(async () => {
+      if (!supabase) return;
 
-  //       if (hero.image_urls?.length) {
-  //         setImages(hero.image_urls);
-  //       }
+      setLoadingSuggest(true);
 
-  //       if (hero.title) setTitle(hero.title);
-  //       if (hero.subtitle) setSubtitle(hero.subtitle);
-  //       if (hero.page_type) setPageType(hero.page_type[0]);
-  //     };
+      const { data, error } = await supabase
+        .from("listing")
+        .select("city")
+        // .select("city, location, price, property_title")
+        // .or(
+        //   `city.ilike.%${keyword}%,location.ilike.%${keyword}%,price.ilike.%${keyword}%,property_title.ilike.%${keyword}%`
+        // )
+        .limit(6);
 
-  //     fetchHero();
-  //   }, []);
+      if (!error && data) {
+        const unique = Array.from(
+          new Set(
+            data.flatMap((row) => [
+              row.city,
+              // row.location,
+              // row.price,
+              // row.property_title,
+            ])
+          )
+        )
+          .filter(Boolean)
+          .slice(0, 6);
 
-  //   useEffect(() => {
-  //     const interval = setInterval(
-  //       () => setCurrent((prev) => (prev + 1) % images.length),
-  //       10000
-  //     );
-  //     return () => clearInterval(interval);
-  //   }, [images.length]);
+        setSuggestions(unique);
+      }
 
-  //   const prevSlide = () =>
-  //     setCurrent((prev) => (prev - 1 + images.length) % images.length);
-  //   const nextSlide = () => setCurrent((prev) => (prev + 1) % images.length);
+      setLoadingSuggest(false);
+    }, 350); // debounce
+
+    return () => clearTimeout(timer);
+  }, [keyword]);
+
+  /* -------------------------------------------------------
+     🔎 SEARCH SUBMIT
+  ------------------------------------------------------- */
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (keyword) params.set("q", keyword);
+    else params.delete("q");
+
+    if (propertyType) params.set("type", propertyType);
+    else params.delete("type");
+    25;
+
+    if (beds) params.set("beds", beds);
+    else params.delete("beds");
+
+    // ✅ update URL WITHOUT page navigation
+    router.replace(`/?${params.toString()}#listings`, {
+      scroll: false,
+    });
+
+    // ✅ smooth scroll to listings
+    document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <div className="bg-gray-200 text-gray-900 relative">
-      <div className="relative h-[74vh] w-full overflow-hidden flex flex-col justify-center gap-10 text-center z-10 ">
+    <div className="bg-gray-200 text-gray-900">
+      <div className="relative h-screen w-full overflow-hidden flex flex-col justify-center gap-10 text-center">
         <div className="absolute inset-0 transition-opacity duration-1000">
           <Image
             src="/assets/banner/hero_image.jpg"
@@ -78,7 +102,7 @@ const Hero = () => {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/20 lg:bg-[#f2836f]/20 group-hover:bg-black/64 transition-all duration-1000" />
+          <div className="absolute inset-0 bg-black/20 lg:bg-[#f2836f]/15 group-hover:bg-black/64 transition-all duration-1000" />
         </div>
 
         {/* TEXT */}
@@ -86,7 +110,7 @@ const Hero = () => {
           <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
             Find your Next{" "}
             <ReactTyped
-              className="text-4xl 2xl:text-5xl font-extrabold text-orange-400"
+              className="text-4xl 2xl:text-5xl font-extrabold text-orange-500/80"
               strings={["Property", "Home", "Apartment", "Villa", "Land"]}
               typeSpeed={200}
               backSpeed={140}
@@ -99,70 +123,130 @@ const Hero = () => {
         </div>
 
         <form
-          method="post"
-          className="max-w-4xl mx-6 md:mx-40 lg:mx-auto relative bg-white text-gray-900 text-[15px] p-2 rounded-3xl lg:rounded-full shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-2 lg:flex-row"
+          onSubmit={handleSearch}
+          className="max-w-5xl mx-10 md:mx-60 lg:mx-auto -mb-30 relative z-50 bg-white text-gray-900 text-[15px] p-6 rounded-3xl shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-2 lg:flex-row"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-3 w-full">
-            {/* Search Property */}
-            <div className="flex flex-col justify-center gap-2">
-              <input
-                id="property"
-                type="text"
-                placeholder="City. Building or Name"
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-8 py-3 rounded-t-3xl lg:rounded-l-full"
-                required
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-3 items-end gap-4">
+            <div className="relative flex-1">
+              <div className="flex flex-col items-start justify-center gap-1">
+                <label className="text-sm font-bold">Search City</label>
+                <input
+                  type="text"
+                  placeholder="Dehiwela, Wellawatta, Colombo"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                  required
+                />
+              </div>
+
+              {loadingSuggest && (
+                <span className="absolute right-5 top-1/2 -translate-y-1/2 text-xs text-gray-400">
+                  Searching…
+                </span>
+              )}
+
+              {suggestions.length > 0 && (
+                <ul className="absolute top-full mt-4 p-2 w-full bg-white rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+                  {suggestions.map((item, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setKeyword(item);
+                        setSuggestions([]);
+                      }}
+                      className="px-4 py-2 text-left cursor-pointer hover:bg-orange-500/10"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {/* Price Range */}
+            <div className="flex flex-col items-start justify-center gap-1">
+              <label className="text-sm font-bold">Price Range</label>
+              <select
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+              >
+                <option value="" disabled>
+                  Price Range
+                </option>
+                <option value="30 Million-Below">30 Million - Below</option>
+                <option value="31 Million-39 Million">
+                  31 Million - 39 Million
+                </option>
+                <option value="40 Million-58 Million">
+                  40 Million - 58 Million
+                </option>
+                <option value="59 Million-70 Million">
+                  59 Million - 70 Million
+                </option>
+                <option value="71 Million-Above">71 Million - Above</option>
+              </select>
+            </div>
+
+            {/* Property Side */}
+            <div className="flex flex-col items-start justify-center gap-1">
+              <label className="text-sm font-bold">Property Side</label>
+              <select
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+              >
+                <option value="" disabled>
+                  Property Side
+                </option>
+                <option value="Sea Side">Sea Side</option>
+                <option value="Land Side">Land Side</option>
+              </select>
             </div>
 
             {/* Property Type */}
-            <div className="flex flex-col justify-center gap-2">
+            <div className="flex flex-col items-start justify-center gap-1">
+              <label className="text-sm font-bold">Property Type</label>
               <select
-                id="type"
-                name="type"
-                defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3"
-                required
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
+                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
               >
                 <option value="" disabled>
                   Property Type
                 </option>
-                <option value="apartment">Apartment</option>
-                <option value="house">House</option>
-                <option value="land">Lands</option>
-                <option value="commercial">Commercial Property</option>
-                <option value="other">Other</option>
+                <option value="Apartment">Apartment</option>
+                <option value="House">House</option>
+                <option value="Land">Lands</option>
+                <option value="Commercial">Commercial Property</option>
+                <option value="Other">Other</option>
               </select>
             </div>
 
             {/* Search City */}
-            <div className="flex flex-col justify-center gap-2">
+            <div className="flex flex-col items-start justify-center gap-1">
+              <label className="text-sm font-bold">Choose Beds</label>
               <select
-                id="bed-bath"
-                name="bed-bath"
-                defaultValue=""
-                className="bg-white/40 hover:bg-white duration-500 transition-all border-l border-black/10 px-6 py-3"
-                required
+                value={beds}
+                onChange={(e) => setBeds(e.target.value)}
+                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
               >
-                <option value="" disabled>
-                  Beds & Bath
-                </option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
+                <option value="">Beds+</option>
+                {[1, 2, 3, 4, 5, 6].map((n) => (
+                  <option key={n} value={n}>
+                    {n}+
+                  </option>
+                ))}
               </select>
             </div>
+            <button
+              type="submit"
+              className="select-none btn-orange-sm cursor-pointer"
+            >
+              <TbSearch size="22" /> Search
+            </button>
           </div>
-
-          <button
-            type="submit"
-            className="select-none btn-orange-base cursor-pointer"
-          >
-            <TbSearch size="22" /> Search
-          </button>
         </form>
       </div>
     </div>
