@@ -24,6 +24,7 @@ interface Listing {
   property_title: string;
   property_subtitle: string;
   property_type: string;
+  listing_type: string;
   city: string;
   location: string;
   bedrooms: string;
@@ -186,6 +187,20 @@ const Page = () => {
               className="object-cover transition-all duration-700 xl:rounded-b-4xl"
               priority
             />
+            {/* <Image
+              src="/assets/WM2.png"
+              alt="Watermark"
+              width={360}
+              height={360}
+              className="
+        absolute
+        top-1/2 left-1/2
+        -translate-x-1/2 -translate-y-1/2
+        object-contain
+        opacity-90
+      "
+              priority
+            /> */}
             <div className="absolute inset-0 bg-black/15 xl:rounded-b-4xl" />
           </>
         )}
@@ -210,9 +225,13 @@ const Page = () => {
             <TbMapPin size={24} className="text-orange-500" /> {listing.city}
           </p>
           <span className="bg-white/90 text-xs lg:text-sm text-orange-500 font-bold px-4 py-2 shadow-2xl rounded-3xl">
-            {listing.property_type}
+            {listing.property_type} for {listing.listing_type}
           </span>
         </div>
+
+        <span className="absolute left-6 md:left-10 bottom-5 md:bottom-7 uppercase text-sm lg:text-base font-bold text-orange-500">
+          Roy.Su Realtors
+        </span>
 
         {/* Slider Dots */}
         <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20">
@@ -370,7 +389,7 @@ const Page = () => {
 
         {/* Contact Card */}
         <div className="bg-white shadow-lg border-2 border-orange-200 rounded-3xl p-8 md:p-10 flex flex-col gap-6 h-fit">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 capitalize">
             <h3 className="text-xl font-extrabold mb-2">Price</h3>
             <p className="text-3xl font-bold text-orange-500">
               LKR {listing.price?.toLocaleString()}

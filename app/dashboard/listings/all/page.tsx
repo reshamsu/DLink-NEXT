@@ -182,7 +182,7 @@ const Listings: React.FC = () => {
                       <TbPencil size={20} />
                     </Link>
                     <Link
-                      href="/dashboard/listings"
+                      href="/"
                       className="absolute top-3 right-13 bg-white hover:bg-teal-500 hover:text-white p-1.5 rounded-xl hover:scale-105 transition-all duration-500"
                     >
                       <TbShare3 size={20} />

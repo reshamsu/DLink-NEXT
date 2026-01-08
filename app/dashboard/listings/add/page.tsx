@@ -363,7 +363,8 @@ const Page = () => {
                     <option value="Apartment">Apartment</option>
                     <option value="House">House</option>
                     <option value="Land">Lands</option>
-                    <option value="Commercial">Commercial</option>
+                    <option value="Comm. Building/Shop">Commercial Building/Shop</option>
+                     <option value="Commercial Land">Commercial Land</option>
                     <option value="Villa">Villas</option>
                   </select>
                 </div>
