@@ -16,7 +16,6 @@ import {
   TbSofa,
   TbSquareCheck,
   TbBuilding,
-  TbPhone,
 } from "react-icons/tb";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -24,13 +23,13 @@ interface Listing {
   id: string;
   property_title: string;
   property_subtitle: string;
+  property_type: string;
   city: string;
   location: string;
   bedrooms: string;
   bathrooms: string;
   floors: string;
   is_furnished: "Fully-Furnished" | "Semi-Furnished" | "Unfurnished";
-  property_type: string;
   price: number;
   full_price: string;
   amenities: string[] | string;

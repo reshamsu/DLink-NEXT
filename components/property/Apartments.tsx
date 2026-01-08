@@ -19,6 +19,7 @@ interface SupabaseListing {
   id: number;
   property_title: string;
   property_subtitle: string;
+  property_type: string;
   city: string;
   location: string;
   is_furnished: FurnishingStatus;
@@ -27,7 +28,6 @@ interface SupabaseListing {
   floors: number;
   perches: number;
   price: string;
-  property_type: string;
   status: string;
   image_urls: string[] | string | null;
   created_at: string;
@@ -38,6 +38,7 @@ interface Listing {
   title: string;
   subtitle: string;
   location: string;
+  property_type: string;
   is_furnished: FurnishingStatus;
   bedrooms: number;
   bathrooms: number;
