@@ -20,6 +20,7 @@ interface SupabaseListing {
   property_title: string;
   property_subtitle: string;
   property_type: string;
+  listing_type: string;
   city: string;
   location: string;
   is_furnished: FurnishingStatus;
@@ -39,6 +40,7 @@ interface Listing {
   subtitle: string;
   location: string;
   property_type: string;
+  listing_type: string;
   is_furnished: FurnishingStatus;
   bedrooms: number;
   bathrooms: number;
@@ -129,6 +131,7 @@ const Listings: React.FC = () => {
             subtitle: listing.property_subtitle,
             location: `${listing.city} - ${listing.location}`,
             property_type: listing.property_type,
+            listing_type: listing.listing_type,
             is_furnished: listing.is_furnished,
             bedrooms: listing.bedrooms,
             bathrooms: listing.bathrooms,
@@ -202,7 +205,7 @@ const Listings: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-3xl" />
                   <span className="absolute top-3 right-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
-                    {listing.property_type}
+                    {listing.property_type} for {listing.listing_type}
                   </span>
                   <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
                     LKR {listing.price}
