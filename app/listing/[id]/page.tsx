@@ -229,7 +229,7 @@ const Page = () => {
           </span>
         </div>
 
-        <span className="absolute left-6 md:left-10 bottom-5 md:bottom-7 uppercase text-sm lg:text-base font-bold text-orange-500">
+        <span className="absolute left-6 md:left-10 bottom-5 md:bottom-12 uppercase text-sm lg:text-base font-bold text-orange-500">
           Roy.Su Realtors
         </span>
 

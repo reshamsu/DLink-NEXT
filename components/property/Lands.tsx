@@ -212,7 +212,7 @@ const Listings: React.FC = () => {
                     <Link
                       href={`/listing/${listing.id}`}
                       onClick={scrollToTop}
-                      className="text-sm font-bold hover:text-orange-400 line-clamp-1"
+                      className="text-sm font-bold hover:text-orange-400 capitalize line-clamp-1"
                     >
                       {listing.title}
                     </Link>

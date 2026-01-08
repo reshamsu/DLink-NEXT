@@ -214,7 +214,7 @@ const Listings: React.FC = () => {
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="text-sm font-bold hover:text-orange-500 line-clamp-1"
+                      className="text-sm font-bold hover:text-orange-500 capitalize line-clamp-1"
                     >
                       {listing.title}
                     </Link>
@@ -269,7 +269,7 @@ const Listings: React.FC = () => {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_STEP)}
-            className="select-none btn-light-glass btn-dynamic"
+            className="select-none btn-light-outline btn-dynamic"
           >
             Show more Listings
           </button>

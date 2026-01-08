@@ -169,23 +169,23 @@ const Listings: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
                   <span className="absolute top-3 left-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
-                    {listing.property_type}
+                    {listing.property_type} for {listing.listing_type}
                   </span>
                   <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
                     LKR {listing.price}
                   </span>
                   <div>
                     <Link
-                      href={`/listing/${listing.id}/edit`}
-                      className="absolute top-3 right-3 bg-white hover:bg-blue-500 hover:text-white p-1.5 rounded-xl hover:scale-105 transition-all duration-500"
-                    >
-                      <TbPencil size={20} />
-                    </Link>
-                    <Link
                       href="/"
-                      className="absolute top-3 right-13 bg-white hover:bg-teal-500 hover:text-white p-1.5 rounded-xl hover:scale-105 transition-all duration-500"
+                      className="absolute bottom-3 right-12.5 bg-white hover:bg-teal-500 hover:text-white p-1.5 rounded-xl hover:scale-105 transition-all duration-500"
                     >
                       <TbShare3 size={20} />
+                    </Link>
+                    <Link
+                      href={`/listing/${listing.id}/edit`}
+                      className="absolute bottom-3 right-3 bg-white hover:bg-blue-500 hover:text-white p-1.5 rounded-xl hover:scale-105 transition-all duration-500"
+                    >
+                      <TbPencil size={20} />
                     </Link>
                   </div>
                 </div>
