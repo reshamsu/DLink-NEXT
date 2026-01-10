@@ -363,8 +363,10 @@ const Page = () => {
                     <option value="Apartment">Apartment</option>
                     <option value="House">House</option>
                     <option value="Land">Lands</option>
-                    <option value="Comm. Building/Shop">Commercial Building/Shop</option>
-                     <option value="Commercial Land">Commercial Land</option>
+                    <option value="Comm. Building/Shop">
+                      Commercial Building/Shop
+                    </option>
+                    <option value="Commercial Land">Commercial Land</option>
                     <option value="Villa">Villas</option>
                   </select>
                 </div>
@@ -860,14 +862,13 @@ const Page = () => {
             </p>
           </div>
 
-          {/* <form
+          <form
             className="flex flex-col gap-10 w-full 2xl:text-base overflow-hidden group p-8 md:p-10 border-b-2 border-gray-100"
             // id="listingForm"
             // method="post"
           >
             <div className="flex flex-col gap-6">
-           
-              <div className="flex flex-col md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="property_title" className="text-sm font-bold">
                     Property Ownership's Name
@@ -942,24 +943,22 @@ const Page = () => {
                     className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                   />
                 </div>
-              </div>
-              
-              {message && (
-                <p className="text-sm text-center text-gray-600 mt-2 w-full">
-                  {message}
-                </p>
-              )}
+                {message && (
+                  <p className="text-sm text-center text-gray-600 mt-2 w-full">
+                    {message}
+                  </p>
+                )}
 
-          
-              <div className="flex flex-col items-end justify-end">
-                <button
-                  type="submit"
-                  disabled={loading || uploading}
-                  className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
-                >
-                  {loading || uploading ? "Uploading..." : "Submit Contact"}
-                  <TbSend2 size={22} />
-                </button>
+                <div className="flex flex-col items-end justify-end">
+                  <button
+                    type="submit"
+                    disabled={loading || uploading}
+                    className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
+                  >
+                    {loading || uploading ? "Uploading..." : "Submit Contact"}
+                    <TbSend2 size={22} />
+                  </button>
+                </div>
               </div>
             </div>
           </form>
@@ -974,7 +973,7 @@ const Page = () => {
               Privacy Policy
             </Link>
             .
-          </p> */}
+          </p>
         </div>
       </div>
     </div>

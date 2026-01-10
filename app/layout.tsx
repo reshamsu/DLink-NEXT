@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: "Real Estate Listing Platform",
 };
 
-const CLIENT_ID =
-  process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
-  "314289367130-rbn1rsehinifmife9k76ng0gcbulhfrb.apps.googleusercontent.com";
+// const CLIENT_ID =
+//   process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
+//   "314289367130-rbn1rsehinifmife9k76ng0gcbulhfrb.apps.googleusercontent.com";
 
 export default function RootLayout({
   children,
