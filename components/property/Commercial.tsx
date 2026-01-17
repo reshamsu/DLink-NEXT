@@ -249,9 +249,19 @@ const Listings: React.FC = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <span className="bg-green-300 text-[11px] font-bold px-3.5 py-1.5 rounded-xl">
+                       <p
+                      className={`text-[11px] font-bold px-3.5 py-1.5 rounded-xl text-white
+    ${
+      listing.status === "Available"
+        ? "bg-green-400"
+        : listing.status === "Sold"
+          ? "bg-red-400"
+          : "bg-yellow-400"
+    }
+  `}
+                    >
                       {listing.status}
-                    </span>
+                    </p>
                     <p className="text-xs text-blue-500 font-bold">
                       {getFurnishingLabel(listing.is_furnished)}
                     </p>

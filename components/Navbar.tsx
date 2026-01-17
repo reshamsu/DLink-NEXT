@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <header className="fixed z-40 w-full shadow-sm select-none">
       <nav className="max-w-6xl mx-auto flex items-center justify-between py-3 px-6 2xl:px-0">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 mr-20">
           <div className="relative w-14 h-14">
             <Image
               src="/favicon.ico"
@@ -96,13 +96,18 @@ const Navbar = () => {
 
         {/* Desktop Right Side */}
         <div className="flex items-center gap-4 text-sm select-none">
-          <div className="hidden lg:flex gap-2 ">
+          <div className="hidden lg:flex gap-4">
             <Link
               href="/login"
-              className="select-none btn-dark-sm btn-dynamic"
+              className="select-none btn-dark-glass btn-dynamic"
             >
-              {" "}
-              Get Started
+              <TbUser size={22} />
+            </Link>
+            <Link
+              href="https://wa.me/94761676603"
+              className="select-none btn-orange-sm btn-dynamic"
+            >
+              <TbPhone size={22} /> Inquire Now
             </Link>
           </div>
           <button
@@ -160,7 +165,7 @@ const Navbar = () => {
               )}
             </li>
           ))}
-            <div className="p-4 flex lg:hidden items-center gap-4 text-sm">
+          <div className="p-4 flex lg:hidden items-center gap-4 text-sm">
             <Link
               href="/login"
               className="select-none btn-dark-glass btn-dynamic"

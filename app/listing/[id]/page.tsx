@@ -164,13 +164,13 @@ const Page = () => {
     listing.is_furnished === "Fully-Furnished"
       ? "Fully-Furnished"
       : listing.is_furnished === "Semi-Furnished"
-      ? "Semi-Furnished"
-      : "UnFurnished";
+        ? "Semi-Furnished"
+        : "UnFurnished";
 
   const currentImage = images[current];
 
   return (
-    <div className="max-w-6xl mx-auto mt-20 px-0 xl:px-6 2xl:px-0">
+    <div className="max-w-6xl mx-auto mt-18 px-0 xl:px-6 2xl:px-0">
       {/* Hero Slider Section */}
       <div
         className="relative h-[60vh] md:h-[66vh] w-full overflow-hidden select-none"
@@ -256,14 +256,19 @@ const Page = () => {
             {/* <p>Listed on {new Date(listing.created_at).toLocaleDateString()}</p>
             <span>|</span> */}
 
-            <p className="text-xs text-gray-500">
-              Status:{" "}
+            <p className="text-gray-600">
+              {" "}
+              Status:
               <span
-                className={`font-semibold ${
-                  listing.status === "Available"
-                    ? "text-green-600"
-                    : "text-red-500"
-                }`}
+                className={`text-[13px] font-bold px-3.5 py-1.5 rounded-xl text-black
+    ${
+      listing.status === "Available"
+        ? "text-green-600"
+        : listing.status === "Sold"
+          ? "text-red-600"
+          : "text-yellow-500"
+    }
+  `}
               >
                 {listing.status}
               </span>

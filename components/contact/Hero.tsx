@@ -155,7 +155,7 @@ const Hero = () => {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-black/30 lg:bg-[#f2836f]/10 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-black/30 lg:bg-[#f2836f]/20 transition-all duration-1000" />
           </div>
         ))}
 

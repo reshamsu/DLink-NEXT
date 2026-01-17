@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-950 text-gray-500 border-t border-black/5 relative">
       <div className="max-w-6xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
-        <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
+        <div className="flex flex-col lg:flex-row gap-8 w-full pb-10 border-b border-gray-800">
           {/* Logo + Socials */}
           <div className="flex flex-col items-center text-center gap-6 w-full md:w-xs">
             <Link href="/" className="flex items-center gap-2 text-white">
@@ -40,15 +40,15 @@ const Footer = () => {
               </div>
             </Link>
 
-            <ul className="flex gap-3 text-xl">
+            <ul className="grid grid-cols-4 gap-3 text-2xl">
               <li>
                 <Link
                   href="https://wa.me/94761676603"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-300 p-2 hover:text-orange-400 hover:bg-orange-400/10"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
                 >
-                  <FaWhatsapp />
+                  <FaWhatsapp size={22} />
                 </Link>
               </li>
               <li>
@@ -56,9 +56,9 @@ const Footer = () => {
                   href="https://www.facebook.com/roy.roger02"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-300 p-2 hover:text-orange-400 hover:bg-orange-400/10"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
                 >
-                  <FaFacebook />
+                  <FaFacebook size={22} />
                 </Link>
               </li>
               <li>
@@ -66,17 +66,17 @@ const Footer = () => {
                   href="https://www.instagram.com/dlink_colombo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-300 p-2 hover:text-orange-400 hover:bg-orange-400/10"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
                 >
-                  <FaInstagram />
+                  <FaInstagram size={22} />
                 </Link>
               </li>
               <li>
                 <Link
                   href="mailto:info@dlinkcolombo.com"
-                  className="flex border rounded-2xl border-gray-300 p-2 hover:text-orange-400 hover:bg-orange-400/10"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
                 >
-                  <TbMail />
+                  <TbMail size={22} />
                 </Link>
               </li>
             </ul>
@@ -116,7 +116,7 @@ const Footer = () => {
               <ul className="flex flex-col gap-3">
                 <li>
                   <button
-                    onClick={() => handleNavClick("/rent")}
+                    onClick={() => handleNavClick("/property/apartments")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Apartments
@@ -124,7 +124,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/buy")}
+                    onClick={() => handleNavClick("/property/homes")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Homes
@@ -132,7 +132,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/invest")}
+                    onClick={() => handleNavClick("/property/commercial")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Commercial Property
@@ -140,7 +140,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/lands")}
+                    onClick={() => handleNavClick("/property/lands")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Lands/Plots
@@ -148,7 +148,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <button
-                    onClick={() => handleNavClick("/villas")}
+                    onClick={() => handleNavClick("/property/villas")}
                     className="hover:text-orange-400 hover:underline text-left"
                   >
                     Villas
@@ -184,7 +184,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-[14px] flex items-center text-center gap-1">
+        <p className="text-[13px] flex items-center text-center gap-1">
           <FaRegCopyright /> 2025 D-Link Colombo . All Rights Reserved.
         </p>
       </div>

@@ -186,7 +186,7 @@ export default function Page() {
   /* ---------------- STATES ---------------- */
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-[60vh]">
+      <div className="flex justify-center items-center h-screen">
         <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
         <p className="ml-3 text-gray-500">Loading property details...</p>
       </div>
@@ -203,8 +203,8 @@ export default function Page() {
     listing.is_furnished === "Fully-Furnished"
       ? "Fully-Furnished"
       : listing.is_furnished === "Semi-Furnished"
-      ? "Semi-Furnished"
-      : "UnFurnished";
+        ? "Semi-Furnished"
+        : "UnFurnished";
 
   const currentImage = images[current];
 
@@ -245,13 +245,13 @@ export default function Page() {
           <TbChevronRight size={44} />
         </button>
 
-        <div className="absolute inset-0 flex items-start justify-between gap-1 text-white z-10 p-6 pb-10 md:p-8 2xl:p-10">
+        <div className="absolute inset-0 flex items-start justify-between gap-1 text-white z-10 p-6 pb-10 md:p-8">
           <p className="text-sm font-bold opacity-90 flex items-center gap-2">
             <TbMapPin size={24} className="text-orange-500" /> {listing.city}
           </p>
-          <p className="text-sm font-extrabold uppercase text-orange-500 py-1">
-            {listing.property_type}
-          </p>
+          <span className="bg-white/90 text-xs lg:text-sm text-orange-500 font-bold px-4 py-2 shadow-2xl rounded-3xl">
+            {listing.property_type} for {listing.listing_type}
+          </span>
         </div>
 
         {/* Slider Dots */}
@@ -539,6 +539,16 @@ export default function Page() {
                 </label>
               ))}
             </div>
+          </div>
+
+          <div className="mt-10 flex justify-end">
+            <button
+              onClick={saveChanges}
+              disabled={saving}
+              className="btn-orange-sm"
+            >
+              {saving ? "Updating…" : "Update Changes"}
+            </button>
           </div>
         </div>
 

@@ -124,18 +124,18 @@ const Hero = () => {
 
         <form
           onSubmit={handleSearch}
-          className="max-w-5xl mx-10 md:mx-60 lg:mx-auto -mb-30 relative z-50 bg-white text-gray-900 text-[15px] p-6 rounded-3xl shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-2 lg:flex-row"
+          className="max-w-5xl mx-8 md:mx-60 lg:mx-auto -mb-30 relative z-50 bg-gray-800/90 text-white text-[15px] p-6 rounded-3xl shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-2 lg:flex-row"
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 items-end gap-4">
             <div className="relative flex-1">
-              <div className="flex flex-col items-start justify-center gap-1">
+              <div className="flex flex-col items-start justify-center gap-2">
                 <label className="text-sm font-bold">Search City</label>
                 <input
                   type="text"
                   placeholder="Dehiwela, Wellawatta, Colombo"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
-                  className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                  className="bg-gray-500 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl w-full"
                   required
                 />
               </div>
@@ -147,7 +147,7 @@ const Hero = () => {
               )}
 
               {suggestions.length > 0 && (
-                <ul className="absolute top-full mt-4 p-2 w-full bg-white rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
+                <ul className="absolute top-full mt-4 p-2 w-full bg-gray-500 rounded-xl shadow-lg z-50 max-h-60 overflow-y-auto">
                   {suggestions.map((item, index) => (
                     <li
                       key={index}
@@ -165,12 +165,12 @@ const Hero = () => {
             </div>
 
             {/* Price Range */}
-            <div className="flex flex-col items-start justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-2">
               <label className="text-sm font-bold">Price Range</label>
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                className="bg-gray-500 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl w-full"
               >
                 <option value="" disabled>
                   Price Range
@@ -190,12 +190,12 @@ const Hero = () => {
             </div>
 
             {/* Property Side */}
-            <div className="flex flex-col items-start justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-2">
               <label className="text-sm font-bold">Property Side</label>
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                className="bg-gray-500 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl w-full"
               >
                 <option value="" disabled>
                   Property Side
@@ -206,12 +206,12 @@ const Hero = () => {
             </div>
 
             {/* Property Type */}
-            <div className="flex flex-col items-start justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-2">
               <label className="text-sm font-bold">Property Type</label>
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                className="bg-gray-500 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-xl w-full"
               >
                 <option value="" disabled>
                   Property Type
@@ -225,14 +225,14 @@ const Hero = () => {
             </div>
 
             {/* Search City */}
-            <div className="flex flex-col items-start justify-center gap-1">
+            <div className="flex flex-col items-start justify-center gap-2">
               <label className="text-sm font-bold">Choose Beds</label>
               <select
                 value={beds}
                 onChange={(e) => setBeds(e.target.value)}
-                className="bg-gray-100 hover:bg-white duration-500 transition-all border border-black/10 px-6 py-3 rounded-2xl w-full"
+                className="bg-gray-500 hover:bg-white duration-500 transition-all border border-black/10 px-4 py-3 rounded-2xl w-full"
               >
-                <option value="">Beds+</option>
+                <option value="" disabled>Beds+</option>
                 {[1, 2, 3, 4, 5, 6].map((n) => (
                   <option key={n} value={n}>
                     {n}+

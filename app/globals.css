@@ -51,7 +51,7 @@ header {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold hover:font-extrabold rounded-xs border-b-4 border-black/80 pr-3 py-2 hover:px-3 text-sm 2xl:text-base text-black/90 cursor-pointer transition-all hover:scale-105 w-fit duration-500;
   }
   .btn-dark-glass {
-    @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-semibold rounded-full border border-black/5 bg-orange-600/15 hover:bg-orange-600/20 px-3 py-3 text-sm lg:text-[14px] text-gray-800 lg:text-white hover:text-orange-500 cursor-pointer transition-all hover:scale-105 w-fit duration-700;
+    @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-semibold rounded-full border border-black/5 bg-orange-600/15 hover:bg-orange-600/20 px-3 py-3 text-sm lg:text-[14px] text-gray-800 hover:text-orange-500 cursor-pointer transition-all hover:scale-105 w-fit duration-700;
   }
   .btn-dark-outline {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-none bg-black/5 hover:bg-black/10 px-6 py-2.5 text-black text-sm cursor-pointer transition-all hover:scale-105 w-full md:w-fit duration-500;
