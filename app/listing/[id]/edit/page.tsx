@@ -441,6 +441,25 @@ export default function Page() {
 
             <div className="flex flex-col gap-2 w-full">
               <label className="flex gap-2 text-black font-bold text-sm">
+                <TbSofa size={20} className="text-orange-500" /> Location Side*
+              </label>
+              <select
+                value={listing.location}
+                onChange={(e) =>
+                  updateField("location", e.target.value)
+                }
+                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+              >
+                <option value="" disabled>
+                  Select Side
+                </option>
+                <option value="Land-Side">Land Side</option>
+                <option value="Sea-Side">Sea Side</option>
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-2 w-full">
+              <label className="flex gap-2 text-black font-bold text-sm">
                 <TbHome size={22} className="text-orange-500" /> Property Type*
               </label>
               <select
@@ -501,7 +520,7 @@ export default function Page() {
               Description<span className="text-orange-500">*</span>
             </label>
             <textarea
-              className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
+              className="bg-gray-50 border border-gray-200 text-sm rounded-xl px-4 py-2.5 capitalize"
               rows={5}
               value={listing.description}
               onChange={(e) => updateField("description", e.target.value)}
