@@ -30,7 +30,6 @@ interface SupabaseListing {
   floors: number;
   perches: number;
   price: string;
-
   status: string;
   image_urls: string[] | string | null;
   created_at: string;
@@ -90,19 +89,19 @@ const Listings: React.FC = () => {
         .select("*")
         .order("created_at", { ascending: false });
 
-      if (keyword) {
-        query = query.or(
-          `city.ilike.%${keyword}%,location.ilike.%${keyword}%,property_title.ilike.%${keyword}%`,
-        );
-      }
+      // if (keyword) {
+      //   query = query.or(
+      //     `city.ilike.%${keyword}%,location.ilike.%${keyword}%,property_title.ilike.%${keyword}%`,
+      //   );
+      // }
 
-      if (type) {
-        query = query.eq("property_type", type);
-      }
+      // if (type) {
+      //   query = query.eq("property_type", type);
+      // }
 
-      if (beds) {
-        query = query.gte("bedrooms", Number(beds));
-      }
+      // if (beds) {
+      //   query = query.gte("bedrooms", Number(beds));
+      // }
 
       const { data, error } = await query;
 
@@ -190,10 +189,10 @@ const Listings: React.FC = () => {
                 variants={rowVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-white p-3 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
+                className="bg-white rounded-4xl shadow-lg overflow-hidden group h-full"
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden rounded-3xl">
+                <div className="relative h-64 overflow-hidden rounded-t-3xl">
                   <Image
                     src={listing.image}
                     alt={listing.title}
@@ -201,7 +200,7 @@ const Listings: React.FC = () => {
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
-                  <span className="absolute top-3 right-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
+                  <span className="absolute top-4 right-4 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-full">
                     {listing.property_type} for {listing.listing_type}
                   </span>
                   <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
@@ -210,7 +209,7 @@ const Listings: React.FC = () => {
                 </div>
 
                 {/* CONTENT */}
-                <div className="flex flex-col gap-2.5 pt-4 p-2">
+                <div className="flex flex-col justify-between h-60 p-5">
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
@@ -218,13 +217,13 @@ const Listings: React.FC = () => {
                     >
                       {listing.title}
                     </Link>
-                    <p className="text-xs text-gray-600 my-1 line-clamp-1">
+                    <p className="text-xs text-gray-600 mb-3 line-clamp-1">
                       {listing.subtitle}
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs font-bold py-2.5 border-t border-b border-gray-100">
-                    <p className="flex items-center gap-1.5">
+                  <div className="grid grid-cols-2 gap-2 text-xs font-bold pt-4 border-t border-gray-200">
+                    <p className="flex items-center gap-1.5 line-clamp-1">
                       <TbBuilding size={16} className="text-orange-500" />
                       {listing.floors}
                     </p>
@@ -241,33 +240,30 @@ const Listings: React.FC = () => {
                       <TbBath size={16} className="text-orange-500" />
                       {listing.bathrooms} Bath
                     </p>
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <p
-                      className={`text-[11px] font-bold px-3.5 py-1.5 rounded-xl text-white
-    ${
-      listing.status === "Available"
-        ? "bg-green-400"
-        : listing.status === "Sold"
-          ? "bg-red-400"
-          : "bg-yellow-400"
-    }
-  `}
-                    >
-                      {listing.status}
-                    </p>
                     <p className="text-xs text-blue-500 font-bold">
                       {getFurnishingLabel(listing.is_furnished)}
                     </p>
                   </div>
 
-                  <div className="flex justify-between items-end mt-1">
+                  <div className="flex items-end justify-between">
+                    <p
+                      className={`text-[11px] font-bold px-3.5 py-1.5 rounded-xl text-white
+    ${
+      listing.status === "Available"
+        ? "bg-emerald-500"
+        : listing.status === "Sold"
+          ? "bg-red-400"
+          : "bg-orange-300"
+    }
+  `}
+                    >
+                      {listing.status}
+                    </p>
                     <Link
                       href={`/listing/${listing.id}`}
                       className="btn-light-sm"
                     >
-                      View <TbArrowRight size={18} />
+                      <TbArrowRight size={24} />
                     </Link>
                   </div>
                 </div>

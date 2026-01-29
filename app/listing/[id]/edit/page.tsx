@@ -291,7 +291,7 @@ export default function Page() {
             <span>|</span> */}
 
             <div className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+              <div className="grid grid-cols-2 gap-6 items-center text-sm capitalize font-bold border-b border-gray-300 pb-6">
                 <div className="flex flex-col gap-2 w-full">
                   <label className="flex gap-2 text-black font-bold text-sm">
                     <TbCheckbox size={20} className="text-orange-500" /> Status*
@@ -367,7 +367,7 @@ export default function Page() {
           </div>
 
           {/* Specs */}
-          <div className="grid grid-cols-2 lg:grid-cols-2 gap-6 items-center text-sm capitalize font-bold border-b border-gray-300 pb-6">
+          <div className="grid grid-cols-2 gap-6 items-center text-sm capitalize font-bold border-b border-gray-300 pb-6">
             <div className="flex flex-col gap-2 w-full">
               <label className="flex gap-2 text-black font-bold text-sm">
                 <TbBed size={22} className="text-orange-500" /> Bedrooms*
@@ -445,9 +445,7 @@ export default function Page() {
               </label>
               <select
                 value={listing.location}
-                onChange={(e) =>
-                  updateField("location", e.target.value)
-                }
+                onChange={(e) => updateField("location", e.target.value)}
                 className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
               >
                 <option value="" disabled>
@@ -646,19 +644,27 @@ export default function Page() {
               </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center gap-2.5 mt-4">
+            <div className="flex flex-col items-center gap-4 mt-4">
               <Link
                 href="tel:+94761676603"
                 className="btn-orange-sm btn-dynamic text-center select-none"
               >
                 Contact Agent
               </Link>
-              <Link
-                href="/"
-                className="btn-light-sm btn-dynamic text-center select-none"
-              >
-                Back to Listings
-              </Link>
+              <div className="grid grid-cols-2 gap-4 w-full">
+                <Link
+                  href="/"
+                  className="btn-light-sm btn-dynamic text-center select-none"
+                >
+                  Back to Listings
+                </Link>
+                <Link
+                  href="tel:+94761676603"
+                  className="btn-dark-sm btn-dynamic text-center select-none"
+                >
+                  Share on Whatsapp
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -691,7 +697,7 @@ export default function Page() {
             <div className="flex flex-col lg:flex-row items-center gap-2.5 mt-4">
               <Link
                 href="tel:+94761676603"
-                className="btn-dark-sm btn-dynamic text-center select-none"
+                className="btn-orange-outline btn-dynamic text-center select-none"
               >
                 Contact Owner
               </Link>

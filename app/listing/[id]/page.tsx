@@ -426,19 +426,27 @@ const Page = () => {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center gap-2.5 mt-4">
+          <div className="flex flex-col items-center gap-4 mt-4">
             <Link
               href="tel:+94761676603"
               className="btn-orange-sm btn-dynamic text-center select-none"
             >
               Contact Agent
             </Link>
-            <Link
-              href="/"
-              className="btn-light-base btn-dynamic text-center select-none"
-            >
-              Back to Listings
-            </Link>
+            <div className="grid grid-cols-2 gap-4 w-full">
+              <Link
+                href="/"
+                className="btn-light-sm btn-dynamic text-center select-none"
+              >
+                Back to Listings
+              </Link>
+              <Link
+                href="tel:+94761676603"
+                className="btn-dark-sm btn-dynamic text-center select-none"
+              >
+                Share on Whatsapp
+              </Link>
+            </div>
           </div>
         </div>
       </div>
