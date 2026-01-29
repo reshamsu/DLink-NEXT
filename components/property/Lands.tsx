@@ -74,11 +74,11 @@ const Listings: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
   const [loading, setLoading] = useState(true);
 
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
 
-  const keyword = searchParams.get("q");
-  const type = searchParams.get("type");
-  const beds = searchParams.get("beds");
+  // const keyword = searchParams.get("q");
+  // const type = searchParams.get("type");
+  // const beds = searchParams.get("beds");
 
   useEffect(() => {
     const fetchListings = async () => {
