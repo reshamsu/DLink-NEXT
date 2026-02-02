@@ -195,7 +195,7 @@ const Listings: React.FC = () => {
                 </div>
 
                 {/* CONTENT */}
-                <div className="flex flex-col justify-between p-5">
+                <div className="flex flex-col justify-between h-fit lg::h-66 p-5">
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
@@ -208,7 +208,7 @@ const Listings: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 md:grid-cols-1 gap-1 text-xs font-bold pt-4 border-t border-gray-200">
+                  <div className="grid grid-cols-2 md:grid-cols-1 gap-2 text-xs font-bold pt-4 border-t border-gray-200">
                     <p className="flex items-center gap-1.5 line-clamp-1">
                       <TbBuilding size={16} className="text-orange-500" />
                       {listing.floors}
@@ -247,7 +247,7 @@ const Listings: React.FC = () => {
                     </p>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="btn-light-sm"
+                      className="btn-orange-glass"
                     >
                       <TbArrowRight size={24} />
                     </Link>

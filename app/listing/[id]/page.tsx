@@ -250,7 +250,7 @@ const Page = () => {
       </div>
 
       {/* Property Details */}
-      <div className="max-w-7xl mx-auto p-6 md:py-10 md:px-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 2xl:gap-10">
+      <div className="max-w-7xl mx-auto p-6 md:pt-10 md:pb-20 md:px-4 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 2xl:gap-10">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4 text-sm border-b border-gray-200 pb-6">
             {/* <p>Listed on {new Date(listing.created_at).toLocaleDateString()}</p>
@@ -433,7 +433,7 @@ const Page = () => {
             >
               Contact Agent
             </Link>
-            <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <Link
                 href="/"
                 className="btn-light-sm btn-dynamic text-center select-none"

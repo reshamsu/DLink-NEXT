@@ -10,6 +10,7 @@ import {
   TbShare3,
   TbPencil,
   TbArrowRight,
+  TbHomeSearch,
 } from "react-icons/tb";
 import Image from "next/image";
 import Link from "next/link";
@@ -120,7 +121,7 @@ const Listings: React.FC = () => {
 
   return (
     <div className="bg-gray-100 text-gray-700">
-      <div className="max-w-6xl mx-auto lg:ml-80 pt-24 lg:pt-16 pb-10 px-6 md:px-10 lg:px-0 flex flex-col gap-6">
+      <div className="max-w-6xl mx-auto md:mx-8 lg:ml-80 pt-24 lg:pt-16 pb-10 px-6 md:px-10 lg:px-0 flex flex-col gap-6">
         {/* Header */}
         <div className="flex flex-col gap-1">
           <h2 className="playfair text-3xl font-bold">
@@ -137,7 +138,7 @@ const Listings: React.FC = () => {
 
         {/* STATES */}
         {loading ? (
-          <div className="flex justify-center items-center h-[80vh] py-20">
+          <div className="h-[70vh] flex items-center justify-center py-20">
             <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
             <p className="ml-3 text-gray-500">Loading listings...</p>
           </div>
@@ -145,7 +146,7 @@ const Listings: React.FC = () => {
           <p className="text-center text-gray-500 py-20">No listings found.</p>
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 mt-4"
             initial="hidden"
             animate="visible"
           >
@@ -156,24 +157,28 @@ const Listings: React.FC = () => {
                 variants={rowVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-white p-4 rounded-4xl shadow-lg overflow-hidden group flex flex-col justify-around h-full"
+                className="bg-white rounded-4xl shadow-lg overflow-hidden group h-full"
               >
-                <div className="relative h-64 overflow-hidden rounded-3xl">
+                <div className="relative h-64 overflow-hidden rounded-t-3xl">
                   <Image
                     src={
                       listing.image_urls?.[0] || "/assets/banner/property1.webp"
                     }
                     alt={listing.property_title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-700 rounded-2xl" />
-                  <span className="absolute top-3 left-3 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
+                  <span className="absolute top-4 left-4 bg-orange-500/80 text-[11px] text-white font-bold px-3.5 py-1.5 rounded-xl">
                     {listing.property_type} for {listing.listing_type}
                   </span>
                   <span className="absolute bottom-3 left-3 bg-gray-100 text-xs text-orange-500 font-bold px-3.5 py-1.5 rounded-xl">
                     LKR {listing.price}
                   </span>
+                  <span className="absolute top-3 right-3 bg-white hover:bg-black hover:text-white duration-500 hover:scale-105 shadow-xl transition-all cursor-pointer text-[11px] text-black font-bold p-2.5 rounded-full">
+                    <TbHomeSearch size={22} />
+                  </span>
+
                   <div>
                     <Link
                       href="/"
@@ -191,21 +196,21 @@ const Listings: React.FC = () => {
                 </div>
 
                 {/* CONTENT */}
-                <div className="flex flex-col gap-2.5 pt-4 pb-1.5 px-2">
+                <div className="flex flex-col justify-between h-fit lg:h-60 p-5">
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
                       onClick={scrollToTop}
-                      className="text-sm font-bold hover:text-orange-500 line-clamp-1"
+                      className="text-sm font-bold hover:text-orange-500 capitalize line-clamp-1"
                     >
                       {listing.property_title}
                     </Link>
-                    <p className="text-xs text-gray-600 my-1 line-clamp-1">
+                    <p className="text-xs text-gray-600 mb-1 line-clamp-1">
                       {listing.property_subtitle}
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 text-xs font-bold py-2.5 border-t border-b border-gray-100">
+                  <div className="grid grid-cols-2 gap-2 text-xs font-bold pt-4 border-t border-gray-200">
                     <p className="flex items-center gap-1.5">
                       <TbBuilding size={16} className="text-orange-500" />
                       {listing.floors}
@@ -223,11 +228,15 @@ const Listings: React.FC = () => {
                       <TbBath size={16} className="text-orange-500" />
                       {listing.bathrooms} Bath
                     </p>
+                    <p className="text-xs text-blue-500 font-bold">
+                      {getFurnishingLabel(listing.is_furnished)}
+                    </p>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <p
-                      className={`text-[11px] font-bold px-3.5 py-1.5 rounded-xl text-white
+                  <div className="flex items-end justify-between gap-2">
+                    <div className="flex items-center justify-between">
+                      <p
+                        className={`text-[11px] font-bold px-3.5 py-1.5 rounded-xl text-white
     ${
       listing.status === "Available"
         ? "bg-green-400"
@@ -236,26 +245,15 @@ const Listings: React.FC = () => {
           : "bg-yellow-400"
     }
   `}
-                    >
-                      {listing.status}
-                    </p>
-                    <p className="text-xs text-blue-500 font-bold">
-                      {getFurnishingLabel(listing.is_furnished)}
-                    </p>
-                  </div>
-
-                  <div className="flex items-start justify-between gap-2 mt-1">
+                      >
+                        {listing.status}
+                      </p>
+                    </div>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="btn-light-glass"
+                      className="btn-orange-glass"
                     >
-                      Owner Info
-                    </Link>
-                    <Link
-                      href={`/listing/${listing.id}`}
-                      className="btn-light-sm"
-                    >
-                      View <TbArrowRight size={18} />
+                      <TbArrowRight size={24} />
                     </Link>
                   </div>
                 </div>

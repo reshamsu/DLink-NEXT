@@ -97,15 +97,15 @@ const Navbar = () => {
         {/* Desktop Right Side */}
         <div className="flex items-center gap-4 text-sm select-none">
           <div className="hidden lg:flex gap-4">
-            <Link
+            {/* <Link
               href="/login"
               className="select-none btn-dark-glass btn-dynamic"
             >
               <TbUser size={22} />
-            </Link>
+            </Link> */}
             <Link
               href="https://wa.me/94761676603"
-              className="select-none btn-orange-sm btn-dynamic"
+              className="select-none btn-dark-sm btn-dynamic"
             >
               <TbPhone size={22} /> Inquire Now
             </Link>

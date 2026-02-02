@@ -209,7 +209,7 @@ const Listings: React.FC = () => {
                 </div>
 
                 {/* CONTENT */}
-                <div className="flex flex-col justify-between h-60 p-5">
+                <div className="flex flex-col justify-between h-fit lg:h-60 p-5">
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
@@ -261,7 +261,7 @@ const Listings: React.FC = () => {
                     </p>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="btn-light-sm"
+                      className="btn-orange-glass"
                     >
                       <TbArrowRight size={24} />
                     </Link>

@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Hero from "@/components/home/Hero";
+import Form from "@/components/home/Form";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import Analytics from "@/components/home/Analytics";
 import CTA from "@/components/home/CTA";
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <div className="relative pt-20 lg:pt-0 z-30">
       <Hero />
+      <Form />
       <Listings />
       <WhyChooseUs />
       <Analytics />
