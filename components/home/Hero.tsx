@@ -124,7 +124,7 @@ const Hero = () => {
             </p>
           </div>
 
-          <Link href="#form" scroll={false}
+          <Link href="#listings" scroll={false}
             type="submit"
             className="select-none btn-light-base cursor-pointer"
           >

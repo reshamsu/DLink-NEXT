@@ -36,7 +36,7 @@ interface Listing {
   floors: string;
   is_furnished: "Fully-Furnished" | "Semi-Furnished" | "Unfurnished";
   property_type: string;
-  price: number;
+  price: string;
   full_price: string;
   amenities: string[] | string;
   sqft: number;
@@ -580,7 +580,7 @@ export default function Page() {
                 <input
                   className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 capitalize"
                   value={listing.price}
-                  onChange={(e) => updateField("price", Number(e.target.value))}
+                  onChange={(e) => updateField("price", e.target.value)}
                 />
                 <div className="flex items-center gap-2">
                   <input
