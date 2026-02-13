@@ -6,6 +6,7 @@ import {
   FaRegCopyright,
   FaFacebook,
   FaInstagram,
+  FaLinkedin,
 } from "react-icons/fa";
 import { TbMail } from "react-icons/tb";
 import Image from "next/image";
@@ -20,63 +21,74 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-950 text-gray-500 border-t border-black/5 relative">
-      <div className="max-w-6xl mx-auto py-14 2xl:py-20 px-8 2xl:px-0 flex flex-col items-center gap-10">
-        <div className="flex flex-col lg:flex-row gap-8 w-full pb-10 border-b border-gray-800">
-          {/* Logo + Socials */}
-          <div className="flex flex-col items-center text-center gap-6 w-full md:w-xs">
-            <Link href="/" className="flex items-center gap-2 text-white">
-              <div className="relative w-14 h-14">
-                <Image
-                  src="/favicon.ico"
-                  alt="DC"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <h1 className="text-base 2xl:text-lg font-extrabold">D-Link</h1>
-                <p className="text-xs">Colombo</p>
-              </div>
+    <footer className="bg-gray-950 text-gray-500 border-t border-white/10">
+      <div className="max-w-6xl mx-auto py-14 pb-10 px-8 2xl:px-0 flex flex-col items-center gap-10">
+        <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
+          <div className="flex flex-col items-center text-center gap-4 w-full md:w-xs">
+            <Link href="/" className="flex flex-col items-center gap-2">
+              <Image
+                src="/favicon.ico"
+                alt="TQ"
+                width={64}
+                height={64}
+                className="object-contain"
+              />
+              <span className="text-white text-lg font-bold">
+                D-Link Colombo
+              </span>
             </Link>
 
-            <ul className="grid grid-cols-4 gap-3 text-2xl">
+            <p className="text-sm">
+              Find your next property with D-Link Colombo.
+            </p>
+
+            <ul className="flex gap-2 text-lg 2xl:text-xl">
               <li>
                 <Link
                   href="https://wa.me/94761676603"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
                 >
-                  <FaWhatsapp size={22} />
+                  <FaWhatsapp />
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://www.facebook.com/roy.roger02"
+                  href="https://www.facebook.com/roysu-realtors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
                 >
-                  <FaFacebook size={22} />
+                  <FaFacebook />
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://www.instagram.com/dlink_colombo/"
+                  href="https://www.instagram.com/dlink.colombo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
                 >
-                  <FaInstagram size={22} />
+                  <FaInstagram />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.linkedin.com/dlink-colombo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                >
+                  <FaLinkedin />
                 </Link>
               </li>
               <li>
                 <Link
                   href="mailto:info@dlinkcolombo.com"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 bg-gray-900"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
                 >
-                  <TbMail size={22} />
+                  <TbMail />
                 </Link>
               </li>
             </ul>
@@ -84,21 +96,22 @@ const Footer = () => {
 
           {/* Footer Links */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full text-xs 2xl:text-sm">
-            {/* Support */}
-            <div className="ml-0 xl:ml-16">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
-                Support
+            {/* Explore */}
+            <div className="ml-0 xl:ml-24">
+              <h6 className="text-base font-semibold mb-5 text-white">
+                Service
               </h6>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
                 {[
                   "Help Center",
                   "Safety Regulations",
                   "Disability Support",
-                  "Help with Booking",
+                  "Help with Viewings",
+                  "Report a Problem",
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
-                      href="/NotFound"
+                      href="/explore-uae"
                       className="hover:text-orange-400 hover:underline"
                     >
                       {item}
@@ -109,9 +122,9 @@ const Footer = () => {
             </div>
 
             {/* Products */}
-            <div className="ml-0 xl:ml-10">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
-                Products
+            <div className="ml-0 xl:ml-16">
+              <h6 className="text-base font-semibold mb-5 text-white">
+                Find Property
               </h6>
               <ul className="flex flex-col gap-3">
                 <li>
@@ -158,11 +171,11 @@ const Footer = () => {
             </div>
 
             {/* Company */}
-            <div className="ml-0 xl:ml-6">
-              <h6 className="text-sm 2xl:text-base font-semibold mb-4 text-white">
+            <div className="ml-0 xl:ml-10">
+              <h6 className="text-base font-semibold mb-5 text-white">
                 D-Link Colombo
               </h6>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
                 {[
                   "About Us",
                   "Resource and Policy",
@@ -184,9 +197,31 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="text-[13px] flex items-center text-center gap-1">
-          <FaRegCopyright /> 2025 D-Link Colombo . All Rights Reserved.
-        </p>
+        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 pb-10 border-b border-gray-800">
+          <div className="flex flex-col gap-2 text-center md:text-left">
+            <h6 className="text-white text-base font-semibold">
+              Stay in the loop
+            </h6>
+            <p className="text-xs text-gray-400">
+              Subscribe for property deals, updates, and exclusive offers.
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="px-6 py-3 rounded-3xl text-sm bg-white/10 text-white"
+            />
+            <button className="btn-orange-sm">Subscribe</button>
+          </div>
+        </div>
+
+        {/* Bottom Line */}
+        <div className="w-full flex flex-col items-center gap-3">
+          <p className="text-sm flex items-center text-center gap-2">
+            <FaRegCopyright /> 2025 D-Link Colombo. All Rights Reserved.
+          </p>
+        </div>
       </div>
     </footer>
   );

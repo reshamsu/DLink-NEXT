@@ -75,7 +75,7 @@ const Values = () => {
         {/* HEADER */}
         <div className="flex flex-col items-center text-center lg:items-start lg:text-start gap-6">
           <div className="flex flex-col gap-4">
-            <label className="text-base lg:text-lg font-bold text-orange-600">
+            <label className="text-base lg:text-lg font-bold">
               OUR CORE VALUES
             </label>
             <h2 className="playfair text-3xl 2xl:text-4xl font-bold">

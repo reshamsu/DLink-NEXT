@@ -100,7 +100,7 @@ const Page = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const target = e.target;
     const { name, value } = target;
@@ -398,6 +398,7 @@ const Page = () => {
                       <option value="Mount Lavinia">Mount Lavinia</option>
                       <option value="Wellawatta">Wellawatta</option>
                       <option value="Bambalapitiya">Bambalapitiya</option>
+                      <option value="Borelasgamuwa">Borelasgamuwa</option>
                       <option value="Ratmalana">Ratmalana</option>
                       <option value="Moratuwa">Moratuwa</option>
                     </optgroup>
@@ -640,7 +641,7 @@ const Page = () => {
                         name="property_documents"
                         value={property_documents}
                         checked={newListing.property_documents.includes(
-                          property_documents
+                          property_documents,
                         )}
                         onChange={handleChange}
                         className="accent-blue-600 w-4 h-4"
@@ -795,7 +796,7 @@ const Page = () => {
                         />
                         <span className="text-gray-700 text-sm">{option}</span>
                       </label>
-                    )
+                    ),
                   )}
                 </div>
               </div>
