@@ -42,6 +42,8 @@ interface Listing {
   image_urls?: string[] | string;
 }
 
+export const runtime = 'edge';
+
 const Page = () => {
   const { id } = useParams();
 
