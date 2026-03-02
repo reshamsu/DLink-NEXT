@@ -95,7 +95,7 @@ const Hero = () => {
 
   return (
     <div className="bg-gray-200 text-gray-900">
-      <div className="relative h-[70vh]  2xl:pt-24 w-full overflow-hidden flex flex-col justify-center gap-10 text-center">
+      <div className="relative h-screen md:h-[74vh] w-full overflow-hidden flex flex-col justify-center gap-10 text-center">
         <div className="absolute inset-0 transition-opacity duration-1000">
           <Image
             src="/assets/banner/property5.jpg"
@@ -103,16 +103,16 @@ const Hero = () => {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/20 lg:bg-[#f2836f]/15 group-hover:bg-black/64 transition-all duration-1000" />
+          <div className="absolute inset-0 bg-black/20 md:bg-[#f2836f]/15 group-hover:bg-black/64 transition-all duration-1000" />
         </div>
 
         {/* TEXT */}
-        <div className="max-w-6xl mx-auto flex flex-col justify-center items-center text-center gap-10 text-white z-10 px-8">
+        <div className="max-w-6xl mx-auto flex flex-col justify-center items-center text-center gap-10 text-white z-10 md:pt-24 px-8">
           <div className="flex flex-col gap-4">
-            <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
+            <h1 className="text-4xl md:text-5xl 2xl:text-6xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
               Find your Next{" "}
               <ReactTyped
-                className="text-4xl 2xl:text-5xl font-extrabold text-orange-500/80"
+                className="text-4xl md:text-5xl 2xl:text-6xl font-extrabold text-orange-500/80"
                 strings={["Property", "Home", "Apartment", "Villa", "Land"]}
                 typeSpeed={200}
                 backSpeed={140}

@@ -156,12 +156,12 @@ const Listings: React.FC = () => {
   const hasMore = visibleCount < listings.length;
 
   return (
-    <div className="bg-gray-100 text-gray-800" id="listings">
-      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-20 px-6 2xl:px-0">
+    <section className="bg-gray-100 text-gray-800" id="listings">
+      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-6 md:px-8 2xl:px-0">
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-start">
-          <div>
-            <p className="text-orange-500 text-base font-extrabold mb-1">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
               LISTINGS
             </p>
             <h1 className="text-2xl font-bold">Featured Listings</h1>
@@ -178,7 +178,7 @@ const Listings: React.FC = () => {
           <p className="text-center text-gray-500 py-20">No listings found.</p>
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4"
             initial="hidden"
             animate="visible"
           >
@@ -281,7 +281,7 @@ const Listings: React.FC = () => {
           </button>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

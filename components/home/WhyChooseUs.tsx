@@ -21,9 +21,9 @@ import Image from "next/image";
 
 const WhyChooseUs = () => {
   return (
-    <div className="bg-gray-950 text-gray-50">
+    <section className="bg-gray-950 text-gray-50">
       <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
-        <div className="grid  grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-14 md:gap-4 py-8">
+        <div className="grid  grid-cols-1 sm:grid-cols-2 gap-8 py-16 px-6 md:px-8 lg:px-0">
           {/* Image with dark overlay */}
           <motion.div
             initial="hidden"
@@ -47,9 +47,9 @@ const WhyChooseUs = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="mb-14 text-center"
+              className="mb-14"
             >
-              <p className="text-orange-400 text-base lg:text-lg font-bold">
+              <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
                 OUR EXPERTISE
               </p>
               <h1 className="text-3xl lg:text-4xl font-extrabold my-6">
@@ -73,16 +73,12 @@ const WhyChooseUs = () => {
                   text: "We tailor each property search to match your unique needs, preferences, and budget—no guesswork, just results.",
                 },
                 {
-                  icon: (
-                    <FaCity className="text-orange-400 text-7xl" />
-                  ),
+                  icon: <FaCity className="text-orange-400 text-7xl" />,
                   title: "Prime Listings in Colombo",
                   text: "Gain access to verified, high-value properties across the most sought-after locations in Colombo and beyond.",
                 },
                 {
-                  icon: (
-                    <FaHandshake className="text-orange-400 text-7xl" />
-                  ),
+                  icon: <FaHandshake className="text-orange-400 text-7xl" />,
                   title: "Trusted Guidance & Support",
                   text: "From first viewing to final paperwork, our expert team is by your side—transparent, responsive, and reliable.",
                 },
@@ -98,7 +94,9 @@ const WhyChooseUs = () => {
                   {item.icon}
                   <div>
                     <h2 className="text-md font-semibold mb-2">{item.title}</h2>
-                    <p className="text-xs md:text-md lg:text-sm text-gray-400">{item.text}</p>
+                    <p className="text-xs md:text-md lg:text-sm text-gray-400">
+                      {item.text}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -106,7 +104,7 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -212,7 +212,7 @@ const Footer = () => {
               placeholder="Enter your email"
               className="px-6 py-3 rounded-3xl text-sm bg-white/10 text-white"
             />
-            <button className="btn-orange-sm">Subscribe</button>
+            <button className="btn-light-sm">Subscribe</button>
           </div>
         </div>
 

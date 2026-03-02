@@ -41,19 +41,23 @@ const cardVariants: Variants = {
 
 const Analytics: React.FC = () => {
   return (
-    <div className="bg-white text-black">
-      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
-        <div className="mb-12 px-2 text-center">
-          <p className="text-orange-500 text-lg font-extrabold">SERVICE</p>
-          <h1 className="text-3xl md:text-4xl font-extrabold my-3">
-            Our Expertise
-          </h1>
-          <p className="text-sm 2xl:text-base font-semibold text-gray-600">
-            Full-Service Agents, Modern Technology
+    <section className="bg-white text-black">
+      <div className="max-w-6xl mx-auto py-16 px-6 md:px-8 2xl:px-0">
+        <div className="flex flex-col gap-3">
+          <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+            SERVICE
           </p>
+          <div>
+            <h1 className="text-3xl md:text-4xl font-extrabold my-3">
+              Our Expertise
+            </h1>
+            <p className="text-sm 2xl:text-base font-semibold text-gray-600">
+              Full-Service Agents, Modern Technology
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 lg:gap-8 mt-6">
           {cardData.map((card, index) => (
             <motion.div
               key={index}
@@ -82,7 +86,7 @@ const Analytics: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

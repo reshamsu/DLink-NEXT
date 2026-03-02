@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const CTA = () => {
   return (
-    <div className="bg-orange-500/10 text-gray-800 relative">
-      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
+    <section className="bg-orange-500/10 text-gray-800 relative">
+      <div className="max-w-6xl mx-auto py-16 px-6 md:px-8 2xl:px-0">
         <div
           className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-center lg:text-start h-full
           bg-white
@@ -50,7 +50,7 @@ const CTA = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

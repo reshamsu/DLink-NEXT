@@ -93,13 +93,13 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-gray-200 text-gray-900" id="form">
-      <div className="relative h-screen lg:h-80 w-full overflow-hidden flex flex-col justify-center gap-10 text-center">
+    <section className="bg-gray-200 text-gray-900" id="form">
+      <div className="relative h-screen md:h-[40vh] lg:h-80 w-full overflow-hidden flex flex-col justify-center gap-10 text-center">
         <form
           onSubmit={handleSearch}
-          className="max-w-6xl mx-8 md:mx-40 lg:mx-auto relative z-50 bg-white text-black text-[15px] p-8 rounded-3xl shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-4 lg:flex-row"
+          className="max-w-6xl mx-8 lg:mx-auto relative z-50 bg-white text-black text-[15px] p-8 rounded-3xl shadow-xl hover:scale-105 duration-1000 flex flex-col justify-between gap-4 lg:flex-row"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-3 items-end gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-end gap-6">
             <div className="relative flex-1">
               <div className="flex flex-col items-start justify-center gap-2">
                 <label className="text-sm font-bold">Search City</label>
@@ -224,7 +224,7 @@ const Hero = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -3,40 +3,32 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
-import { TbSend2 } from "react-icons/tb";
+import { TbMail, TbMapPin, TbPhone, TbSend2 } from "react-icons/tb";
+import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
-const FALLBACK_IMAGES = ["/assets/banner/property5.jpg"];
-
+const FALLBACK_IMAGES = ["/assets/hero/.jpg"];
 interface HeroRow {
-  title: string;
-  subtitle: string;
-  page_type: string[];
-  image_urls: string[];
+  hero_title: string;
+  hero_subtitle: string;
+  hero_page_type: string[];
+  hero_image_urls: string[];
 }
 interface ContactForm {
   full_name: string;
   email: string;
   phone: string;
-  best_reason: string[];
+  best_reason: string;
   inquiry_subject: string;
   inquiry_message: string;
 }
 
 const Hero = () => {
-  // HARD GUARD
-  if (!supabase) {
-    return (
-      <div className="p-10 text-center text-teal-600">
-        Supabase not configured.
-      </div>
-    );
-  }
-
   const [current, setCurrent] = useState(0);
   const [images, setImages] = useState<string[]>(FALLBACK_IMAGES);
   const [title, setTitle] = useState("Get in Touch");
   const [subtitle, setSubtitle] = useState(
-    "Our team is here to assist you with buying, selling, or investing in premium real estate."
+    "We're here to assist you with any inquiries.",
   );
   const [pageType, setPageType] = useState("Contact");
 
@@ -47,7 +39,7 @@ const Hero = () => {
     full_name: "",
     email: "",
     phone: "",
-    best_reason: [],
+    best_reason: "",
     inquiry_subject: "",
     inquiry_message: "",
   });
@@ -59,22 +51,25 @@ const Hero = () => {
       const { data, error } = await supabase
         .from("hero")
         .select("*")
-        .contains("page_type", ["Contact"])
+        .contains("hero_page_type", ["Contact"])
         .order("created_at", { ascending: true })
         .limit(1)
         .single();
 
-      if (error || !data) return;
+      if (error || !data) {
+        console.warn("Using fallback hero content");
+        return;
+      }
 
       const hero = data as HeroRow;
 
-      if (hero.image_urls?.length) {
-        setImages(hero.image_urls);
+      if (hero.hero_image_urls?.length) {
+        setImages(hero.hero_image_urls);
       }
 
-      if (hero.title) setTitle(hero.title);
-      if (hero.subtitle) setSubtitle(hero.subtitle);
-      if (hero.page_type) setPageType(hero.page_type[0]);
+      if (hero.hero_title) setTitle(hero.hero_title);
+      if (hero.hero_subtitle) setSubtitle(hero.hero_subtitle);
+      if (hero.hero_page_type) setPageType(hero.hero_page_type[0]);
     };
 
     fetchHero();
@@ -83,7 +78,7 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(
       () => setCurrent((prev) => (prev + 1) % images.length),
-      10000
+      10000,
     );
     return () => clearInterval(interval);
   }, [images.length]);
@@ -91,7 +86,7 @@ const Hero = () => {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -105,7 +100,7 @@ const Hero = () => {
       full_name: form.full_name,
       email: form.email,
       phone: form.phone,
-      best_reason: [form.best_reason],
+      best_reason: form.best_reason,
       inquiry_subject: form.inquiry_subject,
       inquiry_message: form.inquiry_message,
     };
@@ -129,7 +124,7 @@ const Hero = () => {
       full_name: "",
       email: "",
       phone: "",
-      best_reason: [],
+      best_reason: "",
       inquiry_subject: "",
       inquiry_message: "",
     });
@@ -138,9 +133,9 @@ const Hero = () => {
   };
 
   return (
-    <>
+    <div className="bg-gradient-to-t from-[#ffffff] via-orange-600/20 to-[#ffffff]">
       {/* HERO */}
-      <div className="relative h-[74vh] w-full overflow-hidden flex items-center justify-center text-center">
+      <div className="relative h-[70vh] w-full overflow-hidden flex items-center justify-center text-center">
         {images.map((img, index) => (
           <div
             key={index}
@@ -155,81 +150,149 @@ const Hero = () => {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-black/30 lg:bg-[#f2836f]/20 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-black/30 md:bg-[#f2836f]/20 transition-all duration-1000" />
           </div>
         ))}
 
         {/* TEXT */}
-        <div className="max-w-6xl mx-auto absolute inset-0 flex flex-col justify-center items-center gap-4 text-white z-10 px-8 md:px-10 2xl:px-0">
-          <h1 className="playfair text-4xl md:text-6xl font-bold">{title}</h1>
-          <p className="text-xs md:text-sm text-gray-200 max-w-3xl">
+        <div className="max-w-6xl mx-auto absolute inset-0 flex flex-col justify-center items-center gap-2 md:gap-4 text-white/80 z-10 px-6 md:px-10 2xl:px-0">
+          <h1 className="text-[44px] md:text-6xl font-bold">{title}</h1>
+          <p className="text-sm 2xl:text-base text-gray-200 max-w-3xl">
             {subtitle}
           </p>
         </div>
       </div>
 
       {/* FORM CARD */}
-      <div className="max-w-4xl mx-auto -mt-24 bg-white px-8 md:px-12 py-12 lg:shadow-xl border-2 border-gray-100 flex flex-col gap-12 rounded-4xl relative z-30">
-        <div className="flex flex-col items-center text-center gap-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-base lg:text-lg font-extrabold text-orange-500">
-              CONNECT
-            </label>
-            <h2 className="text-2xl lg:text-3xl font-bold text-gray-700">
-              We’re here to guide you every step of the way.
-            </h2>
+      <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-25 md:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-6 bg-white p-4 md:p-6 lg:shadow-xl border-2 border-gray-100 rounded-4xl relative z-30">
+        <div className="bg-orange-600/5 border-2 border-orange-600/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
+          <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
+              <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+                CONNECT
+              </p>
+              <h2 className="text-2xl lg:text-2xl font-bold ">
+                We are here to support your journey...
+              </h2>
+            </div>
+
+            <p className="text-xs text-gray-500 whitespace-break-spaces max-w-2xl">
+              Let’s continue to weave the tapestry of travel experiences with,
+              more inspiring examples from The TravQuest Travel & Tourism Team.
+              {/* We can guide you through, your worldwide Hotel Bookings, Flight
+            ticket arrangements, Visa Requirements, Arrival & Departure Transfer
+            arrangements, Tours & Excursion Bookings, Corporate Events, and
+            Meeting venue recommendations. */}
+            </p>
           </div>
 
-          <p className="text-xs md:text-sm font-normal text-center text-gray-600 max-w-3xl">
-            Whether you're searching for your next home, exploring investment
-            opportunities, or seeking expert guidance in the real estate market,
-            our team is ready to assist you. From residential and commercial
-            properties to market insights, legal guidance, and personalized
-            consultations, we ensure a seamless and transparent experience
-            tailored to your goals. Reach out to us today — your next property
-            move starts here.
-          </p>
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col md:flex-row items-start gap-3 md:gap-6">
+              <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
+                <TbPhone
+                  size={30}
+                  className="text-3xl text-orange-500 transition-all"
+                />
+              </div>
+              <label
+                htmlFor=""
+                className="flex flex-col gap-0.5 text-lg font-bold"
+              >
+                Call Us
+                <Link
+                  href="tel:94761676603"
+                  className="text-sm md:text-base font-medium hover:underline"
+                >
+                  +94 76 167 6603
+                </Link>
+              </label>
+            </div>
+            <div className="flex flex-col md:flex-row items-start gap-3 md:gap-6">
+              <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
+                <FaWhatsapp
+                  size={30}
+                  className="text-3xl text-orange-500 transition-all"
+                />
+              </div>
+              <label
+                htmlFor=""
+                className="flex flex-col gap-1 text-lg font-bold"
+              >
+                Whatsapp Us
+                <Link
+                  href="https://wa.me/94761676603"
+                  className="text-sm md:text-base font-medium hover:underline"
+                >
+                  +94 76 167 6603
+                </Link>
+              </label>
+            </div>
+            <div className="flex flex-col md:flex-row items-start gap-3 md:gap-6">
+              <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
+                <TbMail
+                  size={30}
+                  className="text-3xl text-orange-500 transition-all"
+                />
+              </div>
+              <label
+                htmlFor="
+                        "
+                className="flex flex-col gap-0.5 text-lg font-bold"
+              >
+                Email Us
+                <Link
+                  href="mailto:dlink.colombo@gmail.com"
+                  className="text-sm md:text-base font-medium hover:underline break-all"
+                >
+                  dlink.colombo@gmail.com
+                </Link>
+              </label>
+            </div>
+          </div>
         </div>
 
         {/* FORM */}
-        <form onSubmit={handleSubmit} className="flex flex-col items-end gap-8">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col items-end gap-8 py-4 md:py-6 px-4 lg:px-0 lg:pr-4 rounded-3xl"
+        >
+          {/* Full Name */}
+          <div className="flex flex-col gap-3 w-full">
+            <label className="font-bold text-sm">
+              Full name<span className="text-red-500">*</span>
+            </label>
+            <input
+              name="full_name"
+              value={form.full_name}
+              onChange={handleChange}
+              type="text"
+              placeholder="Your Full name"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              required
+            />
+          </div>
+
+          {/* Email */}
+          <div className="flex flex-col gap-3 w-full">
+            <label className="font-bold text-sm">
+              Email Address<span className="text-red-500">*</span>
+            </label>
+            <input
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              type="email"
+              placeholder="Your Email Address"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              required
+            />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-800 w-full">
-            {/* Full Name */}
-            <div className="flex flex-col gap-3 w-full">
-              <label className="text-gray-600 font-bold text-sm">
-                Full name<span className="text-orange-500">*</span>
-              </label>
-              <input
-                name="full_name"
-                value={form.full_name}
-                onChange={handleChange}
-                type="text"
-                placeholder="Your Full name"
-                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
-                required
-              />
-            </div>
-
-            {/* Email */}
-            <div className="flex flex-col gap-3 w-full">
-              <label className="text-gray-600 font-bold text-sm">
-                Email Address<span className="text-orange-500">*</span>
-              </label>
-              <input
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                type="email"
-                placeholder="Your Email Address"
-                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
-                required
-              />
-            </div>
-
             {/* Phone */}
             <div className="flex flex-col gap-3 w-full">
-              <label className="text-gray-600 font-bold text-sm">
-                Phone Number<span className="text-orange-500">*</span>
+              <label className="font-bold text-sm">
+                Phone Number<span className="text-red-500">*</span>
               </label>
               <input
                 name="phone"
@@ -272,8 +335,8 @@ const Hero = () => {
 
           {/* Subject */}
           <div className="flex flex-col gap-3 w-full">
-            <label className="text-gray-600 font-bold text-sm">
-              Inquiry Subject<span className="text-orange-500">*</span>
+            <label className="font-bold text-sm">
+              Inquiry Subject<span className="text-red-500">*</span>
             </label>
             <input
               name="inquiry_subject"
@@ -288,8 +351,8 @@ const Hero = () => {
 
           {/* Message */}
           <div className="flex flex-col gap-3 w-full">
-            <label className="text-gray-600 font-bold text-sm">
-              Inquiry Message<span className="text-orange-500">*</span>
+            <label className="font-bold text-sm">
+              Inquiry Message<span className="text-red-500">*</span>
             </label>
             <textarea
               name="inquiry_message"
@@ -314,11 +377,11 @@ const Hero = () => {
             disabled={loading}
             className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
           >
-            {loading ? "Sending..." : "Send Inquiry"} <TbSend2 size={24} />
+            {loading ? "Sending..." : "Submit Message"} <TbSend2 size={24} />
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

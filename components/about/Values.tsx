@@ -70,16 +70,16 @@ const Values = () => {
   ];
 
   return (
-    <div className="bg-gray-100 text-gray-700 relative">
+    <div className="bg-gray-100 text-gray-800 relative">
       <div className="max-w-6xl mx-auto py-20 px-8 2xl:px-0 flex flex-col gap-10">
         {/* HEADER */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-start gap-6">
-          <div className="flex flex-col gap-4">
-            <label className="text-base lg:text-lg font-bold">
-              OUR CORE VALUES
-            </label>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-start gap-8">
+          <div className="flex flex-col gap-5">
+            <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+              OUR VALUES
+            </p>
             <h2 className="playfair text-3xl 2xl:text-4xl font-bold">
-              Why <span className="text-orange-500">Clients Trust Us</span>
+              Why Clients<span className="text-orange-500"> Trust Us</span>
             </h2>
           </div>
 
