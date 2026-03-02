@@ -143,7 +143,7 @@ const Listings: React.FC = () => {
 
   return (
     <div className="bg-gray-100 text-gray-800" id="listings">
-      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-6 md:px-8 2xl:px-0">
+      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-8 2xl:px-0">
         {/* HEADER */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-3">
@@ -180,7 +180,7 @@ const Listings: React.FC = () => {
                 className="bg-white rounded-4xl shadow-lg overflow-hidden group h-full"
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden rounded-t-3xl">
+                <div className="relative h-64 overflow-hidden rounded-br-4xl">
                   <Image
                     src={listing.image}
                     alt={listing.title}

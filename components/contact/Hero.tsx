@@ -150,7 +150,7 @@ const Hero = () => {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-black/30 md:bg-[#f2836f]/20 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-[#f2836f]/20 transition-all duration-1000" />
           </div>
         ))}
 
@@ -164,7 +164,7 @@ const Hero = () => {
       </div>
 
       {/* FORM CARD */}
-      <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-25 md:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-6 bg-white p-4 md:p-6 lg:shadow-xl border-2 border-gray-100 rounded-4xl relative z-30">
+      <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-25 md:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 bg-white p-4 md:p-6 pb-10 lg:shadow-xl border-2 border-gray-100 rounded-4xl relative z-30">
         <div className="bg-orange-600/5 border-2 border-orange-600/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-3">

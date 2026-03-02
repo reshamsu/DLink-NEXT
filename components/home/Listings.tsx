@@ -69,6 +69,19 @@ const getFurnishingLabel = (value: FurnishingStatus) => value;
 const INITIAL_VISIBLE = 4;
 const LOAD_MORE_STEP = 4;
 
+// Price range → min/max in millions
+const parsePriceRange = (
+  range: string,
+): { min: number; max: number } | null => {
+  if (!range) return null;
+  if (range === "30 Million-Below") return { min: 0, max: 30 };
+  if (range === "31 Million-39 Million") return { min: 31, max: 39 };
+  if (range === "40 Million-58 Million") return { min: 40, max: 58 };
+  if (range === "59 Million-70 Million") return { min: 59, max: 70 };
+  if (range === "71 Million-Above") return { min: 71, max: Infinity };
+  return null;
+};
+
 const Listings: React.FC = () => {
   const [listings, setListings] = useState<Listing[]>([]);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
@@ -79,29 +92,30 @@ const Listings: React.FC = () => {
   const keyword = searchParams.get("q");
   const type = searchParams.get("type");
   const beds = searchParams.get("beds");
+  const price = searchParams.get("price"); // ✅ new
+  const side = searchParams.get("side"); // ✅ new
 
   useEffect(() => {
     const fetchListings = async () => {
       setLoading(true);
+      setVisibleCount(INITIAL_VISIBLE);
 
       let query = supabase
         .from("listing")
         .select("*")
         .order("created_at", { ascending: false });
 
-      // if (keyword) {
-      //   query = query.or(
-      //     `city.ilike.%${keyword}%,location.ilike.%${keyword}%,property_title.ilike.%${keyword}%`,
-      //   );
-      // }
+      // ✅ city column
+      if (keyword) query = query.ilike("city", `%${keyword}%`);
 
-      // if (type) {
-      //   query = query.eq("property_type", type);
-      // }
+      // ✅ property_type column
+      if (type) query = query.eq("property_type", type);
 
-      // if (beds) {
-      //   query = query.gte("bedrooms", Number(beds));
-      // }
+      // ✅ bedrooms column
+      if (beds) query = query.gte("bedrooms", Number(beds));
+
+      // ✅ listing_type column (Sea Side / Land Side)
+      if (side) query = query.eq("listing_type", side);
 
       const { data, error } = await query;
 
@@ -112,52 +126,63 @@ const Listings: React.FC = () => {
         return;
       }
 
-      const formatted: Listing[] = (data as SupabaseListing[]).map((item) => {
-        let images: string[] = [];
+      // ✅ Price filtered client-side (price is a text column)
+      const priceFilter = parsePriceRange(price ?? "");
 
-        if (Array.isArray(item.image_urls)) {
-          images = item.image_urls;
-        } else if (typeof item.image_urls === "string") {
-          try {
-            const parsed = JSON.parse(item.image_urls);
-            if (Array.isArray(parsed)) images = parsed;
-          } catch {
-            images = [];
+      const formatted: Listing[] = (data as SupabaseListing[])
+        .filter((item) => {
+          if (!priceFilter) return true;
+          const raw = parseFloat(item.price.replace(/[^0-9.]/g, ""));
+          if (isNaN(raw)) return true;
+          // Normalize: handles "45" (millions) or "45000000" (raw)
+          const inMillions = raw >= 1_000_000 ? raw / 1_000_000 : raw;
+          return inMillions >= priceFilter.min && inMillions <= priceFilter.max;
+        })
+        .map((item) => {
+          let images: string[] = [];
+          if (Array.isArray(item.image_urls)) {
+            images = item.image_urls;
+          } else if (typeof item.image_urls === "string") {
+            try {
+              const parsed = JSON.parse(item.image_urls);
+              if (Array.isArray(parsed)) images = parsed;
+            } catch {
+              images = [];
+            }
           }
-        }
 
-        return {
-          id: item.id,
-          title: item.property_title,
-          subtitle: item.property_subtitle,
-          location: `${item.city} - ${item.location}`,
-          property_type: item.property_type,
-          listing_type: item.listing_type,
-          is_furnished: item.is_furnished,
-          bedrooms: item.bedrooms,
-          bathrooms: item.bathrooms,
-          floors: item.floors,
-          perches: item.perches,
-          price: item.price,
-          type: item.property_type,
-          status: item.status,
-          image: images[0] ?? "/assets/banner/property5.webp",
-        };
-      });
+          return {
+            id: item.id,
+            title: item.property_title,
+            subtitle: item.property_subtitle,
+            location: `${item.city} - ${item.location}`,
+            property_type: item.property_type,
+            listing_type: item.listing_type,
+            is_furnished: item.is_furnished,
+            bedrooms: item.bedrooms,
+            bathrooms: item.bathrooms,
+            floors: item.floors,
+            perches: item.perches,
+            price: item.price,
+            type: item.property_type,
+            status: item.status,
+            image: images[0] ?? "/assets/banner/property5.webp",
+          };
+        });
 
       setListings(formatted);
       setLoading(false);
     };
 
     fetchListings();
-  }, [keyword, type, beds]);
+  }, [keyword, type, beds, price, side]); // ✅ all 5 deps
 
   const visibleListings = listings.slice(0, visibleCount);
   const hasMore = visibleCount < listings.length;
 
   return (
     <section className="bg-gray-100 text-gray-800" id="listings">
-      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-6 md:px-8 2xl:px-0">
+      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-8 2xl:px-0">
         {/* HEADER */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-3">
@@ -175,10 +200,10 @@ const Listings: React.FC = () => {
             <p className="ml-3 text-gray-500">Loading listings...</p>
           </div>
         ) : listings.length === 0 ? (
-          <p className="text-center text-gray-500 py-20">No listings found.</p>
+          <p className="text-center text-gray-500 h-80 py-20">No listings found.</p>
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
             initial="hidden"
             animate="visible"
           >
@@ -192,7 +217,7 @@ const Listings: React.FC = () => {
                 className="bg-white rounded-4xl shadow-lg overflow-hidden group h-full"
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden rounded-t-3xl">
+                <div className="relative h-64 overflow-hidden rounded-br-4xl">
                   <Image
                     src={listing.image}
                     alt={listing.title}

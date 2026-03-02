@@ -22,8 +22,8 @@ import Image from "next/image";
 const WhyChooseUs = () => {
   return (
     <section className="bg-gray-950 text-gray-50">
-      <div className="max-w-6xl mx-auto py-20 px-6 2xl:px-0">
-        <div className="grid  grid-cols-1 sm:grid-cols-2 gap-8 py-16 px-6 md:px-8 lg:px-0">
+      <div className="max-w-6xl md:mx-8 2xl:mx-auto py-16 px-8 lg:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
           {/* Image with dark overlay */}
           <motion.div
             initial="hidden"
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
           </motion.div>
 
           {/* Content */}
-          <div className="relative flex flex-col items-center justify-center text-white font-medium px-4 lg:px-10">
+          <div className="relative flex flex-col items-center justify-center text-white font-medium">
             <motion.div
               initial="hidden"
               whileInView="visible"

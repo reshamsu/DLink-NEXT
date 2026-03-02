@@ -11,7 +11,10 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Close on scroll
+  /* 🔥 ADDED */
+  const [scrolled, setScrolled] = useState(false);
+
+  // Close mobile menu on scroll
   useEffect(() => {
     if (!isOpen) return;
     const handleScroll = () => setIsOpen(false);
@@ -19,9 +22,25 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isOpen]);
 
+  /* 🔥 ADDED */
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed z-40 w-full shadow-sm select-none">
-      <nav className="max-w-6xl mx-auto flex items-center justify-between py-3 px-6 2xl:px-0">
+    <header className="fixed z-40 w-full select-none">
+      <nav
+        className={`max-w-7xl lg:mt-2 2xl:mt-3 lg:mx-auto select-none flex items-center justify-between transition-all duration-300 ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-lg shadow-sm py-4 md:py-0 px-6 lg:mx-6 2xl:mx-auto"
+            : "bg-transparent py-4 md:py-2 lg:py-0 px-4 pr-5 2xl:px-0"
+        }`}
+      >
         <Link href="/" className="flex items-center gap-2 mr-20">
           <div className="relative w-14 h-14">
             <Image

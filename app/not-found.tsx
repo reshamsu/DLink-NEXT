@@ -6,7 +6,7 @@ export default function NotFound() {
     <div className="relative h-screen w-full pt-16 overflow-hidden flex flex-col items-center justify-center text-center bg-white">
 
       {/* Subtle background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-500/80 via-orange-500/40 to-orange-500/20" />
+      <div className="absolute inset-0 bg-gradient-to-b from-orange-500/60 via-orange-500/30 to-white" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center gap-4 px-6">
