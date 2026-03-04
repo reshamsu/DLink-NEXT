@@ -112,7 +112,7 @@ const Listings: React.FC = () => {
       if (type) query = query.eq("property_type", type);
 
       // ✅ bedrooms column
-      if (beds) query = query.gte("bedrooms", Number(beds));
+     if (beds) query = query.gte("bedrooms", Number(beds.replace("+", "")));
 
       // ✅ listing_type column (Sea Side / Land Side)
       if (side) query = query.eq("listing_type", side);
