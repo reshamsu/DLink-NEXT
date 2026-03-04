@@ -95,11 +95,11 @@ const Navbar = () => {
 
                 {/* Desktop Dropdown */}
                 {link.submenu && (
-                  <ul className="absolute top-full left-0 mt-2 w-55 p-2.5 bg-white backdrop-blur-3xl font-medium rounded-xl shadow-lg invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <ul className="absolute top-full left-0 mt-2 w-40 p-2.5 bg-white backdrop-blur-3xl font-medium rounded-xl shadow-lg invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300">
                     {link.submenu.map((sublink) => (
                       <li
                         key={sublink.href}
-                        className="py-2.5 px-4 rounded-xl text-black hover:text-orange-600 hover:bg-orange-600/10 transition"
+                        className="py-2 px-4 rounded-xl text-black hover:text-orange-600 hover:bg-orange-600/10 transition"
                       >
                         <Link href={sublink.href} className="block w-full">
                           {sublink.label}
@@ -116,12 +116,6 @@ const Navbar = () => {
         {/* Desktop Right Side */}
         <div className="flex items-center gap-4 text-sm select-none">
           <div className="hidden lg:flex gap-4">
-            {/* <Link
-              href="/login"
-              className="select-none btn-dark-glass btn-dynamic"
-            >
-              <TbUser size={22} />
-            </Link> */}
             <Link
               href="https://wa.me/94761676603"
               className="select-none btn-dark-sm btn-dynamic"
@@ -149,7 +143,7 @@ const Navbar = () => {
           transition-transform duration-300 ease-in-out origin-top 
           ${isOpen ? "scale-y-100" : "scale-y-0"}`}
       >
-        <ul className="flex flex-col gap-2 p-6 text-sm">
+        <ul className="flex flex-col gap-2 p-6 text-sm font-bold">
           {Nav_Links.map((link) => (
             <li key={link.key}>
               {link.submenu ? (
@@ -161,7 +155,7 @@ const Navbar = () => {
 
                   <ul className="flex flex-col my-2 px-10 text-black/90">
                     {link.submenu.map((sublink) => (
-                      <li key={sublink.href} className="py-3">
+                      <li key={sublink.href} className="py-2">
                         <Link
                           href={sublink.href}
                           onClick={() => setIsOpen(false)}
@@ -185,12 +179,12 @@ const Navbar = () => {
             </li>
           ))}
           <div className="p-4 flex lg:hidden items-center gap-4 text-sm">
-            <Link
+            {/* <Link
               href="/login"
               className="select-none btn-dark-glass btn-dynamic"
             >
               <TbUser size={22} />
-            </Link>
+            </Link> */}
             <Link
               href="https://wa.me/94761676603"
               className="select-none btn-orange-sm btn-dynamic"

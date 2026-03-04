@@ -109,10 +109,10 @@ const Hero = () => {
         {/* TEXT */}
         <div className="max-w-6xl mx-auto flex flex-col justify-center items-center text-center gap-10 text-white z-10 pt-16 px-8">
           <div className="flex flex-col gap-4">
-            <h1 className="text-4xl md:text-5xl 2xl:text-6xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
+            <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2 md:gap-2.5">
               Find your Next{" "}
               <ReactTyped
-                className="text-4xl md:text-5xl 2xl:text-6xl font-extrabold text-orange-500/80"
+                className="text-4xl 2xl:text-5xl font-extrabold text-orange-500/80"
                 strings={["Property", "Home", "Apartment", "Villa", "Land"]}
                 typeSpeed={200}
                 backSpeed={140}

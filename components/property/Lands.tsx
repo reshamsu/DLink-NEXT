@@ -66,8 +66,8 @@ const rowVariants: Variants = {
 
 const getFurnishingLabel = (value: FurnishingStatus) => value;
 
-const INITIAL_VISIBLE = 4;
-const LOAD_MORE_STEP = 4;
+const INITIAL_VISIBLE = 5;
+const LOAD_MORE_STEP = 5;
 
 const Listings: React.FC = () => {
   const [listings, setListingsData] = useState<Listing[]>([]);
@@ -147,10 +147,10 @@ const Listings: React.FC = () => {
         {/* HEADER */}
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-3">
-            <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+            <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
               LANDS
             </p>
-            <h1 className="text-2xl font-bold">Featured Lands</h1>
+            <h1 className="text-xl font-extrabold">Featured Lands</h1>
           </div>
         </div>
 
@@ -164,7 +164,7 @@ const Listings: React.FC = () => {
           <p className="text-center text-gray-500 py-20">No listings found.</p>
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"
             initial="hidden"
             animate="visible"
           >
@@ -175,10 +175,10 @@ const Listings: React.FC = () => {
                 variants={rowVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-white rounded-4xl shadow-lg overflow-hidden group h-full"
+                className="bg-white rounded-tl-4xl rounded-br-4xl shadow-lg overflow-hidden group h-full"
               >
                 {/* IMAGE */}
-                <div className="relative h-64 overflow-hidden rounded-br-4xl">
+                <div className="relative h-64 overflow-hidden rounded-tl-4xl rounded-br-4xl">
                   <Image
                     src={listing.image}
                     alt={listing.title}
@@ -261,7 +261,7 @@ const Listings: React.FC = () => {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_STEP)}
-            className="select-none btn-light-outline btn-dynamic"
+            className="select-none btn-orange-outline btn-dynamic"
           >
             Show more Listings
           </button>

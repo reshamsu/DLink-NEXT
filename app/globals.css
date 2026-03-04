@@ -27,7 +27,7 @@ header {
     @apply inline-flex items-center justify-center gap-2 hover:gap-4 font-bold rounded-full border-2 border-white/10 bg-gray-200 hover:bg-orange-500/90 px-8 py-3 text-sm text-black/80 hover:text-white cursor-pointer transition-all w-fit hover:scale-105 duration-500;
   }
   .btn-light-outline {
-    @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-gray-300/50 bg-gray-200 hover:bg-gray-300/80 px-10 py-3 text-sm text-black hover:text-black/80 cursor-pointer transition-all hover:scale-105 w-full duration-500 max-w-3xl mx-auto;
+    @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-gray-300/50 bg-gray-200 hover:bg-gray-300/80 px-10 py-3 text-sm text-black hover:text-black/80 cursor-pointer transition-all hover:scale-105 w-fit duration-500 max-w-md mx-auto;
   }
   .btn-light-glass {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-white/15 bg-black/10 hover:bg-black px-4 py-2 text-[12px] text-black hover:text-white cursor-pointer transition-all hover:scale-105 duration-700 w-full;
@@ -36,16 +36,16 @@ header {
     @apply inline-flex items-center justify-center gap-2 hover:gap-3 font-bold rounded-full border-2 border-white/15 bg-orange-500 hover:bg-orange-600/80 px-6 py-2.5 text-sm text-white cursor-pointer transition-all hover:scale-105 w-full duration-500;
   }
   .btn-orange-base {
-    @apply inline-flex items-center justify-center gap-2 hover:gap-3 font-bold rounded-full border-2 border-white/15 bg-orange-500 hover:bg-orange-600 px-8 py-3 text-sm text-white cursor-pointer transition-all hover:scale-105 w-full lg:w-fit duration-500;
+    @apply inline-flex items-center justify-center gap-2 hover:gap-3 font-bold rounded-full border-2 border-white/15 bg-orange-500 hover:bg-orange-600 px-8 py-3 text-sm text-white cursor-pointer transition-all hover:scale-105 w-full md:w-fit duration-500;
   }
   .btn-orange-outline {
-    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-orange-500 hover:border-orange-400/80 bg-orange-500/10 hover:bg-orange-500 px-8 py-3 text-sm hover:shadow-xs transition-all text-orange-500 hover:text-white duration-300 hover:scale-105 w-full md:w-fit;
+    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-orange-500 hover:border-orange-400/80 bg-orange-500/10 hover:bg-orange-400 px-8 py-3 text-sm hover:shadow-xs transition-all text-orange-500 hover:text-white duration-300 hover:scale-105 w-60 max-w-xs mx-auto;
   }
   .btn-orange-glass {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-semibold rounded-full border border-black/5 bg-orange-600/15 hover:bg-orange-500 px-3 py-3 text-sm lg:text-[14px] text-orange-500 hover:text-white cursor-pointer transition-all hover:scale-105 w-fit duration-700;
   }
   .btn-dark-sm {
-    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-white/15 bg-black/90 hover:bg-black px-6 py-3 text-sm text-white cursor-pointer transition-all duration-300 hover:scale-105 z-10 w-full;
+    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-white/15 bg-black/90 hover:bg-black px-6 py-2 text-sm text-white cursor-pointer transition-all duration-300 hover:scale-105 z-10 w-full;
   }
   .btn-dark-base {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-white/15 bg-black hover:bg-black/90 px-8 py-3 text-sm text-white hover:text-white/80 cursor-pointer transition-all hover:scale-105 w-full duration-500;

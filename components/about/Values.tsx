@@ -22,8 +22,7 @@ const Values = () => {
     {
       icon: <FaStar className="text-3xl text-orange-500" />,
       title: "Service Excellence",
-      description:
-        "White-glove service from first viewing to final handover.",
+      description: "White-glove service from first viewing to final handover.",
     },
     {
       icon: <FaFire className="text-3xl text-orange-500" />,
@@ -52,8 +51,7 @@ const Values = () => {
     {
       icon: <FaGlobeAsia className="text-3xl text-orange-500" />,
       title: "Local & Overseas Clients",
-      description:
-        "Trusted by Sri Lankan and international buyers alike.",
+      description: "Trusted by Sri Lankan and international buyers alike.",
     },
     {
       icon: <FaSuitcaseRolling className="text-3xl text-orange-500" />,
@@ -73,28 +71,22 @@ const Values = () => {
     <div className="bg-gray-100 text-gray-800 relative">
       <div className="max-w-6xl mx-auto py-20 px-8 2xl:px-0 flex flex-col gap-10">
         {/* HEADER */}
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-start gap-8">
-          <div className="flex flex-col gap-5">
-            <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
               OUR VALUES
             </p>
-            <h2 className="playfair text-3xl 2xl:text-4xl font-bold">
+            <h2 className="playfair text-3xl 2xl:text-4xl font-extrabold">
               Why Clients<span className="text-orange-500"> Trust Us</span>
             </h2>
           </div>
-
-          <div className="flex flex-col gap-3 max-w-4xl">
-            <p className="text-sm md:text-base font-normal text-center lg:text-justify text-gray-600">
-              At <strong>D-Link Colombo</strong>, we are more than property
-              brokers. We are long-term advisors committed to protecting your
-              investment and maximizing value.
-            </p>
-            <p className="text-sm md:text-base font-normal text-center lg:text-justify text-gray-600">
-              Whether you’re purchasing a home, selling a property, or investing
-              in Colombo’s real estate market, our approach is built on trust,
-              expertise, and results.
-            </p>
-          </div>
+          <p className="text-sm leading-relaxed text-gray-600">
+            At <strong>D-Link Colombo</strong>, we are more than property
+            brokers. We are long-term advisors committed to protecting your
+            investment and maximizing value. Whether you’re purchasing a home,
+            selling a property, or investing in Colombo’s real estate market,
+            our approach is built on trust, expertise, and results.
+          </p>
         </div>
 
         {/* VALUES GRID */}
@@ -111,7 +103,7 @@ const Values = () => {
                 <h3 className="text-base lg:text-lg font-extrabold text-gray-700">
                   {item.title}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-400">
+                <p className="text-xs md:text-sm text-gray-500">
                   {item.description}
                 </p>
               </div>

@@ -23,7 +23,7 @@ const WhyChooseUs = () => {
   return (
     <section className="bg-gray-950 text-gray-50">
       <div className="max-w-6xl md:mx-8 2xl:mx-auto py-16 px-8 lg:px-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-18">
           {/* Image with dark overlay */}
           <motion.div
             initial="hidden"
@@ -42,14 +42,14 @@ const WhyChooseUs = () => {
           </motion.div>
 
           {/* Content */}
-          <div className="relative flex flex-col items-center justify-center text-white font-medium">
+          <div className="relative flex flex-col items-start justify-center text-white font-medium">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               className="mb-14"
             >
-              <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+              <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
                 OUR EXPERTISE
               </p>
               <h1 className="text-3xl lg:text-4xl font-extrabold my-6">
@@ -63,22 +63,22 @@ const WhyChooseUs = () => {
             </motion.div>
 
             {/* Highlights */}
-            <div className="flex flex-col gap-14 w-full">
+            <div className="flex flex-col gap-8 2xl:gap-10 w-full">
               {[
                 {
                   icon: (
-                    <FaSearchLocation className="text-orange-400 text-7xl" />
+                    <FaSearchLocation className="text-orange-400 text-6xl" />
                   ),
                   title: "Personalized Property Search",
                   text: "We tailor each property search to match your unique needs, preferences, and budget—no guesswork, just results.",
                 },
                 {
-                  icon: <FaCity className="text-orange-400 text-7xl" />,
+                  icon: <FaCity className="text-orange-400 text-6xl" />,
                   title: "Prime Listings in Colombo",
                   text: "Gain access to verified, high-value properties across the most sought-after locations in Colombo and beyond.",
                 },
                 {
-                  icon: <FaHandshake className="text-orange-400 text-7xl" />,
+                  icon: <FaHandshake className="text-orange-400 text-6xl" />,
                   title: "Trusted Guidance & Support",
                   text: "From first viewing to final paperwork, our expert team is by your side—transparent, responsive, and reliable.",
                 },
@@ -89,12 +89,12 @@ const WhyChooseUs = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  className="flex items-start gap-6 lg:gap-10"
+                  className="flex items-start gap-6"
                 >
                   {item.icon}
                   <div>
-                    <h2 className="text-md font-semibold mb-2">{item.title}</h2>
-                    <p className="text-xs md:text-md lg:text-sm text-gray-400">
+                    <h2 className="text-md font-semibold mb-1">{item.title}</h2>
+                    <p className="text-xs text-gray-400 md:text-gray-500">
                       {item.text}
                     </p>
                   </div>

@@ -43,12 +43,12 @@ const Analytics: React.FC = () => {
   return (
     <section className="bg-white text-black">
       <div className="max-w-6xl mx-auto py-16 px-8 2xl:px-0">
-        <div className="flex flex-col gap-3">
-          <p className="text-sm font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+        <div className="flex flex-col items-center text-center gap-3">
+          <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
             SERVICE
           </p>
           <div>
-            <h1 className="text-3xl md:text-4xl font-extrabold my-3">
+            <h1 className="text-3xl md:text-4xl font-extrabold my-2">
               Our Expertise
             </h1>
             <p className="text-sm 2xl:text-base font-semibold text-gray-600">
@@ -66,9 +66,9 @@ const Analytics: React.FC = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={cardVariants}
-              className="bg-white p-10 rounded-3xl flex flex-col items-center text-center hover:scale-105 duration-300 transition-all shadow-xl hover:shadow-2xl"
+              className="bg-white border-2 border-orange-500/10 p-10 rounded-3xl flex flex-col items-center text-center hover:scale-105 duration-300 transition-all shadow-xl hover:shadow-2xl"
             >
-              <div className="w-24 h-24 mb-4 flex items-center justify-center bg-orange-500 rounded-full shadow-inner relative">
+              <div className="w-24 h-24 mb-4 flex items-center justify-center bg-orange-400 rounded-full shadow-inner relative">
                 <Image
                   src={card.icon}
                   alt={card.title}

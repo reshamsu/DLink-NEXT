@@ -8,12 +8,12 @@ const CTA = () => {
     <section className="bg-orange-500/10 text-gray-800 relative">
       <div className="max-w-6xl mx-auto py-16 px-8 2xl:px-0">
         <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 text-center lg:text-start h-full
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 h-full
           bg-white
-          p-10 md:p-16 shadow-xl rounded-3xl relative overflow-hidden"
+          p-10 md:p-14 2xl:p-16 shadow-xl rounded-3xl relative overflow-hidden"
         >
           {/* Left Section */}
-          <div className="flex flex-col justify-center gap-6 h-fit z-10">
+          <div className="flex flex-col gap-6 h-fit z-10">
             <h1 className="text-2xl md:text-3xl 2xl:text-4xl font-extrabold leading-tight">
               Ready to Invest?{" "}
               <i className="text-orange-500">Speak With an Expert.</i>
