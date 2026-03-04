@@ -42,7 +42,7 @@ interface Listing {
   image_urls?: string[] | string;
 }
 
-export const runtime = 'edge';
+export const runtime = "edge";
 
 const Page = () => {
   const { id } = useParams();
@@ -231,8 +231,8 @@ const Page = () => {
           </span>
         </div>
 
-        <span className="absolute left-6 md:left-10 bottom-5 md:bottom-12 uppercase text-sm lg:text-base font-bold text-orange-500">
-          Roy.Su Realtors
+        <span className="absolute left-6 md:left-10 bottom-5 md:bottom-12 flex flex-col whitespace-nowrap uppercase text-xm lg:text-base font-extrabold text-white">
+          Roy.Su <span>Realtors</span>
         </span>
 
         {/* Slider Dots */}
@@ -438,7 +438,7 @@ const Page = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <Link
                 href="/"
-                className="btn-light-sm btn-dynamic text-center select-none"
+                className="btn-light-outline btn-dynamic text-center select-none"
               >
                 Back to Listings
               </Link>

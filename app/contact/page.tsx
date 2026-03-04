@@ -166,8 +166,8 @@ const Hero = () => {
       {/* FORM CARD */}
       <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-25 md:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 bg-white p-4 md:p-6 pb-10 lg:shadow-xl border-2 border-gray-100 rounded-4xl relative z-30">
         <div className="bg-orange-600/5 border-2 border-orange-600/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-4">
               <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
                 CONNECT
               </p>
@@ -177,12 +177,8 @@ const Hero = () => {
             </div>
 
             <p className="text-xs text-gray-500 whitespace-break-spaces max-w-2xl">
-              Let’s continue to weave the tapestry of travel experiences with,
-              more inspiring examples from The TravQuest Travel & Tourism Team.
-              {/* We can guide you through, your worldwide Hotel Bookings, Flight
-            ticket arrangements, Visa Requirements, Arrival & Departure Transfer
-            arrangements, Tours & Excursion Bookings, Corporate Events, and
-            Meeting venue recommendations. */}
+              Every listing handpicked by The D-Link Colombo Team, so you can
+              invest with confidence.
             </p>
           </div>
 

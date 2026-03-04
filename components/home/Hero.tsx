@@ -38,7 +38,7 @@ const Hero = () => {
         .limit(6);
       if (!error && data) {
         const unique = Array.from(
-          new Set(data.map((row) => row.city).filter(Boolean))
+          new Set(data.map((row) => row.city).filter(Boolean)),
         ) as string[];
         setSuggestions(unique);
         setShowSuggestions(true);
@@ -53,22 +53,27 @@ const Hero = () => {
     e.preventDefault();
     setShowSuggestions(false);
     const params = new URLSearchParams();
-    if (keyword)      params.set("q", keyword);
-    if (priceRange)   params.set("price", priceRange);
+    if (keyword) params.set("q", keyword);
+    if (priceRange) params.set("price", priceRange);
     if (propertySide) params.set("side", propertySide);
     if (propertyType) params.set("type", propertyType);
-    if (beds)         params.set("beds", beds);
+    if (beds) params.set("beds", beds);
     router.replace(`/?${params.toString()}#listings`, { scroll: false });
     document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const activeCount = [keyword, priceRange, propertySide, propertyType, beds].filter(Boolean).length;
+  const activeCount = [
+    keyword,
+    priceRange,
+    propertySide,
+    propertyType,
+    beds,
+  ].filter(Boolean).length;
 
   return (
     <div className="bg-gray-200 text-gray-900">
-
       {/* ── Hero photo band ── */}
-      <div className="relative h-[74vh] w-full overflow-hidden flex flex-col justify-center items-center gap-8 text-center">
+      <div className="relative h-[80vh] w-full overflow-hidden flex flex-col justify-center items-center gap-8 text-center">
         <div className="absolute inset-0">
           <Image
             src="/assets/banner/property5.jpg"
@@ -76,7 +81,7 @@ const Hero = () => {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-[#f2836f]/20 transition-all duration-1000" />
         </div>
 
         {/* Text */}
@@ -106,42 +111,61 @@ const Hero = () => {
       </div>
 
       {/* ── Filter card — overlaps hero ── */}
-      <div className="relative z-20 -mt-14 px-4 pb-10">
+      <div className="relative z-20 -mt-20 px-4 pb-10">
         <form
           onSubmit={handleSearch}
-          className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-8"
+          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-8"
         >
-
           {/* Row 1: City · Price · Side */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-
             {/* City */}
             <div className="relative flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">Search City</label>
+              <label className="text-xs font-bold tracking-wide">
+                Search City
+              </label>
               <input
                 type="text"
                 placeholder="Dehiwela, Wellawatta, Colombo"
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
-                onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                onFocus={() =>
+                  suggestions.length > 0 && setShowSuggestions(true)
+                }
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
                 autoComplete="off"
                 required
-                className="border border-gray-200 bg-gray-50 rounded-lg px-3.5 py-2.5 text-sm placeholder:text-gray-400 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all"
+                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm placeholder:text-gray-400 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all"
               />
               {loadingSuggest && (
-                <span className="absolute right-3 top-[38px] text-xs text-gray-400">...</span>
+                <span className="absolute right-3 top-[38px] text-xs text-gray-400">
+                  ...
+                </span>
               )}
               {showSuggestions && suggestions.length > 0 && (
                 <ul className="absolute top-full mt-1 left-0 right-0 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
                   {suggestions.map((item, i) => (
                     <li
                       key={i}
-                      onMouseDown={() => { setKeyword(item); setSuggestions([]); setShowSuggestions(false); }}
+                      onMouseDown={() => {
+                        setKeyword(item);
+                        setSuggestions([]);
+                        setShowSuggestions(false);
+                      }}
                       className="flex items-center gap-2 px-4 py-2.5 text-sm cursor-pointer hover:bg-orange-50 hover:text-orange-600 transition-colors"
                     >
-                      <svg className="text-orange-400 shrink-0" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                      <svg
+                        className="text-orange-400 shrink-0"
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
                       </svg>
                       {item}
                     </li>
@@ -152,11 +176,13 @@ const Hero = () => {
 
             {/* Price */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">Price Range</label>
+              <label className="text-xs font-bold tracking-wide">
+                Price Range
+              </label>
               <select
                 value={priceRange}
                 onChange={(e) => setPriceRange(e.target.value)}
-                className="border border-gray-200 bg-gray-50 rounded-lg px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
+                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
               >
                 <option value="">Any Price</option>
                 <option value="30 Million-Below">Under 30M</option>
@@ -169,11 +195,13 @@ const Hero = () => {
 
             {/* Side */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-gray-700 tracking-wide">Property Side</label>
+              <label className="text-xs font-semibold text-gray-700 tracking-wide">
+                Property Side
+              </label>
               <select
                 value={propertySide}
                 onChange={(e) => setPropertySide(e.target.value)}
-                className="border border-gray-200 bg-gray-50 rounded-lg px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
+                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
               >
                 <option value="">Any Side</option>
                 <option value="Sea Side">Sea Side</option>
@@ -184,14 +212,15 @@ const Hero = () => {
 
           {/* Row 2: Type · Beds · Button */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-
             {/* Type */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">Property Type</label>
+              <label className="text-xs font-bold tracking-wide">
+                Property Type
+              </label>
               <select
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
-                className="border border-gray-200 bg-gray-50 rounded-lg px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
+                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
               >
                 <option value="">Any Type</option>
                 <option value="Apartment">Apartment</option>
@@ -204,17 +233,20 @@ const Hero = () => {
 
             {/* Beds — pills */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">Bedrooms</label>
+              <label className="text-xs font-bold tracking-wide">
+                Bedrooms
+              </label>
               <div className="flex gap-2">
                 {["1", "2", "3", "4", "5+"].map((n) => (
                   <button
                     key={n}
                     type="button"
                     onClick={() => setBeds(beds === n ? "" : n)}
-                    className={`flex-1 py-2 rounded-lg text-sm border transition-all font-medium
-                      ${beds === n
-                        ? "bg-orange-500 border-orange-500 text-white"
-                        : "border-gray-200 bg-gray-50 text-gray-500 hover:border-orange-300 hover:text-orange-500"
+                    className={`flex-1 py-2 rounded-2xl text-sm border-2 transition-all font-semibold
+                      ${
+                        beds === n
+                          ? "bg-orange-500 border-orange-500 text-white"
+                          : "border-gray-200 bg-gray-50 text-gray-500 hover:border-orange-300 hover:text-orange-500"
                       }`}
                   >
                     {n}
@@ -226,7 +258,7 @@ const Hero = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-sm rounded-lg px-6 py-2.5 transition-all shadow-md shadow-orange-200 hover:shadow-orange-300 cursor-pointer"
+              className="btn-orange-sm"
             >
               <TbSearch size={17} /> Search
             </button>
@@ -235,24 +267,47 @@ const Hero = () => {
           {/* Active filter chips */}
           {activeCount > 0 && (
             <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100 items-center">
-              {keyword      && <Chip label={keyword}        onRemove={() => setKeyword("")} />}
-              {priceRange   && <Chip label={priceRange.replace("-", " – ")} onRemove={() => setPriceRange("")} />}
-              {propertySide && <Chip label={propertySide}   onRemove={() => setPropertySide("")} />}
-              {propertyType && <Chip label={propertyType}   onRemove={() => setPropertyType("")} />}
-              {beds         && <Chip label={`${beds} beds`} onRemove={() => setBeds("")} />}
+              {keyword && (
+                <Chip label={keyword} onRemove={() => setKeyword("")} />
+              )}
+              {priceRange && (
+                <Chip
+                  label={priceRange.replace("-", " – ")}
+                  onRemove={() => setPriceRange("")}
+                />
+              )}
+              {propertySide && (
+                <Chip
+                  label={propertySide}
+                  onRemove={() => setPropertySide("")}
+                />
+              )}
+              {propertyType && (
+                <Chip
+                  label={propertyType}
+                  onRemove={() => setPropertyType("")}
+                />
+              )}
+              {beds && (
+                <Chip label={`${beds} beds`} onRemove={() => setBeds("")} />
+              )}
               <button
                 type="button"
-                onClick={() => { setKeyword(""); setPriceRange(""); setPropertySide(""); setPropertyType(""); setBeds(""); }}
+                onClick={() => {
+                  setKeyword("");
+                  setPriceRange("");
+                  setPropertySide("");
+                  setPropertyType("");
+                  setBeds("");
+                }}
                 className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors ml-1"
               >
                 Clear all
               </button>
             </div>
           )}
-
         </form>
       </div>
-
     </div>
   );
 };
@@ -260,7 +315,11 @@ const Hero = () => {
 const Chip = ({ label, onRemove }: { label: string; onRemove: () => void }) => (
   <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-medium text-orange-700">
     {label}
-    <button type="button" onClick={onRemove} className="text-orange-400 hover:text-orange-600 transition-colors leading-none">
+    <button
+      type="button"
+      onClick={onRemove}
+      className="text-orange-400 hover:text-orange-600 transition-colors leading-none"
+    >
       ✕
     </button>
   </span>
