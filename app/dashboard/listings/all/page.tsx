@@ -16,6 +16,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { supabase } from "@/lib/supabaseClient";
 
+export const runtime = "edge";
+
 type FurnishingStatus = "Fully-Furnished" | "Semi-Furnished" | "UnFurnished";
 interface Listings {
   id: number;

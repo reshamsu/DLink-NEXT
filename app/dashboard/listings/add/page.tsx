@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 import { TbSend2 } from "react-icons/tb";
 
+export const runtime = "edge";
 interface Listing {
   property_title: string;
   property_subtitle: string;
