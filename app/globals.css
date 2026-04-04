@@ -12,6 +12,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-weight: 550;
+
 }
 
 header {
@@ -45,7 +46,7 @@ header {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-semibold rounded-full border border-black/5 bg-orange-600/15 hover:bg-orange-500 px-3 py-3 text-sm lg:text-[14px] text-orange-500 hover:text-white cursor-pointer transition-all hover:scale-105 w-fit duration-700;
   }
   .btn-dark-sm {
-    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-white/15 bg-black/90 hover:bg-black px-6 py-2.5 text-sm text-white cursor-pointer transition-all duration-300 hover:scale-105 z-10 w-full;
+    @apply inline-flex items-center justify-center gap-2 hover:gap-3 relative font-bold rounded-full border-2 border-white/15 bg-black/90 hover:bg-black px-6 py-2 text-[12px] text-white cursor-pointer transition-all duration-300 hover:scale-105 z-10 w-full;
   }
   .btn-dark-base {
     @apply inline-flex items-center justify-center gap-3 hover:gap-4 font-bold rounded-full border-2 border-white/15 bg-black hover:bg-black/90 px-8 py-3 text-sm text-white hover:text-white/80 cursor-pointer transition-all hover:scale-105 w-full duration-500;

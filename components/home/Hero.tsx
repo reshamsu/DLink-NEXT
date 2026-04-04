@@ -2,14 +2,23 @@
 
 import Image from "next/image";
 import { ReactTyped } from "react-typed";
-import { TbSearch } from "react-icons/tb";
+import { TbSearch, TbMapPin, TbX } from "react-icons/tb";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
-import Link from "next/link";
+
+const FIELD_CLS =
+  "border border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all w-full";
+
+const Label = ({ children }: { children: React.ReactNode }) => (
+  <label className="text-[11px] font-extrabold text-gray-400 uppercase tracking-widest">
+    {children}
+  </label>
+);
 
 const Hero = () => {
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [keyword, setKeyword] = useState("");
   const [priceRange, setPriceRange] = useState("");
@@ -21,7 +30,6 @@ const Hero = () => {
   const [loadingSuggest, setLoadingSuggest] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  /* autocomplete */
   useEffect(() => {
     if (!keyword || keyword.length < 2) {
       setSuggestions([]);
@@ -29,7 +37,6 @@ const Hero = () => {
       return;
     }
     const timer = setTimeout(async () => {
-      if (!supabase) return;
       setLoadingSuggest(true);
       const { data, error } = await supabase
         .from("listing")
@@ -38,17 +45,23 @@ const Hero = () => {
         .limit(6);
       if (!error && data) {
         const unique = Array.from(
-          new Set(data.map((row) => row.city).filter(Boolean)),
+          new Set(data.map((row: { city: string }) => row.city).filter(Boolean)),
         ) as string[];
         setSuggestions(unique);
-        setShowSuggestions(true);
+        setShowSuggestions(unique.length > 0);
       }
       setLoadingSuggest(false);
-    }, 350);
+    }, 300);
     return () => clearTimeout(timer);
   }, [keyword]);
 
-  /* search */
+  const selectSuggestion = (city: string) => {
+    setKeyword(city);
+    setSuggestions([]);
+    setShowSuggestions(false);
+    inputRef.current?.focus();
+  };
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setShowSuggestions(false);
@@ -62,112 +75,116 @@ const Hero = () => {
     document.getElementById("listings")?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const activeCount = [
-    keyword,
-    priceRange,
-    propertySide,
-    propertyType,
-    beds,
-  ].filter(Boolean).length;
+  const activeFilters = [
+    keyword && { key: "q", label: keyword, clear: () => setKeyword("") },
+    priceRange && { key: "price", label: priceRange.replace("-", " – "), clear: () => setPriceRange("") },
+    propertySide && { key: "side", label: propertySide, clear: () => setPropertySide("") },
+    propertyType && { key: "type", label: propertyType, clear: () => setPropertyType("") },
+    beds && { key: "beds", label: `${beds} beds`, clear: () => setBeds("") },
+  ].filter(Boolean) as { key: string; label: string; clear: () => void }[];
 
   return (
-    <div className="bg-gray-200 text-gray-900">
-      {/* ── Hero photo band ── */}
-      <div className="relative h-[80vh] w-full overflow-hidden flex flex-col justify-center items-center gap-8 text-center">
+    <div className="bg-gray-100">
+      {/* Hero image */}
+      <div className="relative h-[75vh] w-full overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0">
           <Image
             src="/assets/banner/property5.jpg"
             alt="Hero"
             fill
             className="object-cover"
+            priority
           />
-          <div className="absolute inset-0 bg-[#f2836f]/20 transition-all duration-1000" />
+          <div className="absolute inset-0 bg-gradient-to-b from-orange-600/50 via-orange-600/20 to-black/60" />
         </div>
 
-        {/* Text */}
-        <div className="relative z-10 flex flex-col items-center gap-4 text-white px-6 pt-16">
-          <h1 className="text-4xl 2xl:text-5xl font-extrabold flex flex-col md:flex-row gap-2">
-            Find your Next{" "}
+        <div className="relative z-10 flex flex-col items-center gap-6 px-6 pt-20">
+          <p className="text-xs font-extrabold bg-white/10 backdrop-blur-sm border border-white/20 text-white/90 px-4 py-1.5 rounded-full tracking-widest uppercase">
+            Sri Lanka&apos;s Premier Property Platform
+          </p>
+          <h1 className="text-4xl 2xl:text-5xl font-extrabold text-white flex flex-col md:flex-row items-center gap-3 leading-tight">
+            Find your Next
             <ReactTyped
-              className="text-4xl 2xl:text-5xl font-extrabold text-orange-500"
+              className="text-orange-500"
               strings={["Property", "Home", "Apartment", "Villa", "Land"]}
-              typeSpeed={200}
-              backSpeed={140}
+              typeSpeed={180}
+              backSpeed={120}
               loop
             />
           </h1>
-          <p className="text-sm font-medium text-white/80">
-            Find Properties for Sale, Rent or Invest
+          <p className="text-sm text-white/60">
+            Browse hundreds of verified listings across Colombo and beyond
           </p>
         </div>
-
-        {/* <Link
-          href="#listings"
-          scroll={false}
-          className="relative z-10 select-none btn-light-base cursor-pointer"
-        >
-          Find Listings
-        </Link> */}
       </div>
 
-      {/* ── Filter card — overlaps hero ── */}
-      <div className="relative z-20 -mt-20 px-4 pb-10">
+      {/* Search form card — overlaps hero */}
+      <div className="relative z-20 -mt-16 px-4 pb-4">
         <form
           onSubmit={handleSearch}
-          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-gray-100 p-6 md:p-8"
+          className="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 md:p-8"
         >
-          {/* Row 1: City · Price · Side */}
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <p className="text-sm font-extrabold text-gray-800">Search Properties</p>
+              <p className="text-xs text-gray-400 mt-0.5">Filter by city, price, type and more</p>
+            </div>
+            {activeFilters.length > 0 && (
+              <button
+                type="button"
+                onClick={() => { setKeyword(""); setPriceRange(""); setPropertySide(""); setPropertyType(""); setBeds(""); }}
+                className="text-xs text-gray-400 hover:text-orange-500 transition-colors font-bold flex items-center gap-1"
+              >
+                <TbX size={13} /> Clear all
+              </button>
+            )}
+          </div>
+
+          {/* Row 1 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            {/* City */}
+            {/* City autocomplete */}
             <div className="relative flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">
-                Search City
-              </label>
-              <input
-                type="text"
-                placeholder="Dehiwela, Wellawatta, Colombo"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                onFocus={() =>
-                  suggestions.length > 0 && setShowSuggestions(true)
-                }
-                onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
-                autoComplete="off"
-                required
-                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm placeholder:text-gray-400 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all"
-              />
-              {loadingSuggest && (
-                <span className="absolute right-3 top-[38px] text-xs text-gray-400">
-                  ...
-                </span>
-              )}
+              <Label>City</Label>
+              <div className="relative">
+                <TbMapPin
+                  size={15}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+                />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  placeholder="Colombo, Dehiwela..."
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                  autoComplete="off"
+                  required
+                  className={`${FIELD_CLS} pl-9`}
+                />
+                {loadingSuggest && (
+                  <span className="absolute right-3 top-1/2 -translate-y-1/2 flex gap-0.5">
+                    {[0, 1, 2].map((i) => (
+                      <span
+                        key={i}
+                        className="w-1 h-1 rounded-full bg-orange-400 animate-bounce"
+                        style={{ animationDelay: `${i * 0.15}s` }}
+                      />
+                    ))}
+                  </span>
+                )}
+              </div>
+
               {showSuggestions && suggestions.length > 0 && (
-                <ul className="absolute top-full mt-1 left-0 right-0 bg-white border border-gray-200 rounded-xl shadow-lg z-50 overflow-hidden">
-                  {suggestions.map((item, i) => (
+                <ul className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 overflow-hidden">
+                  {suggestions.map((city, i) => (
                     <li
                       key={i}
-                      onMouseDown={() => {
-                        setKeyword(item);
-                        setSuggestions([]);
-                        setShowSuggestions(false);
-                      }}
-                      className="flex items-center gap-2 px-4 py-2.5 text-sm cursor-pointer hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                      onMouseDown={(e) => { e.preventDefault(); selectSuggestion(city); }}
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm cursor-pointer hover:bg-orange-50 hover:text-orange-600 transition-colors"
                     >
-                      <svg
-                        className="text-orange-400 shrink-0"
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                      {item}
+                      <TbMapPin size={13} className="text-orange-400 shrink-0" />
+                      {city}
                     </li>
                   ))}
                 </ul>
@@ -176,14 +193,8 @@ const Hero = () => {
 
             {/* Price */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">
-                Price Range
-              </label>
-              <select
-                value={priceRange}
-                onChange={(e) => setPriceRange(e.target.value)}
-                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
-              >
+              <Label>Price Range</Label>
+              <select value={priceRange} onChange={(e) => setPriceRange(e.target.value)} className={FIELD_CLS}>
                 <option value="">Any Price</option>
                 <option value="30 Million-Below">Under 30M</option>
                 <option value="31 Million-39 Million">31M – 39M</option>
@@ -195,14 +206,8 @@ const Hero = () => {
 
             {/* Side */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-semibold text-gray-700 tracking-wide">
-                Property Side
-              </label>
-              <select
-                value={propertySide}
-                onChange={(e) => setPropertySide(e.target.value)}
-                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
-              >
+              <Label>Property Side</Label>
+              <select value={propertySide} onChange={(e) => setPropertySide(e.target.value)} className={FIELD_CLS}>
                 <option value="">Any Side</option>
                 <option value="Sea Side">Sea Side</option>
                 <option value="Land Side">Land Side</option>
@@ -210,43 +215,34 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Row 2: Type · Beds · Button */}
+          {/* Row 2 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             {/* Type */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">
-                Property Type
-              </label>
-              <select
-                value={propertyType}
-                onChange={(e) => setPropertyType(e.target.value)}
-                className="border-2 border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-500 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all cursor-pointer"
-              >
+              <Label>Property Type</Label>
+              <select value={propertyType} onChange={(e) => setPropertyType(e.target.value)} className={FIELD_CLS}>
                 <option value="">Any Type</option>
                 <option value="Apartment">Apartment</option>
                 <option value="House">House</option>
+                <option value="Villa">Villa</option>
                 <option value="Land">Land</option>
                 <option value="Commercial">Commercial</option>
-                <option value="Other">Other</option>
               </select>
             </div>
 
-            {/* Beds — pills */}
+            {/* Beds */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold tracking-wide">
-                Bedrooms
-              </label>
+              <Label>Bedrooms</Label>
               <div className="flex gap-2">
                 {["1", "2", "3", "4", "5+"].map((n) => (
                   <button
                     key={n}
                     type="button"
                     onClick={() => setBeds(beds === n ? "" : n)}
-                    className={`flex-1 py-2 rounded-2xl text-sm border-2 transition-all font-semibold
-                      ${
-                        beds === n
-                          ? "bg-orange-500 border-orange-500 text-white"
-                          : "border-gray-200 bg-gray-50 text-gray-500 hover:border-orange-300 hover:text-orange-500"
+                    className={`flex-1 py-2.5 rounded-xl text-xs border transition-all font-extrabold
+                      ${beds === n
+                        ? "bg-orange-500 border-orange-500 text-white shadow-sm"
+                        : "border-gray-200 bg-gray-50 text-gray-500 hover:border-orange-300 hover:text-orange-500"
                       }`}
                   >
                     {n}
@@ -256,54 +252,30 @@ const Hero = () => {
             </div>
 
             {/* Submit */}
-            <button
-              type="submit"
-              className="btn-orange-sm"
-            >
-              <TbSearch size={17} /> Search
+            <button type="submit" className="btn-orange-sm gap-2">
+              <TbSearch size={16} />
+              Search
             </button>
           </div>
 
           {/* Active filter chips */}
-          {activeCount > 0 && (
-            <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100 items-center">
-              {keyword && (
-                <Chip label={keyword} onRemove={() => setKeyword("")} />
-              )}
-              {priceRange && (
-                <Chip
-                  label={priceRange.replace("-", " – ")}
-                  onRemove={() => setPriceRange("")}
-                />
-              )}
-              {propertySide && (
-                <Chip
-                  label={propertySide}
-                  onRemove={() => setPropertySide("")}
-                />
-              )}
-              {propertyType && (
-                <Chip
-                  label={propertyType}
-                  onRemove={() => setPropertyType("")}
-                />
-              )}
-              {beds && (
-                <Chip label={`${beds} beds`} onRemove={() => setBeds("")} />
-              )}
-              <button
-                type="button"
-                onClick={() => {
-                  setKeyword("");
-                  setPriceRange("");
-                  setPropertySide("");
-                  setPropertyType("");
-                  setBeds("");
-                }}
-                className="text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors ml-1"
-              >
-                Clear all
-              </button>
+          {activeFilters.length > 0 && (
+            <div className="flex flex-wrap gap-2 mt-5 pt-4 border-t border-gray-100 items-center">
+              {activeFilters.map((f) => (
+                <span
+                  key={f.key}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-bold text-orange-600"
+                >
+                  {f.label}
+                  <button
+                    type="button"
+                    onMouseDown={(e) => { e.preventDefault(); f.clear(); }}
+                    className="text-orange-400 hover:text-orange-700 transition-colors leading-none"
+                  >
+                    <TbX size={11} />
+                  </button>
+                </span>
+              ))}
             </div>
           )}
         </form>
@@ -311,18 +283,5 @@ const Hero = () => {
     </div>
   );
 };
-
-const Chip = ({ label, onRemove }: { label: string; onRemove: () => void }) => (
-  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-medium text-orange-700">
-    {label}
-    <button
-      type="button"
-      onClick={onRemove}
-      className="text-orange-400 hover:text-orange-600 transition-colors leading-none"
-    >
-      ✕
-    </button>
-  </span>
-);
 
 export default Hero;

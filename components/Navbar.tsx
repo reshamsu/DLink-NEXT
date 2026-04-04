@@ -35,12 +35,7 @@ const Navbar = () => {
   return (
     <header className="fixed z-40 w-full select-none">
       <nav
-        className={`max-w-6xl lg:mt-2 2xl:mt-3 lg:mx-auto select-none flex items-center justify-between transition-all duration-300 ${
-          scrolled
-            ? "bg-white/90 backdrop-blur-lg shadow-sm py-4 md:py-0 px-6 2xl:mx-auto"
-            : "bg-transparent py-4 md:py-2 lg:py-0 pr-5 2xl:px-0"
-        }`}
-      >
+        className="max-w-6xl mx-auto py-2.5 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 mr-20">
           <div className="relative w-14 h-14">
             <Image
@@ -57,7 +52,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden h-full gap-2 lg:flex text-[13px]">
+        <ul className="hidden h-full gap-2 lg:flex text-xs">
           {Nav_Links.map((link) => {
             const isActive =
               link.href === "/"
