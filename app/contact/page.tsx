@@ -7,6 +7,8 @@ import { TbMail, TbMapPin, TbPhone, TbSend2 } from "react-icons/tb";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
+export const runtime = "edge";
+
 const FALLBACK_IMAGES = ["/assets/hero/.jpg"];
 interface HeroRow {
   hero_title: string;
