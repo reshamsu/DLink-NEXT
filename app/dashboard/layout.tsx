@@ -7,12 +7,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <Sidebar />
-        <main className="relative overflow-hidden">{children}</main>
-        {/* <Reserved /> */}
-      </body>
-    </html>
+    <>
+      <Sidebar />
+      <main className="relative overflow-hidden">{children}</main>
+      {/* <Reserved /> */}
+    </>
   );
 }

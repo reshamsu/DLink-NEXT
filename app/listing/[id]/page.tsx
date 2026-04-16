@@ -77,7 +77,7 @@ const Page = () => {
     const fetch = async () => {
       setLoading(true);
       const { data, error } = await supabase
-        .from("listing")
+        .from("dlink_listings")
         .select("*")
         .eq("id", id)
         .single();
@@ -196,7 +196,7 @@ const Page = () => {
     <div className="max-w-6xl mx-auto mt-20 px-0 xl:px-6 2xl:px-0">
       {/* ── Mobile: full-width slider ── */}
       <div
-        className="md:hidden relative h-[55vh] w-full overflow-hidden select-none"
+        className="md:hidden relative h-[64vh] w-full overflow-hidden select-none"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -250,7 +250,7 @@ const Page = () => {
 
       {/* ── Desktop: grid gallery ── */}
       <div className="hidden md:block select-none px-0">
-        <div className="grid grid-cols-[3fr_2fr] gap-1.5 h-[62vh] bg-black rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-[3fr_2fr] gap-1.5 h-[80vh] bg-black rounded-3xl overflow-hidden">
           {/* Main image */}
           <div
             className="relative group cursor-pointer"

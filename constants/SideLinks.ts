@@ -8,6 +8,7 @@ export const Side_Links = [
     submenu: [
       { label: "All Listings", href: "/dashboard/listings/all" },
       { label: "Add Listings", href: "/dashboard/listings/add" },
+      { label: "Edit Listings", href: "/dashboard/listings/edit" },
     ],
   },
 

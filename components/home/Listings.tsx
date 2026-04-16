@@ -109,7 +109,7 @@ const Listings: React.FC = () => {
       setVisibleCount(INITIAL_VISIBLE);
 
       let query = supabase
-        .from("listing")
+        .from("dlink_listings")
         .select("*")
         .order("created_at", { ascending: false });
 
