@@ -90,7 +90,7 @@ const Listings: React.FC = () => {
       setLoading(true);
 
       const { data, error } = await supabase
-        .from("listing")
+        .from("dlink_listings")
         .select("*")
         .eq("property_type", "Commercial")
         .order("created_at", { ascending: false });

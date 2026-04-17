@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { supabase } from "@/lib/supabaseClient";
-import { TbMail, TbMapPin, TbPhone, TbSend2 } from "react-icons/tb";
+import { TbMail, TbPhone, TbSend2 } from "react-icons/tb";
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 
