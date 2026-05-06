@@ -80,7 +80,7 @@ export default function AllListings() {
     const load = async () => {
       setLoading(true);
       const { data, error } = await supabase
-        .from("dlink_listings")
+        .from("property")
         .select("*")
         .order("created_at", { ascending: false });
 
@@ -113,7 +113,7 @@ export default function AllListings() {
   );
 
   return (
-    <div className="bg-gray-100 min-h-screen text-gray-800">
+    <div className="bg-orange-600/5 min-h-screen text-gray-800">
       <div className="max-w-6xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
 
         {/* ── Header ── */}
@@ -201,7 +201,7 @@ export default function AllListings() {
 
           /* ── Grid view ── */
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
             initial="hidden"
             animate="visible"
           >

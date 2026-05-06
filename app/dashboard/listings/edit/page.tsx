@@ -176,7 +176,7 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
   useEffect(() => {
     const load = async () => {
       const { data, error } = await supabase
-        .from("dlink_listings")
+        .from("property")
         .select("id, property_title, property_subtitle, city, status, image_urls")
         .order("created_at", { ascending: false });
       if (!error && data) {
@@ -200,7 +200,7 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen text-gray-800">
+    <div className="bg-orange-600/5 min-h-screen text-gray-800">
       <div className="max-w-5xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-extrabold">
@@ -316,7 +316,7 @@ function EditForm({ id }: { id: string }) {
     const fetchListing = async () => {
       setLoading(true);
       const { data, error } = await supabase
-        .from("dlink_listings")
+        .from("property")
         .select("*")
         .eq("id", id)
         .single();
@@ -430,7 +430,7 @@ function EditForm({ id }: { id: string }) {
     };
 
     const { error } = await supabase
-      .from("dlink_listings")
+      .from("property")
       .update(payload)
       .eq("id", listing.id);
 

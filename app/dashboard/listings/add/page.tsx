@@ -248,7 +248,7 @@ const Page = () => {
     };
 
     const { data, error } = await supabase
-      .from("dlink_listings")
+      .from("property")
       .insert([payload])
       .select()
       .single();
@@ -281,7 +281,7 @@ const Page = () => {
   const DOCUMENTS = ["Sales Agreement", "Deed", "COC", "Bimsaviya Certificate"];
 
   return (
-    <div className="bg-gray-100 min-h-screen text-gray-800">
+    <div className="bg-orange-600/5 min-h-screen text-gray-800">
       <div className="max-w-5xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
 
         {/* ── Page header ──────────────────────────────────────────────── */}

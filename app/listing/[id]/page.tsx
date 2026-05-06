@@ -77,7 +77,7 @@ const Page = () => {
     const fetch = async () => {
       setLoading(true);
       const { data, error } = await supabase
-        .from("dlink_listings")
+        .from("property")
         .select("*")
         .eq("id", id)
         .single();
