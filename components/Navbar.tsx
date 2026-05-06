@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <header className="fixed z-40 w-full select-none">
       <nav
-        className="max-w-6xl mx-auto py-2.5 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
+        className="max-w-6xl mx-auto py-2 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
         <Link href="/" className="flex items-center gap-2 mr-20">
           <div className="relative w-14 h-14">
             <Image
@@ -110,7 +110,7 @@ const Navbar = () => {
 
         {/* Desktop Right Side */}
         <div className="flex items-center gap-4 text-sm select-none">
-          <div className="hidden lg:flex gap-4">
+          <div className="hidden md:flex gap-4">
             <Link
               href="https://wa.me/94761676603"
               className="select-none btn-dark-sm btn-dynamic"
