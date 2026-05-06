@@ -109,7 +109,7 @@ const Hero = () => {
     };
 
     const { error } = await supabase
-      .from("dlink_contact")
+      .from("contact")
       .insert([payload])
       .select()
       .single();
