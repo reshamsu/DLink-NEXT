@@ -237,6 +237,7 @@ const Page = () => {
 
     const payload = {
       ...form,
+      organization_id: "P02",
       id: Date.now(),
       bedrooms: Number(form.bedrooms),
       bathrooms: Number(form.bathrooms),

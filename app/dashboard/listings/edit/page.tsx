@@ -397,6 +397,7 @@ function EditForm({ id }: { id: string }) {
     }
 
     const payload = {
+      organization_id: "P02",
       property_title: listing.property_title,
       property_subtitle: listing.property_subtitle,
       property_type: listing.property_type,
