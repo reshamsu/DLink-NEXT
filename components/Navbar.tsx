@@ -36,18 +36,17 @@ const Navbar = () => {
     <header className="fixed z-40 w-full select-none">
       <nav
         className="max-w-6xl mx-auto py-2 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
-        <Link href="/" className="flex items-center gap-2 mr-20">
-          <div className="relative w-14 h-14">
-            <Image
-              src="/favicon.ico"
-              alt="DC"
-              fill
-              className="object-contain"
-            />
-          </div>
+        <Link href="/" className="flex items-center gap-2 mr-10">
+          <Image
+            src="/favicon.ico"
+            alt="DC"
+            width={60}
+            height={10}
+            className="object-contain"
+          />
           <div>
-            <h1 className="text-base 2xl:text-lg font-extrabold">D-Link</h1>
-            <p className="text-xs">Colombo</p>
+            <h1 className="text-base 2xl:text-lg font-extrabold text-orange-500">ROY.SU REALTORS</h1>
+            <p className="text-xs font-medium ">D-Link Colombo (Pvt) Ltd.</p>
           </div>
         </Link>
 

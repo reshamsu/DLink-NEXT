@@ -11,6 +11,7 @@ import {
 import { TbMail } from "react-icons/tb";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Copyright } from "lucide-react";
 
 const Footer = () => {
   const router = useRouter();
@@ -28,19 +29,23 @@ const Footer = () => {
             <Link href="/" className="flex flex-col items-center gap-2">
               <Image
                 src="/favicon.ico"
-                alt="TQ"
-                width={64}
-                height={64}
+                alt="DC"
+                width={60}
+                height={10}
                 className="object-contain"
               />
-              <span className="text-white text-lg font-bold">
-                D-Link Colombo
-              </span>
+              <div>
+                <h1 className="text-base 2xl:text-lg font-extrabold text-orange-500">
+                  ROY.SU REALTORS
+                </h1>
+                <p className="text-xs font-medium ">
+                  D-Link Colombo (Pvt) Ltd.
+                </p>
+              </div>
             </Link>
-
-            <p className="text-sm">
+            {/* <p className="text-sm">
               Find your next property with D-Link Colombo.
-            </p>
+            </p> */}
 
             <ul className="flex gap-2 text-lg 2xl:text-xl">
               <li>
@@ -217,10 +222,22 @@ const Footer = () => {
         </div>
 
         {/* Bottom Line */}
-        <div className="w-full flex flex-col items-center gap-3">
-          <p className="text-sm flex items-center text-center gap-2">
-            <FaRegCopyright /> 2025 D-Link Colombo. All Rights Reserved.
-          </p>
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 w-full">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 text-xs text-gray-400 text-center md:text-left">
+            <Copyright size={14} />
+            <span>
+              2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved. Powered by {" "}
+              <Link
+                href="https://atlascreate.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#dd9e5e] underline"
+              >
+                Atlas'Create
+              </Link>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
