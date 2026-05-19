@@ -25,20 +25,20 @@ const Footer = () => {
     <footer className="bg-gray-950 text-gray-500 border-t border-white/10">
       <div className="max-w-6xl mx-auto py-14 pb-10 px-8 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
-          <div className="flex flex-col items-center text-center gap-4 w-full md:w-xs">
+          <div className="flex flex-col items-center text-center gap-4 w-full md:w-sm">
             <Link href="/" className="flex flex-col items-center gap-2">
               <Image
                 src="/favicon.ico"
                 alt="DC"
-                width={60}
-                height={10}
+                width={80}
+                height={20}
                 className="object-contain"
               />
               <div>
-                <h1 className="text-base 2xl:text-lg font-extrabold text-orange-500">
-                  ROY.SU REALTORS
+                <h1 className="text-base 2xl:text-lg font-extrabold uppercase text-gray-300">
+                  D-Link Estate
                 </h1>
-                <p className="text-xs font-medium ">
+                <p className="text-[11px] text-gray-400">
                   D-Link Colombo (Pvt) Ltd.
                 </p>
               </div>
@@ -217,7 +217,7 @@ const Footer = () => {
               placeholder="Enter your email"
               className="px-6 py-3 rounded-3xl text-sm bg-white/10 text-white"
             />
-            <button className="btn-light-sm">Subscribe</button>
+            <button className="btn-orange-sm">Subscribe</button>
           </div>
         </div>
 
@@ -227,7 +227,7 @@ const Footer = () => {
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 text-xs text-gray-400 text-center md:text-left">
             <Copyright size={14} />
             <span>
-              2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved. Powered by {" "}
+              2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved. Powered by{" "}
               <Link
                 href="https://atlascreate.io"
                 target="_blank"

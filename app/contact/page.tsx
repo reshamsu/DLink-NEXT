@@ -240,10 +240,10 @@ const Hero = () => {
               >
                 Email Us
                 <Link
-                  href="mailto:dlink.colombo@gmail.com"
+                  href="mailto:info@dlink-colombo.com"
                   className="text-sm md:text-base font-medium hover:underline break-all"
                 >
-                  dlink.colombo@gmail.com
+                  info@dlink-colombo.com
                 </Link>
               </label>
             </div>

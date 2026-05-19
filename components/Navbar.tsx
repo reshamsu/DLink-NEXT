@@ -36,17 +36,17 @@ const Navbar = () => {
     <header className="fixed z-40 w-full select-none">
       <nav
         className="max-w-6xl mx-auto py-2 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
-        <Link href="/" className="flex items-center gap-2 mr-10">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/favicon.ico"
             alt="DC"
             width={60}
-            height={10}
+            height={20}
             className="object-contain"
           />
           <div>
-            <h1 className="text-base 2xl:text-lg font-extrabold text-orange-500">ROY.SU REALTORS</h1>
-            <p className="text-xs font-medium ">D-Link Colombo (Pvt) Ltd.</p>
+            <h1 className="text-base font-extrabold uppercase">D-Link Estate</h1>
+            <p className="text-[11px] text-gray-500">D-Link Colombo (Pvt) Ltd.</p>
           </div>
         </Link>
 
@@ -123,9 +123,9 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
-              <TbX className="w-8 h-8 cursor-pointer" />
+              <TbX className="w-7 h-7 cursor-pointer" />
             ) : (
-              <TbMenu className="w-8 h-8 cursor-pointer text-orange-500" />
+              <TbMenu className="w-7 h-7 cursor-pointer text-orange-600" />
             )}
           </button>
         </div>
@@ -133,7 +133,7 @@ const Navbar = () => {
 
       {/* Mobile Dropdown */}
       <div
-        className={`absolute top-full left-0 w-full bg-white text-black overflow-hidden shadow-md lg:hidden 
+        className={`absolute top-full left-0 w-full bg-white/90 backdrop-blur-xl text-black overflow-hidden shadow-2xl rounded-b-3xl lg:hidden 
           transition-transform duration-300 ease-in-out origin-top 
           ${isOpen ? "scale-y-100" : "scale-y-0"}`}
       >
