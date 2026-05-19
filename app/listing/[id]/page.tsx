@@ -454,7 +454,7 @@ const Page = () => {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <Link
                 href="tel:+94761676603"
                 className="btn-orange-sm select-none w-full justify-center gap-2"

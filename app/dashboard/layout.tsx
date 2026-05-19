@@ -1,5 +1,5 @@
 import Sidebar from "@/components/Sidebar";
-// import Reserved from "@/components/Reserved";
+import AuthGuard from "@/components/AuthGuard";
 
 export default function DashboardLayout({
   children,
@@ -7,10 +7,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <AuthGuard>
       <Sidebar />
       <main className="relative overflow-hidden">{children}</main>
-      {/* <Reserved /> */}
-    </>
+    </AuthGuard>
   );
 }

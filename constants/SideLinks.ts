@@ -1,5 +1,5 @@
 export const Side_Links = [
-  { key: "overview", label: "Overview", href: "/dashboard" },
+  { key: "overview",  label: "Overview",  href: "/dashboard" },
 
   {
     key: "listings",
@@ -7,26 +7,14 @@ export const Side_Links = [
     href: "/dashboard/listings",
     submenu: [
       { label: "All Listings", href: "/dashboard/listings/all" },
-      { label: "Add Listings", href: "/dashboard/listings/add" },
-      { label: "Edit Listings", href: "/dashboard/listings/edit" },
+      { label: "Add Listing",  href: "/dashboard/listings/add" },
+      { label: "Edit Listing", href: "/dashboard/listings/edit" },
     ],
   },
 
-  {
-    key: "bookings",
-    label: "Bookings",
-    href: "/dashboard/bookings",
-  },
-
-  {
-    key: "users",
-    label: "Users",
-    href: "/dashboard/users",
-  },
-
-  {
-    key: "logout",
-    label: "Logout",
-    href: "/logout",
-  },
+  { key: "bookings", label: "Bookings", href: "/dashboard/bookings" },
+  { key: "users",    label: "Users",    href: "/dashboard/users" },
+  { key: "reports",  label: "Reports",  href: "/dashboard/reports" },
+  { key: "settings", label: "Settings", href: "/dashboard/settings" },
+  { key: "logout",   label: "Logout",   href: "/logout" },
 ];
