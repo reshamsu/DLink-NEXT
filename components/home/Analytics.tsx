@@ -42,7 +42,7 @@ const Analytics: React.FC = () => {
     <section className="bg-gray-100 text-gray-800">
       <div className="max-w-6xl mx-auto py-16 px-8 2xl:px-0">
         <div className="flex flex-col gap-3 mb-10">
-          <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+          <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
             SERVICE
           </p>
           <h1 className="text-2xl 2xl:text-3xl font-extrabold">Our Expertise</h1>
@@ -63,7 +63,7 @@ const Analytics: React.FC = () => {
               className="bg-white rounded-3xl shadow-md hover:shadow-xl transition-shadow duration-300 p-6 flex flex-col gap-5 group"
             >
               <div className="flex items-start justify-between">
-                <div className="w-14 h-14 flex items-center justify-center bg-orange-500 rounded-2xl group-hover:bg-orange-600 transition-colors duration-300">
+                <div className="w-14 h-14 flex items-center justify-center bg-blue-500 rounded-2xl group-hover:from-cyan-500 hover:to-violet-700 transition-colors duration-300">
                   <card.Icon size={28} className="text-white" />
                 </div>
                 <span className="text-4xl font-extrabold text-gray-100 select-none leading-none">

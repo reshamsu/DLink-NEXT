@@ -5,14 +5,10 @@ import HideFooter from "@/components/HideFooter";
 import GoogleProvider from "./GoogleProvider";
 
 export const metadata: Metadata = {
-  title: "D-Link Colombo | The Listing Platform",
-  description: "Real Estate Listing Platform",
+  title: "D-Link Real Estate | Colombo's Premium Platform",
+  description: "Discover your dream home with D-Link Real Estate, Colombo's premier platform for buying, selling, and renting properties. Explore a wide range of listings, from luxurious apartments to charming houses, all in one place. Experience seamless property transactions with our user-friendly interface and expert support. Your perfect home awaits at D-Link Real Estate.",
 };
-
-// const CLIENT_ID =
-//   process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ||
-//   "314289367130-rbn1rsehinifmife9k76ng0gcbulhfrb.apps.googleusercontent.com";
-
+  
 export default function RootLayout({
   children,
 }: {

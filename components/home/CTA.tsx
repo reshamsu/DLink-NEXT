@@ -19,12 +19,12 @@ const CTA = () => {
           {/* Left — dark content panel */}
           <div className="bg-gray-900 text-white flex flex-col justify-between gap-8 p-10 md:p-12">
             <div className="flex flex-col gap-4">
-              <p className="text-xs font-extrabold bg-orange-500/15 text-orange-400 w-fit px-4 py-2 rounded-full tracking-widest uppercase">
+              <p className="text-xs font-extrabold bg-blue-500/15 text-blue-500 w-fit px-4 py-2 rounded-full tracking-widest uppercase">
                 Get In Touch
               </p>
               <h2 className="text-2xl md:text-3xl font-extrabold leading-tight">
                 Ready to Invest?{" "}
-                <span className="text-orange-400">Speak With an Expert.</span>
+                <span className="text-blue-500">Speak With an Expert.</span>
               </h2>
               <p className="text-sm text-gray-400 leading-relaxed">
                 Get personalized guidance on buying, selling, or investing in
@@ -36,7 +36,7 @@ const CTA = () => {
             <div className="flex flex-col gap-3">
               <Link
                 href="https://wa.me/94761676603"
-                className="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white font-bold text-sm px-6 py-3 rounded-2xl transition-colors duration-200 w-fit"
+                className="inline-flex items-center gap-3 bg-blue-500 hover:from-cyan-500 hover:to-violet-700 text-white font-bold text-sm px-6 py-3 rounded-2xl transition-colors duration-200 w-fit"
               >
                 <TbBrandWhatsapp size={18} />
                 Book a Consultation
@@ -53,7 +53,7 @@ const CTA = () => {
           </div>
 
           {/* Right — stats panel */}
-          <div className="bg-orange-500 flex flex-col justify-between p-10 md:p-12">
+          <div className="bg-blue-500 flex flex-col justify-between p-10 md:p-12">
             <p className="text-xs font-extrabold text-white/70 uppercase tracking-widest mb-8">
               Why Trust Us
             </p>

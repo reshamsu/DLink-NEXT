@@ -113,14 +113,14 @@ export default function AllListings() {
   );
 
   return (
-    <div className="bg-orange-600/5 min-h-screen text-gray-800">
+    <div className="bg-blue-600/5 min-h-screen text-gray-800">
       <div className="max-w-6xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
 
         {/* ── Header ── */}
         <div className="flex items-start justify-between gap-4">
           <div>
             <h1 className="text-2xl font-extrabold">
-              All <span className="text-orange-500">Listings</span>
+              All <span className="text-blue-600">Listings</span>
             </h1>
             <p className="text-xs text-gray-400 mt-0.5">
               {loading ? "Loading…" : `${listings.length} listing${listings.length !== 1 ? "s" : ""} total`}
@@ -128,7 +128,7 @@ export default function AllListings() {
           </div>
           <Link
             href="/dashboard/listings/add"
-            className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all hover:scale-105 duration-200 shrink-0"
+            className="inline-flex items-center gap-2 bg-blue-500 hover:from-cyan-500 hover:to-violet-700 text-white text-xs font-bold px-4 py-2.5 rounded-full transition-all hover:scale-105 duration-200 shrink-0"
           >
             <TbPlus size={15} /> Add Listing
           </Link>
@@ -143,7 +143,7 @@ export default function AllListings() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by title or city…"
-              className="bg-white border border-gray-200 rounded-xl pl-10 pr-4 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 transition placeholder:text-gray-400"
+              className="bg-white border border-gray-200 rounded-xl pl-10 pr-4 py-2.5 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition placeholder:text-gray-400"
             />
           </div>
 
@@ -151,7 +151,7 @@ export default function AllListings() {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+            className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
           >
             {["All", "Available", "Unavailable", "Sold"].map((s) => (
               <option key={s}>{s}</option>
@@ -162,7 +162,7 @@ export default function AllListings() {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 transition"
+            className="bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
           >
             {types.map((t) => (
               <option key={t}>{t}</option>
@@ -173,13 +173,13 @@ export default function AllListings() {
           <div className="flex items-center bg-white border border-gray-200 rounded-xl overflow-hidden shrink-0">
             <button
               onClick={() => setView("grid")}
-              className={`p-2.5 transition ${view === "grid" ? "bg-orange-500 text-white" : "text-gray-400 hover:text-gray-700"}`}
+              className={`p-2.5 transition ${view === "grid" ? "bg-blue-500 text-white" : "text-gray-400 hover:text-gray-700"}`}
             >
               <TbLayoutGrid size={18} />
             </button>
             <button
               onClick={() => setView("list")}
-              className={`p-2.5 transition ${view === "list" ? "bg-orange-500 text-white" : "text-gray-400 hover:text-gray-700"}`}
+              className={`p-2.5 transition ${view === "list" ? "bg-blue-500 text-white" : "text-gray-400 hover:text-gray-700"}`}
             >
               <TbList size={18} />
             </button>
@@ -189,7 +189,7 @@ export default function AllListings() {
         {/* ── States ── */}
         {loading ? (
           <div className="h-[60vh] flex items-center justify-center gap-3">
-            <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
             <p className="text-gray-500 text-sm">Loading listings…</p>
           </div>
         ) : filtered.length === 0 ? (
@@ -225,12 +225,12 @@ export default function AllListings() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
                   {/* Type badge */}
-                  <span className="absolute top-3 left-3 bg-orange-500/90 backdrop-blur-sm text-[11px] text-white font-bold px-3 py-1 rounded-lg">
+                  <span className="absolute top-3 left-3 bg-blue-500/90 backdrop-blur-sm text-[11px] text-white font-bold px-3 py-1 rounded-lg">
                     {listing.property_type} · {listing.listing_type}
                   </span>
 
                   {/* Price */}
-                  <span className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs text-orange-600 font-extrabold px-3 py-1 rounded-lg">
+                  <span className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm text-xs text-blue-600 font-extrabold px-3 py-1 rounded-lg">
                     LKR {listing.price}
                   </span>
 
@@ -250,22 +250,22 @@ export default function AllListings() {
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="text-sm font-extrabold text-gray-800 hover:text-orange-500 transition line-clamp-1"
+                      className="text-sm font-extrabold text-gray-800 hover:text-blue-600 transition line-clamp-1"
                     >
                       {listing.property_title}
                     </Link>
                     <p className="text-[11px] text-gray-400 mt-0.5 flex items-center gap-1 line-clamp-1">
-                      <TbMapPin size={11} className="text-orange-400 shrink-0" />
+                      <TbMapPin size={11} className="text-blue-500 shrink-0" />
                       {listing.city} — {listing.location}
                     </p>
                   </div>
 
                   {/* Specs */}
                   <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px] font-semibold text-gray-600 border-t border-gray-100 pt-3">
-                    <span className="flex items-center gap-1.5"><TbBed size={13} className="text-orange-400" />{listing.bedrooms} Bed</span>
-                    <span className="flex items-center gap-1.5"><TbBath size={13} className="text-orange-400" />{listing.bathrooms} Bath</span>
-                    <span className="flex items-center gap-1.5"><TbBuilding size={13} className="text-orange-400" />{listing.floors || "—"} Floor</span>
-                    <span className="flex items-center gap-1.5"><TbSquareCheck size={13} className="text-orange-400" />{listing.perches || "—"} Perch</span>
+                    <span className="flex items-center gap-1.5"><TbBed size={13} className="text-blue-500" />{listing.bedrooms} Bed</span>
+                    <span className="flex items-center gap-1.5"><TbBath size={13} className="text-blue-500" />{listing.bathrooms} Bath</span>
+                    <span className="flex items-center gap-1.5"><TbBuilding size={13} className="text-blue-500" />{listing.floors || "—"} Floor</span>
+                    <span className="flex items-center gap-1.5"><TbSquareCheck size={13} className="text-blue-500" />{listing.perches || "—"} Perch</span>
                   </div>
 
                   {/* Footer */}
@@ -282,7 +282,7 @@ export default function AllListings() {
                     </div>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-orange-500 hover:bg-orange-600 text-white transition-all hover:scale-110 duration-200"
+                      className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500 hover:from-cyan-500 hover:to-violet-700 text-white transition-all hover:scale-110 duration-200"
                     >
                       <TbArrowRight size={16} />
                     </Link>
@@ -303,7 +303,7 @@ export default function AllListings() {
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 p-4 group hover:border-orange-200 hover:shadow-md transition-all duration-200"
+                className="bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4 p-4 group hover:border-blue-200 hover:shadow-md transition-all duration-200"
               >
                 {/* Thumbnail */}
                 <div className="relative w-20 h-20 rounded-xl overflow-hidden shrink-0">
@@ -319,19 +319,19 @@ export default function AllListings() {
                 <div className="flex-1 min-w-0">
                   <Link
                     href={`/listing/${listing.id}`}
-                    className="text-sm font-extrabold text-gray-800 hover:text-orange-500 transition line-clamp-1"
+                    className="text-sm font-extrabold text-gray-800 hover:text-blue-600 transition line-clamp-1"
                   >
                     {listing.property_title}
                   </Link>
                   <p className="text-[11px] text-gray-400 mt-0.5 flex items-center gap-1">
-                    <TbMapPin size={11} className="text-orange-400" />
+                    <TbMapPin size={11} className="text-blue-500" />
                     {listing.city} — {listing.location}
                   </p>
                   <div className="flex items-center gap-2 mt-2 flex-wrap">
                     <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${statusStyle[listing.status] ?? "bg-gray-100 text-gray-500"}`}>
                       {listing.status}
                     </span>
-                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-orange-50 text-orange-500 border border-orange-200">
+                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-blue-50 text-blue-600 border border-blue-200">
                       {listing.property_type} · {listing.listing_type}
                     </span>
                   </div>
@@ -339,9 +339,9 @@ export default function AllListings() {
 
                 {/* Specs */}
                 <div className="hidden md:flex items-center gap-4 text-xs font-semibold text-gray-500 shrink-0">
-                  <span className="flex items-center gap-1"><TbBed size={14} className="text-orange-400" />{listing.bedrooms}</span>
-                  <span className="flex items-center gap-1"><TbBath size={14} className="text-orange-400" />{listing.bathrooms}</span>
-                  <span className="flex items-center gap-1"><TbCurrencyDollar size={14} className="text-orange-400" />{listing.price}</span>
+                  <span className="flex items-center gap-1"><TbBed size={14} className="text-blue-500" />{listing.bedrooms}</span>
+                  <span className="flex items-center gap-1"><TbBath size={14} className="text-blue-500" />{listing.bathrooms}</span>
+                  <span className="flex items-center gap-1"><TbCurrencyDollar size={14} className="text-blue-500" />{listing.price}</span>
                 </div>
 
                 {/* Actions */}
@@ -354,7 +354,7 @@ export default function AllListings() {
                   </Link>
                   <Link
                     href={`/listing/${listing.id}`}
-                    className="p-2 rounded-xl bg-orange-500 hover:bg-orange-600 text-white transition-all duration-200"
+                    className="p-2 rounded-xl bg-blue-500 hover:from-cyan-500 hover:to-violet-700 text-white transition-all duration-200"
                   >
                     <TbArrowRight size={16} />
                   </Link>

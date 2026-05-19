@@ -14,53 +14,53 @@ import {
 const Values = () => {
   const items = [
     {
-      icon: <FaHandshake className="text-3xl text-orange-500" />,
+      icon: <FaHandshake className="text-3xl text-blue-600" />,
       title: "Integrity & Transparency",
       description:
         "Clear documentation, honest pricing, and zero hidden surprises.",
     },
     {
-      icon: <FaStar className="text-3xl text-orange-500" />,
+      icon: <FaStar className="text-3xl text-blue-600" />,
       title: "Service Excellence",
       description: "White-glove service from first viewing to final handover.",
     },
     {
-      icon: <FaFire className="text-3xl text-orange-500" />,
+      icon: <FaFire className="text-3xl text-blue-600" />,
       title: "Market Expertise",
       description:
         "Deep knowledge of Colombo’s prime residential and commercial zones.",
     },
     {
-      icon: <FaLightbulb className="text-3xl text-orange-500" />,
+      icon: <FaLightbulb className="text-3xl text-blue-600" />,
       title: "Smart Advisory",
       description:
         "Data-driven insights to help you buy, sell, or invest confidently.",
     },
     {
-      icon: <FaUserTie className="text-3xl text-orange-500" />,
+      icon: <FaUserTie className="text-3xl text-blue-600" />,
       title: "Professional Representation",
       description:
         "Handled by experienced property consultants and negotiators.",
     },
     {
-      icon: <FaLeaf className="text-3xl text-orange-500" />,
+      icon: <FaLeaf className="text-3xl text-blue-600" />,
       title: "Sustainable Living",
       description:
         "Promoting modern developments with long-term value and efficiency.",
     },
     {
-      icon: <FaGlobeAsia className="text-3xl text-orange-500" />,
+      icon: <FaGlobeAsia className="text-3xl text-blue-600" />,
       title: "Local & Overseas Clients",
       description: "Trusted by Sri Lankan and international buyers alike.",
     },
     {
-      icon: <FaSuitcaseRolling className="text-3xl text-orange-500" />,
+      icon: <FaSuitcaseRolling className="text-3xl text-blue-600" />,
       title: "End-to-End Support",
       description:
         "From viewings and negotiations to legal coordination and closing.",
     },
     {
-      icon: <FaBuilding className="text-3xl text-orange-500" />,
+      icon: <FaBuilding className="text-3xl text-blue-600" />,
       title: "Residential & Commercial",
       description:
         "Apartments, houses, land, offices, and investment properties.",
@@ -73,11 +73,11 @@ const Values = () => {
         {/* HEADER */}
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">
-            <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+            <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
               OUR VALUES
             </p>
             <h2 className="playfair text-3xl 2xl:text-4xl font-extrabold">
-              Why Clients<span className="text-orange-500"> Trust Us</span>
+              Why Clients<span className="text-blue-600"> Trust Us</span>
             </h2>
           </div>
           <p className="text-sm leading-relaxed text-gray-600">
@@ -96,7 +96,7 @@ const Values = () => {
               key={index}
               className="bg-white p-8 flex flex-col items-start gap-6 rounded-3xl hover:scale-[1.03] transition duration-700 shadow-lg"
             >
-              <div className="p-3 bg-orange-500/10 rounded-2xl w-fit">
+              <div className="p-3 bg-blue-500/10 rounded-2xl w-fit">
                 {item.icon}
               </div>
               <div className="flex flex-col gap-2">

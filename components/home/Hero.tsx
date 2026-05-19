@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabaseClient";
 
 const FIELD_CLS =
-  "border border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-orange-400 focus:ring-2 focus:ring-orange-100 transition-all w-full";
+  "border border-gray-200 bg-gray-50 rounded-xl px-3.5 py-2.5 text-sm text-gray-700 placeholder:text-gray-400 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 transition-all w-full";
 
 const Label = ({ children }: { children: React.ReactNode }) => (
   <label className="text-[11px] font-extrabold text-gray-400 uppercase tracking-widest">
@@ -89,13 +89,13 @@ const Hero = () => {
       <div className="relative h-[75vh] w-full overflow-hidden flex flex-col justify-center items-center text-center">
         <div className="absolute inset-0">
           <Image
-            src="/assets/banner/property5.jpg"
+            src="/assets/hero.jpg"
             alt="Hero"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-orange-600/50 via-orange-600/20 to-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-violet-700/50 via-blue-600/20 to-black/60" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center gap-6 px-6 pt-20">
@@ -105,7 +105,7 @@ const Hero = () => {
           <h1 className="text-4xl 2xl:text-5xl font-extrabold text-white flex flex-col md:flex-row items-center gap-3 leading-tight">
             Find your Next
             <ReactTyped
-              className="text-orange-500"
+              className="text-blue-600"
               strings={["Property", "Home", "Apartment", "Villa", "Land"]}
               typeSpeed={180}
               backSpeed={120}
@@ -133,7 +133,7 @@ const Hero = () => {
               <button
                 type="button"
                 onClick={() => { setKeyword(""); setPriceRange(""); setPropertySide(""); setPropertyType(""); setBeds(""); }}
-                className="text-xs text-gray-400 hover:text-orange-500 transition-colors font-bold flex items-center gap-1"
+                className="text-xs text-gray-400 hover:text-blue-600 transition-colors font-bold flex items-center gap-1"
               >
                 <TbX size={13} /> Clear all
               </button>
@@ -167,7 +167,7 @@ const Hero = () => {
                     {[0, 1, 2].map((i) => (
                       <span
                         key={i}
-                        className="w-1 h-1 rounded-full bg-orange-400 animate-bounce"
+                        className="w-1 h-1 rounded-full bg-blue-400 animate-bounce"
                         style={{ animationDelay: `${i * 0.15}s` }}
                       />
                     ))}
@@ -181,9 +181,9 @@ const Hero = () => {
                     <li
                       key={i}
                       onMouseDown={(e) => { e.preventDefault(); selectSuggestion(city); }}
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm cursor-pointer hover:bg-orange-50 hover:text-orange-600 transition-colors"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm cursor-pointer hover:bg-blue-50 hover:text-blue-600 transition-colors"
                     >
-                      <TbMapPin size={13} className="text-orange-400 shrink-0" />
+                      <TbMapPin size={13} className="text-blue-500 shrink-0" />
                       {city}
                     </li>
                   ))}
@@ -241,8 +241,8 @@ const Hero = () => {
                     onClick={() => setBeds(beds === n ? "" : n)}
                     className={`flex-1 py-2.5 rounded-xl text-xs border transition-all font-extrabold
                       ${beds === n
-                        ? "bg-orange-500 border-orange-500 text-white shadow-sm"
-                        : "border-gray-200 bg-gray-50 text-gray-500 hover:border-orange-300 hover:text-orange-500"
+                        ? "bg-blue-500 border-blue-500 text-white shadow-sm"
+                        : "border-gray-200 bg-gray-50 text-gray-500 hover:border-blue-300 hover:text-blue-600"
                       }`}
                   >
                     {n}
@@ -264,13 +264,13 @@ const Hero = () => {
               {activeFilters.map((f) => (
                 <span
                   key={f.key}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-orange-50 border border-orange-200 rounded-full text-xs font-bold text-orange-600"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 border border-blue-200 rounded-full text-xs font-bold text-blue-600"
                 >
                   {f.label}
                   <button
                     type="button"
                     onMouseDown={(e) => { e.preventDefault(); f.clear(); }}
-                    className="text-orange-400 hover:text-orange-700 transition-colors leading-none"
+                    className="text-blue-500 hover:text-blue-700 transition-colors leading-none"
                   >
                     <TbX size={11} />
                   </button>

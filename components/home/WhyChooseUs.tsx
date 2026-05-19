@@ -22,23 +22,23 @@ import Image from "next/image";
 const WhyChooseUs = () => {
   return (
     <section className="bg-gray-950 text-gray-50">
-      <div className="max-w-6xl md:mx-8 2xl:mx-auto py-16 px-8 md:px-4 2xl:px-0">
+      <div className="max-w-6xl md:mx-8 2xl:mx-auto pt-16 px-8 md:px-4 2xl:px-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-18">
           {/* Image with dark overlay */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="absolute md:relative left-0 w-full h-[60vh] sm:h-[70vh]"
+            className="absolute md:relative left-0 w-full h-[84vh]"
           >
             <Image
-              src="/assets/banner/property5.jpg"
+              src="/assets/choose.jpg"
               alt="Why Choose Us"
               width={800}
               height={800}
-              className="object-cover w-full h-[60vh] sm:h-[70vh] rounded-t-[400px] rounded-b-[20px] shadow-lg"
+              className="object-cover w-full h-[84vh] rounded-t-[400px] shadow-lg"
             />
-            <div className="absolute inset-0 bg-black/70 lg:bg-black/20 rounded-t-[400px] lg:rounded-b-[40px]"></div>
+            <div className="absolute inset-0 bg-black/80 lg:bg-black/40 rounded-t-[400px]"></div>
           </motion.div>
 
           {/* Content */}
@@ -49,7 +49,7 @@ const WhyChooseUs = () => {
               viewport={{ once: true }}
               className="mb-14"
             >
-              <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+              <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
                 OUR EXPERTISE
               </p>
               <h1 className="text-3xl lg:text-4xl font-extrabold my-6">
@@ -67,18 +67,18 @@ const WhyChooseUs = () => {
               {[
                 {
                   icon: (
-                    <FaSearchLocation className="text-orange-400 text-6xl" />
+                    <FaSearchLocation className="text-blue-500 text-6xl" />
                   ),
                   title: "Personalized Property Search",
                   text: "We tailor each property search to match your unique needs, preferences, and budget—no guesswork, just results.",
                 },
                 {
-                  icon: <FaCity className="text-orange-400 text-6xl" />,
+                  icon: <FaCity className="text-blue-500 text-6xl" />,
                   title: "Prime Listings in Colombo",
                   text: "Gain access to verified, high-value properties across the most sought-after locations in Colombo and beyond.",
                 },
                 {
-                  icon: <FaHandshake className="text-orange-400 text-6xl" />,
+                  icon: <FaHandshake className="text-blue-500 text-6xl" />,
                   title: "Trusted Guidance & Support",
                   text: "From first viewing to final paperwork, our expert team is by your side—transparent, responsive, and reliable.",
                 },

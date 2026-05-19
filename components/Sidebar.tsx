@@ -18,7 +18,7 @@ export default function Sidebar() {
     <>
       {/* Mobile Toggle */}
       <button
-        className="lg:hidden fixed top-6 left-6 z-50 bg-white text-orange-500 p-3 rounded-xl shadow"
+        className="lg:hidden fixed top-6 left-6 z-50 bg-white text-blue-600 p-3 rounded-xl shadow"
         onClick={() => setOpen(true)}
       >
         <TbMenu size={26} />

@@ -66,8 +66,8 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-600/10 font-semibold text-orange-500"
-                          : "hover:font-bold text-gray-900 hover:text-orange-600/70"
+                          ? "bg-blue-500/10 font-semibold text-blue-600"
+                          : "hover:font-bold text-gray-900 hover:text-blue-600/70"
                       }`}
                   >
                     {link.label}
@@ -79,8 +79,8 @@ const Navbar = () => {
                     className={`flex items-center cursor-pointer font-semibold transition-all duration-500 rounded-full py-2 px-4
                       ${
                         isActive
-                          ? "bg-orange-600/10 font-semibold text-orange-500"
-                          : "hover:font-bold text-gray-900 hover:text-orange-600/80"
+                          ? "bg-blue-500/10 font-semibold text-blue-600"
+                          : "hover:font-bold text-gray-900 hover:text-blue-600/80"
                       }`}
                   >
                     {link.label}
@@ -93,7 +93,7 @@ const Navbar = () => {
                     {link.submenu.map((sublink) => (
                       <li
                         key={sublink.href}
-                        className="py-2 px-4 rounded-xl text-black hover:text-orange-600 hover:bg-orange-600/10 transition"
+                        className="py-2 px-4 rounded-xl text-black hover:text-blue-600 hover:bg-blue-500/10 transition"
                       >
                         <Link href={sublink.href} className="block w-full">
                           {sublink.label}
@@ -112,7 +112,7 @@ const Navbar = () => {
           <div className="hidden md:flex gap-4">
             <Link
               href="https://wa.me/94761676603"
-              className="select-none btn-dark-sm btn-dynamic"
+              className="select-none btn-orange-sm btn-dynamic"
             >
               <TbPhone size={22} /> Inquire Now
             </Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
             {isOpen ? (
               <TbX className="w-7 h-7 cursor-pointer" />
             ) : (
-              <TbMenu className="w-7 h-7 cursor-pointer text-orange-600" />
+              <TbMenu className="w-7 h-7 cursor-pointer text-blue-600" />
             )}
           </button>
         </div>
@@ -153,7 +153,7 @@ const Navbar = () => {
                         <Link
                           href={sublink.href}
                           onClick={() => setIsOpen(false)}
-                          className="block hover:text-orange-600"
+                          className="block hover:text-blue-600"
                         >
                           {sublink.label}
                         </Link>

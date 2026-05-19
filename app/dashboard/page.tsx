@@ -5,7 +5,7 @@ export default function Dashboard() {
         {/* Header */}
         <div className="flex flex-col gap-1">
           <h2 className="playfair text-3xl font-bold">
-            Dashboard <span className="text-orange-500">Analytics</span>
+            Dashboard <span className="text-blue-600">Analytics</span>
           </h2>
           <label className="text-base font-bold">
             Find all your website info and statuses here.

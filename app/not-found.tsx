@@ -6,22 +6,22 @@ export default function NotFound() {
     <div className="relative h-screen w-full pt-16 overflow-hidden flex flex-col items-center justify-center text-center bg-white">
 
       {/* Subtle background glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-orange-500/60 via-orange-500/30 to-white" />
+      <div className="absolute inset-0 bg-gradient-to-b from-violet-600/40 via-blue-500/20 to-white" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center gap-4 px-6">
 
-        <p className="text-sm md:text-base font-extrabold tracking-[0.25em] uppercase text-black">
-          RoySu Realtors · D-Link Colombo
+        <p className="text-sm md:text-base font-extrabold tracking-[0.10em] uppercase text-black">
+          D-Link Real Estate · D-Link Colombo
         </p>
 
-        <h1 className="playfair italic text-[8rem] md:text-[11rem] font-bold text-gray-800 leading-none">
+        <h1 className="playfair text-[8rem] md:text-[11rem] font-bold text-gray-800 leading-none">
           404
         </h1>
 
-        <div className="w-12 h-[3px] rounded-full bg-orange-500" />
+        <div className="w-12 h-[3px] rounded-full bg-blue-500" />
 
-        <h2 className="text-xl md:text-2xl font-semibold text-orange-500">
+        <h2 className="text-xl md:text-2xl font-semibold text-blue-600">
           Page Not Found
         </h2>
 

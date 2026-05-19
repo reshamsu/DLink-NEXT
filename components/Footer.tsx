@@ -25,8 +25,8 @@ const Footer = () => {
     <footer className="bg-gray-950 text-gray-500 border-t border-white/10">
       <div className="max-w-6xl mx-auto py-14 pb-10 px-8 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
-          <div className="flex flex-col items-center text-center gap-4 w-full md:w-sm">
-            <Link href="/" className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 w-full md:w-sm">
+            <Link href="/" className="flex flex-col items-center md:items-start gap-2">
               <Image
                 src="/favicon.ico"
                 alt="DC"
@@ -53,7 +53,7 @@ const Footer = () => {
                   href="https://wa.me/94761676603"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-blue-500 hover:border-gray-800"
                 >
                   <FaWhatsapp />
                 </Link>
@@ -63,7 +63,7 @@ const Footer = () => {
                   href="https://www.facebook.com/roysu-realtors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-blue-500 hover:border-gray-800"
                 >
                   <FaFacebook />
                 </Link>
@@ -73,7 +73,7 @@ const Footer = () => {
                   href="https://www.instagram.com/dlink.colombo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-blue-500 hover:border-gray-800"
                 >
                   <FaInstagram />
                 </Link>
@@ -83,7 +83,7 @@ const Footer = () => {
                   href="https://www.linkedin.com/dlink-colombo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-blue-500 hover:border-gray-800"
                 >
                   <FaLinkedin />
                 </Link>
@@ -91,7 +91,7 @@ const Footer = () => {
               <li>
                 <Link
                   href="mailto:info@dlinkcolombo.com"
-                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-orange-400 hover:border-gray-800"
+                  className="flex border rounded-2xl border-gray-800 p-2 hover:text-blue-500 hover:border-gray-800"
                 >
                   <TbMail />
                 </Link>
@@ -102,8 +102,8 @@ const Footer = () => {
           {/* Footer Links */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full text-xs 2xl:text-sm">
             {/* Explore */}
-            <div className="ml-0 xl:ml-24">
-              <h6 className="text-base font-semibold mb-5 text-white">
+            <div className="ml-0 xl:ml-10">
+              <h6 className="text-base font-semibold mb-4 text-white">
                 Service
               </h6>
               <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
@@ -117,7 +117,7 @@ const Footer = () => {
                   <li key={i}>
                     <Link
                       href="/explore-uae"
-                      className="hover:text-orange-400 hover:underline"
+                      className="hover:text-blue-500 hover:underline"
                     >
                       {item}
                     </Link>
@@ -127,15 +127,15 @@ const Footer = () => {
             </div>
 
             {/* Products */}
-            <div className="ml-0 xl:ml-16">
-              <h6 className="text-base font-semibold mb-5 text-white">
+            <div className="ml-0 xl:ml-10">
+              <h6 className="text-base font-semibold mb-4 text-white">
                 Find Property
               </h6>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/apartments")}
-                    className="hover:text-orange-400 hover:underline text-left"
+                    className="hover:text-blue-500 hover:underline text-left"
                   >
                     Apartments
                   </button>
@@ -143,7 +143,7 @@ const Footer = () => {
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/homes")}
-                    className="hover:text-orange-400 hover:underline text-left"
+                    className="hover:text-blue-500 hover:underline text-left"
                   >
                     Homes
                   </button>
@@ -151,7 +151,7 @@ const Footer = () => {
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/commercial")}
-                    className="hover:text-orange-400 hover:underline text-left"
+                    className="hover:text-blue-500 hover:underline text-left"
                   >
                     Commercial Property
                   </button>
@@ -159,7 +159,7 @@ const Footer = () => {
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/lands")}
-                    className="hover:text-orange-400 hover:underline text-left"
+                    className="hover:text-blue-500 hover:underline text-left"
                   >
                     Lands/Plots
                   </button>
@@ -167,7 +167,7 @@ const Footer = () => {
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/villas")}
-                    className="hover:text-orange-400 hover:underline text-left"
+                    className="hover:text-blue-500 hover:underline text-left"
                   >
                     Villas
                   </button>
@@ -177,7 +177,7 @@ const Footer = () => {
 
             {/* Company */}
             <div className="ml-0 xl:ml-10">
-              <h6 className="text-base font-semibold mb-5 text-white">
+              <h6 className="text-base font-semibold mb-4 text-white">
                 D-Link Colombo
               </h6>
               <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
@@ -191,7 +191,7 @@ const Footer = () => {
                   <li key={i}>
                     <Link
                       href="/about"
-                      className="hover:text-orange-400 hover:underline"
+                      className="hover:text-blue-500 hover:underline"
                     >
                       {item}
                     </Link>

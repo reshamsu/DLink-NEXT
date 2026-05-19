@@ -97,7 +97,7 @@ export default function Login() {
               Don't have an account?
               <Link
                 href="/login"
-                className="text-orange-600 font-bold hover:border-b-2"
+                className="text-blue-600 font-bold hover:border-b-2"
               >
                 Sign in
               </Link>{" "}

@@ -168,7 +168,7 @@ const Listings: React.FC = () => {
     <section className="bg-gray-100 text-gray-800" id="listings">
       <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-8 2xl:px-0">
         <div className="flex flex-col gap-3">
-          <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+          <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
             LISTINGS
           </p>
           <h1 className="text-xl font-extrabold">Featured Listings</h1>
@@ -176,7 +176,7 @@ const Listings: React.FC = () => {
 
         {loading ? (
           <div className="flex justify-center items-center py-20">
-            <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
             <p className="ml-3 text-gray-500">Loading listings...</p>
           </div>
         ) : listings.length === 0 ? (
@@ -206,13 +206,13 @@ const Listings: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
 
                   {/* type badge — top left */}
-                  <span className="absolute top-3 left-3 bg-white backdrop-blur-sm border border-white/25 text-[10px] text-orange-600 font-bold px-2.5 py-1 rounded-full">
+                  <span className="absolute top-3 left-3 text-white backdrop-blur-sm border border-white/10 text-[10px] bg-blue-600 font-bold px-2.5 py-1 rounded-full">
                     {listing.property_type} · {listing.listing_type}
                   </span>
 
                   {/* status dot — top right */}
                   <span
-                    className={`absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full text-white ${statusColor[listing.status] ?? "bg-orange-300"}`}
+                    className={`absolute top-3 right-3 text-[10px] font-bold px-2.5 py-1 rounded-full text-white ${statusColor[listing.status] ?? "bg-blue-400"}`}
                   >
                     {listing.status}
                   </span>
@@ -231,12 +231,12 @@ const Listings: React.FC = () => {
                   <div>
                     <Link
                       href={`/listing/${listing.id}`}
-                      className="text-[13px] font-bold hover:text-orange-600 capitalize line-clamp-1 transition-colors duration-200"
+                      className="text-[13px] font-bold hover:text-blue-600 capitalize line-clamp-1 transition-colors duration-200"
                     >
                       {listing.title}
                     </Link>
                     <p className="flex items-center gap-1 text-[11px] text-gray-400 mt-0.5">
-                      <TbMapPin size={11} className="text-orange-600 shrink-0" />
+                      <TbMapPin size={11} className="text-blue-600 shrink-0" />
                       <span className="line-clamp-1">{listing.location}</span>
                     </p>
                   </div>
@@ -244,19 +244,19 @@ const Listings: React.FC = () => {
                   {/* stats */}
                   <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 text-[11px] font-bold text-gray-600 pt-3 border-t border-gray-100">
                     <span className="flex items-center gap-1">
-                      <TbBed size={13} className="text-orange-600" />
+                      <TbBed size={13} className="text-blue-600" />
                       {listing.bedrooms} Bed
                     </span>
                     <span className="flex items-center gap-1">
-                      <TbBath size={13} className="text-orange-600" />
+                      <TbBath size={13} className="text-blue-600" />
                       {listing.bathrooms} Bath
                     </span>
                     <span className="flex items-center gap-1">
-                      <TbBuilding size={13} className="text-orange-600" />
+                      <TbBuilding size={13} className="text-blue-600" />
                       {listing.floors} Floor
                     </span>
                     <span className="flex items-center gap-1">
-                      <TbSquareCheck size={13} className="text-orange-600" />
+                      <TbSquareCheck size={13} className="text-blue-600" />
                       {listing.perches} Perch
                     </span>
                   </div>

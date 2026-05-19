@@ -124,7 +124,7 @@ const Page = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-[60vh] gap-3">
-        <div className="w-8 h-8 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
         <p className="text-gray-500 text-sm">Loading property details...</p>
       </div>
     );
@@ -215,9 +215,9 @@ const Page = () => {
         )}
         <div className="absolute top-4 inset-x-4 flex justify-between items-start z-10">
           <p className="flex items-center gap-1.5 text-xs font-bold text-white bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full">
-            <TbMapPin size={13} className="text-orange-400" /> {listing.city}
+            <TbMapPin size={13} className="text-blue-500" /> {listing.city}
           </p>
-          <span className="bg-white/90 text-xs text-orange-600 font-bold px-3 py-1.5 rounded-full">
+          <span className="bg-white/90 text-xs text-blue-600 font-bold px-3 py-1.5 rounded-full">
             {listing.property_type} · {listing.listing_type}
           </span>
         </div>
@@ -272,11 +272,11 @@ const Page = () => {
             {/* Overlays */}
             <div className="absolute top-5 left-5 flex flex-col gap-2 z-10">
               <p className="flex items-center gap-1.5 text-sm font-bold text-white bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded-full w-fit">
-                <TbMapPin size={14} className="text-orange-400" />{" "}
+                <TbMapPin size={14} className="text-blue-500" />{" "}
                 {listing.city}
               </p>
             </div>
-            <span className="absolute top-5 right-5 bg-white/90 text-xs text-orange-600 font-bold px-3.5 py-1.5 rounded-full z-10">
+            <span className="absolute top-5 right-5 bg-white/90 text-xs text-blue-600 font-bold px-3.5 py-1.5 rounded-full z-10">
               {listing.property_type} · {listing.listing_type}
             </span>
             <span className="absolute bottom-5 left-5 text-xs font-extrabold text-white/60 uppercase tracking-widest select-none z-10">
@@ -314,7 +314,7 @@ const Page = () => {
                   onClick={() => src && setCurrent(i)}
                   className={`relative overflow-hidden cursor-pointer transition-all duration-200 ${
                     isActive
-                      ? "ring-2 ring-orange-400 ring-inset"
+                      ? "ring-2 ring-blue-500 ring-inset"
                       : "opacity-80 hover:opacity-100"
                   } ${!src ? "bg-gray-800" : ""}`}
                 >
@@ -350,7 +350,7 @@ const Page = () => {
           {/* Title block */}
           <div className="flex flex-col gap-2 pb-6 border-b border-gray-200">
             <span
-              className={`text-xs font-bold px-3 py-1 rounded-full w-fit ${statusStyle[listing.status] ?? "bg-orange-50 text-orange-500 border border-orange-200"}`}
+              className={`text-xs font-bold px-3 py-1 rounded-full w-fit ${statusStyle[listing.status] ?? "bg-blue-50 text-blue-600 border border-blue-200"}`}
             >
               {listing.status}
             </span>
@@ -359,7 +359,7 @@ const Page = () => {
             </h1>
             <p className="text-sm text-gray-500">{listing.property_subtitle}</p>
             <p className="flex items-center gap-1.5 text-xs text-gray-400 font-semibold mt-1">
-              <TbMapPin size={13} className="text-orange-500 shrink-0" />
+              <TbMapPin size={13} className="text-blue-600 shrink-0" />
               {listing.city} — {listing.location}
             </p>
           </div>
@@ -371,7 +371,7 @@ const Page = () => {
                 key={label}
                 className="flex items-center gap-3 bg-gray-50 rounded-2xl px-4 py-3"
               >
-                <Icon size={18} className="text-orange-500 shrink-0" />
+                <Icon size={18} className="text-blue-600 shrink-0" />
                 <div>
                   <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-wide">
                     {label}
@@ -405,7 +405,7 @@ const Page = () => {
                   >
                     <TbCircleCheck
                       size={16}
-                      className="text-orange-500 shrink-0"
+                      className="text-blue-600 shrink-0"
                     />
                     {item}
                   </li>
@@ -425,7 +425,7 @@ const Page = () => {
               <p className="text-xs font-extrabold text-gray-400 uppercase tracking-widest mb-1">
                 Asking Price
               </p>
-              <p className="text-3xl font-extrabold text-orange-500">
+              <p className="text-3xl font-extrabold text-blue-600">
                 LKR {listing.price?.toLocaleString()}
               </p>
               <p className="text-sm text-gray-500 mt-1">

@@ -136,7 +136,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-gradient-to-t from-[#ffffff] via-orange-600/20 to-[#ffffff]">
+    <div className="bg-gradient-to-t from-[#ffffff] via-blue-600/10 to-[#ffffff]">
       {/* HERO */}
       <div className="relative h-[70vh] w-full overflow-hidden flex items-center justify-center text-center">
         {images.map((img, index) => (
@@ -153,12 +153,12 @@ const Hero = () => {
               className="object-cover"
               priority={index === 0}
             />
-            <div className="absolute inset-0 bg-[#f2836f]/20 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-black/60 transition-all duration-1000" />
           </div>
         ))}
 
         {/* TEXT */}
-        <div className="max-w-6xl mx-auto absolute inset-0 flex flex-col justify-center items-center gap-2 md:gap-4 text-white/80 z-10 px-6 md:px-10 2xl:px-0">
+        <div className="max-w-6xl mx-auto absolute inset-0 flex flex-col justify-center items-center gap-2 md:gap-6 text-white/80 z-10 px-6 md:px-10 2xl:px-0">
           <h1 className="text-[44px] md:text-6xl font-bold">{title}</h1>
           <p className="text-sm 2xl:text-base text-gray-200 max-w-3xl">
             {subtitle}
@@ -168,10 +168,10 @@ const Hero = () => {
 
       {/* FORM CARD */}
       <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-25 md:mb-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 bg-white p-4 md:p-6 pb-10 lg:shadow-xl border-2 border-gray-100 rounded-4xl relative z-30">
-        <div className="bg-orange-600/5 border-2 border-orange-600/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
+        <div className="bg-blue-600/5 border-2 border-blue-500/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
           <div className="flex flex-col gap-2.5">
             <div className="flex flex-col gap-4">
-              <p className="text-xs font-extrabold bg-orange-500/10 text-orange-500 w-fit px-4 py-2 rounded-full">
+              <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
                 CONNECT
               </p>
               <h2 className="text-2xl lg:text-2xl font-bold ">
@@ -190,7 +190,7 @@ const Hero = () => {
               <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
                 <TbPhone
                   size={30}
-                  className="text-3xl text-orange-500 transition-all"
+                  className="text-3xl text-blue-600 transition-all"
                 />
               </div>
               <label
@@ -210,7 +210,7 @@ const Hero = () => {
               <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
                 <FaWhatsapp
                   size={30}
-                  className="text-3xl text-orange-500 transition-all"
+                  className="text-3xl text-blue-600 transition-all"
                 />
               </div>
               <label
@@ -230,7 +230,7 @@ const Hero = () => {
               <div className="bg-white p-3 duration-700 rounded-2xl shadow-sm w-fit">
                 <TbMail
                   size={30}
-                  className="text-3xl text-orange-500 transition-all"
+                  className="text-3xl text-blue-600 transition-all"
                 />
               </div>
               <label
@@ -308,7 +308,7 @@ const Hero = () => {
             <div className="flex flex-col gap-3 w-full">
               <label className="text-gray-600 font-bold text-sm">
                 How can we assist you?
-                <span className="text-orange-500">*</span>
+                <span className="text-blue-600">*</span>
               </label>
               <select
                 name="best_reason"

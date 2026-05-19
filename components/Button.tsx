@@ -9,11 +9,12 @@ type ButtonProps = {
     | "btn-light-base"
     | "btn-light-outline"
     | "btn-light-glass"
-    | "btn-orange"
+    | "btn-orange-sm"
+    | "btn-orange-base"
     | "btn-orange-outline"
+    | "btn-orange-glass"
     | "btn-dark-sm"
     | "btn-dark-base"
-    | "btn-dark-glass"
     | "btn-dark-underline"
     | "btn-dark-outline";
   onClick?: () => void;
@@ -32,9 +33,9 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-3 hover:gap-4 transition-transform duration-300 rounded-full cursor-pointer ${variant} ${className}`}
+      className={`${variant} ${className}`}
     >
-      <span className="font-bold whitespace-nowrap">{title}</span>
+      <span className="whitespace-nowrap">{title}</span>
       {icon && icon}
     </button>
   );

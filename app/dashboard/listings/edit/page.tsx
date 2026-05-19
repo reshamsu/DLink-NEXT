@@ -110,7 +110,7 @@ const safeArray = (val: unknown): string[] => {
 
 // ── Shared styles ─────────────────────────────────────────────────────────────
 const inp =
-  "bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm transition placeholder:text-gray-400";
+  "bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm transition placeholder:text-gray-400";
 
 const SectionCard = ({
   icon: Icon,
@@ -123,7 +123,7 @@ const SectionCard = ({
 }) => (
   <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
     <div className="flex items-center gap-3 px-8 py-5 border-b border-gray-100">
-      <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 text-orange-500">
+      <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600">
         <Icon size={18} />
       </span>
       <h3 className="font-bold text-sm">{title}</h3>
@@ -146,7 +146,7 @@ const Field = ({
   <div className="flex flex-col gap-1.5">
     <label className="text-xs font-bold text-gray-700">
       {label}
-      {required && <span className="text-orange-500 ml-0.5">*</span>}
+      {required && <span className="text-blue-600 ml-0.5">*</span>}
     </label>
     {children}
     {note && <p className="text-[10px] text-gray-400">{note}</p>}
@@ -200,11 +200,11 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
   };
 
   return (
-    <div className="bg-orange-600/5 min-h-screen text-gray-800">
+    <div className="bg-blue-600/5 min-h-screen text-gray-800">
       <div className="max-w-5xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-extrabold">
-            Edit <span className="text-orange-500">Listing</span>
+            Edit <span className="text-blue-600">Listing</span>
           </h1>
           <p className="text-xs text-gray-400">Select a listing below to edit its details.</p>
         </div>
@@ -222,7 +222,7 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
 
         {loading ? (
           <div className="flex items-center justify-center h-40 gap-3">
-            <div className="w-7 h-7 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+            <div className="w-7 h-7 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
             <p className="text-sm text-gray-500">Loading listings…</p>
           </div>
         ) : filtered.length === 0 ? (
@@ -233,7 +233,7 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
               <button
                 key={l.id}
                 onClick={() => onSelect(l.id)}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-orange-300 hover:shadow-md transition-all duration-200 flex items-center gap-4 p-4 text-left group"
+                className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-200 flex items-center gap-4 p-4 text-left group"
               >
                 {/* Thumbnail */}
                 <div className="relative w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-gray-100">
@@ -248,12 +248,12 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
-                  <p className="font-bold text-sm text-gray-800 line-clamp-1 group-hover:text-orange-500 transition-colors">
+                  <p className="font-bold text-sm text-gray-800 line-clamp-1 group-hover:text-blue-600 transition-colors">
                     {l.property_title}
                   </p>
                   <p className="text-xs text-gray-500 line-clamp-1 mt-0.5">{l.property_subtitle}</p>
                   <p className="text-xs text-gray-400 mt-1 flex items-center gap-1">
-                    <TbMapPin size={11} className="text-orange-400" /> {l.city}
+                    <TbMapPin size={11} className="text-blue-500" /> {l.city}
                   </p>
                 </div>
 
@@ -262,7 +262,7 @@ function ListingPicker({ onSelect }: { onSelect: (id: number) => void }) {
                   <span className={`text-[11px] font-bold px-3 py-1 rounded-full ${statusColor[l.status] ?? "bg-gray-100 text-gray-500"}`}>
                     {l.status}
                   </span>
-                  <TbPencil size={18} className="text-gray-300 group-hover:text-orange-500 transition-colors" />
+                  <TbPencil size={18} className="text-gray-300 group-hover:text-blue-600 transition-colors" />
                 </div>
               </button>
             ))}
@@ -278,7 +278,7 @@ export default function EditPage() {
   return (
     <Suspense fallback={
       <div className="flex items-center justify-center h-[70vh] gap-3">
-        <div className="w-7 h-7 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-7 h-7 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-gray-500">Loading…</p>
       </div>
     }>
@@ -453,7 +453,7 @@ function EditForm({ id }: { id: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-[70vh] gap-3">
-        <div className="w-7 h-7 border-4 border-orange-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-7 h-7 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
         <p className="text-sm text-gray-500">Loading listing…</p>
       </div>
     );
@@ -480,13 +480,13 @@ function EditForm({ id }: { id: string }) {
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-1">
             <h1 className="text-2xl font-extrabold">
-              Edit <span className="text-orange-500">Listing</span>
+              Edit <span className="text-blue-600">Listing</span>
             </h1>
             <p className="text-xs text-gray-400 line-clamp-1">{listing.property_title}</p>
           </div>
           <Link
             href="/dashboard/listings/edit"
-            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-orange-500 transition shrink-0 mt-1"
+            className="inline-flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-blue-600 transition shrink-0 mt-1"
           >
             <TbArrowLeft size={15} /> All Listings
           </Link>
@@ -626,7 +626,7 @@ function EditForm({ id }: { id: string }) {
             <p className="text-xs font-bold text-gray-700 mb-3">Lift Access</p>
             <div className="flex flex-wrap gap-3">
               {["None", "1 Lift", "2 Lifts", "3 Lifts"].map((opt) => (
-                <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${listing.lift_access === opt ? "border-orange-400 bg-orange-50 text-orange-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
+                <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${listing.lift_access === opt ? "border-blue-400 bg-blue-50 text-blue-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
                   <input type="radio" value={opt} checked={listing.lift_access === opt}
                     onChange={() => set("lift_access", opt)} className="hidden" />
                   {listing.lift_access === opt && <TbCheck size={12} />}
@@ -641,7 +641,7 @@ function EditForm({ id }: { id: string }) {
             <p className="text-xs font-bold text-gray-700 mb-3">Vehicle Parking</p>
             <div className="flex flex-wrap gap-3">
               {["None", "1 Parking", "2 Parking", "3 Parking & above"].map((opt) => (
-                <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${listing.vehicle_park === opt ? "border-orange-400 bg-orange-50 text-orange-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
+                <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${listing.vehicle_park === opt ? "border-blue-400 bg-blue-50 text-blue-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
                   <input type="radio" value={opt} checked={listing.vehicle_park === opt}
                     onChange={() => set("vehicle_park", opt)} className="hidden" />
                   {listing.vehicle_park === opt && <TbCheck size={12} />}
@@ -662,7 +662,7 @@ function EditForm({ id }: { id: string }) {
               <label className="flex items-center gap-2 text-xs font-semibold mt-1 cursor-pointer select-none">
                 <input type="checkbox" checked={listing.price_negotiable}
                   onChange={(e) => set("price_negotiable", e.target.checked)}
-                  className="accent-orange-500 w-3.5 h-3.5" />
+                  className="accent-blue-600 w-3.5 h-3.5" />
                 Negotiable
               </label>
             </Field>
@@ -683,7 +683,7 @@ function EditForm({ id }: { id: string }) {
                 {AMENITIES.map((a) => (
                   <label key={a} className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group"
                     onClick={() => toggleArray("amenities", a)}>
-                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.amenities.includes(a) ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.amenities.includes(a) ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                       {listing.amenities.includes(a) && <TbCheck size={10} className="text-white" />}
                     </span>
                     <span className="text-gray-700">{a}</span>
@@ -697,7 +697,7 @@ function EditForm({ id }: { id: string }) {
                 {DOCUMENTS.map((d) => (
                   <label key={d} className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group"
                     onClick={() => toggleArray("property_documents", d)}>
-                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.property_documents.includes(d) ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.property_documents.includes(d) ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                       {listing.property_documents.includes(d) && <TbCheck size={10} className="text-white" />}
                     </span>
                     <span className="text-gray-700">{d}</span>
@@ -709,7 +709,7 @@ function EditForm({ id }: { id: string }) {
                 <p className="text-xs font-bold text-gray-700 mb-1">Building Age Approx?</p>
                 <label className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group"
                   onClick={() => set("approx", !listing.approx)}>
-                  <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.approx ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                  <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${listing.approx ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                     {listing.approx && <TbCheck size={10} className="text-white" />}
                   </span>
                   <span className="text-gray-700">Mark as approximate</span>
@@ -754,7 +754,7 @@ function EditForm({ id }: { id: string }) {
           <Field label="Add New Images — auto-converted to WebP">
             <input type="file" multiple accept="image/*"
               onChange={(e) => setNewImages(e.target.files)}
-              className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full text-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-orange-500 file:text-white hover:file:bg-orange-600 transition" />
+              className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full text-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-500 file:text-white hover:file:bg-violet-700 transition" />
           </Field>
           {newImages && newImages.length > 0 && (
             <p className="mt-2 text-xs text-gray-500">
@@ -816,7 +816,7 @@ function EditForm({ id }: { id: string }) {
             ← Back to Listings
           </Link>
           <button onClick={handleSave} disabled={busy}
-            className="inline-flex items-center gap-2.5 font-bold rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 disabled:cursor-not-allowed px-8 py-3 text-sm text-white transition-all hover:scale-105 duration-300 select-none">
+            className="inline-flex items-center gap-2.5 font-bold rounded-full bg-blue-500 hover:from-cyan-500 hover:to-violet-700 disabled:opacity-60 disabled:cursor-not-allowed px-8 py-3 text-sm text-white transition-all hover:scale-105 duration-300 select-none">
             {busy ? (
               <>
                 <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

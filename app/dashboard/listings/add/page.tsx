@@ -131,7 +131,7 @@ const emptyListing: Listing = {
 
 // ── Shared styles ─────────────────────────────────────────────────────────────
 const inp =
-  "bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-orange-300 text-sm transition placeholder:text-gray-400";
+  "bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full focus:outline-none focus:ring-2 focus:ring-blue-300 text-sm transition placeholder:text-gray-400";
 
 const SectionCard = ({
   icon: Icon,
@@ -144,7 +144,7 @@ const SectionCard = ({
 }) => (
   <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
     <div className="flex items-center gap-3 px-8 py-5 border-b border-gray-100">
-      <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-orange-50 text-orange-500">
+      <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-blue-50 text-blue-600">
         <Icon size={18} />
       </span>
       <h3 className="font-bold text-sm">{title}</h3>
@@ -167,7 +167,7 @@ const Field = ({
   <div className="flex flex-col gap-1.5">
     <label className="text-xs font-bold text-gray-700">
       {label}
-      {required && <span className="text-orange-500 ml-0.5">*</span>}
+      {required && <span className="text-blue-600 ml-0.5">*</span>}
     </label>
     {children}
     {note && <p className="text-[10px] text-gray-400">{note}</p>}
@@ -282,17 +282,17 @@ const Page = () => {
   const DOCUMENTS = ["Sales Agreement", "Deed", "COC", "Bimsaviya Certificate"];
 
   return (
-    <div className="bg-orange-600/5 min-h-screen text-gray-800">
+    <div className="bg-blue-600/5 min-h-screen text-gray-800">
       <div className="max-w-5xl mx-auto lg:ml-80 px-4 md:px-6 pt-24 lg:pt-16 pb-16 flex flex-col gap-6">
 
         {/* ── Page header ──────────────────────────────────────────────── */}
         <div className="flex flex-col gap-1">
           <h1 className="text-2xl font-extrabold">
-            Add <span className="text-orange-500">New Listing</span>
+            Add <span className="text-blue-600">New Listing</span>
           </h1>
           <p className="text-xs text-gray-400">
             Fill in the property details to publish on{" "}
-            <Link href="/" className="underline hover:text-orange-500">D-Link Colombo</Link>
+            <Link href="/" className="underline hover:text-blue-600">D-Link Colombo</Link>
           </p>
         </div>
 
@@ -422,7 +422,7 @@ const Page = () => {
               <p className="text-xs font-bold text-gray-700 mb-3">Lift Access</p>
               <div className="flex flex-wrap gap-3">
                 {["None", "1 Lift", "2 Lifts", "3 Lifts"].map((opt) => (
-                  <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${form.lift_access === opt ? "border-orange-400 bg-orange-50 text-orange-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
+                  <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${form.lift_access === opt ? "border-blue-400 bg-blue-50 text-blue-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
                     <input type="radio" name="lift_access" value={opt} checked={form.lift_access === opt}
                       onChange={(e) => setForm((p) => ({ ...p, lift_access: e.target.value }))}
                       className="hidden" />
@@ -438,7 +438,7 @@ const Page = () => {
               <p className="text-xs font-bold text-gray-700 mb-3">Vehicle Parking</p>
               <div className="flex flex-wrap gap-3">
                 {["None", "1 Parking", "2 Parking", "3 Parking & above"].map((opt) => (
-                  <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${form.vehicle_park === opt ? "border-orange-400 bg-orange-50 text-orange-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
+                  <label key={opt} className={`flex items-center gap-2 cursor-pointer text-xs font-semibold px-4 py-2 rounded-xl border transition ${form.vehicle_park === opt ? "border-blue-400 bg-blue-50 text-blue-600" : "border-gray-200 bg-gray-50 text-gray-600"}`}>
                     <input type="radio" name="vehicle_park" value={opt} checked={form.vehicle_park === opt}
                       onChange={(e) => setForm((p) => ({ ...p, vehicle_park: e.target.value }))}
                       className="hidden" />
@@ -458,7 +458,7 @@ const Page = () => {
                   placeholder="e.g. 45 Mn" className={inp} required />
                 <label className="flex items-center gap-2 text-xs font-semibold mt-1 cursor-pointer select-none">
                   <input type="checkbox" name="price_negotiable" checked={form.price_negotiable} onChange={handleChange}
-                    className="accent-orange-500 w-3.5 h-3.5" />
+                    className="accent-blue-600 w-3.5 h-3.5" />
                   Negotiable
                 </label>
               </Field>
@@ -477,7 +477,7 @@ const Page = () => {
                 <div className="grid grid-cols-1 gap-2">
                   {AMENITIES.map((a) => (
                     <label key={a} className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group">
-                      <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.amenities.includes(a) ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                      <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.amenities.includes(a) ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                         {form.amenities.includes(a) && <TbCheck size={10} className="text-white" />}
                       </span>
                       <input type="checkbox" name="amenities" value={a} checked={form.amenities.includes(a)}
@@ -492,7 +492,7 @@ const Page = () => {
                 <div className="grid grid-cols-1 gap-2">
                   {DOCUMENTS.map((d) => (
                     <label key={d} className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group">
-                      <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.property_documents.includes(d) ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                      <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.property_documents.includes(d) ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                         {form.property_documents.includes(d) && <TbCheck size={10} className="text-white" />}
                       </span>
                       <input type="checkbox" name="property_documents" value={d} checked={form.property_documents.includes(d)}
@@ -505,7 +505,7 @@ const Page = () => {
                 <div className="mt-6">
                   <p className="text-xs font-bold text-gray-700 mb-1">Building Age Approx?</p>
                   <label className="flex items-center gap-3 cursor-pointer text-sm font-semibold select-none group">
-                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.approx ? "bg-orange-500 border-orange-500" : "border-gray-300 group-hover:border-orange-300"}`}>
+                    <span className={`flex items-center justify-center w-4 h-4 rounded border transition ${form.approx ? "bg-blue-500 border-blue-500" : "border-gray-300 group-hover:border-blue-300"}`}>
                       {form.approx && <TbCheck size={10} className="text-white" />}
                     </span>
                     <input type="checkbox" name="approx" checked={form.approx} onChange={handleChange} className="hidden" />
@@ -521,7 +521,7 @@ const Page = () => {
             <Field label="Upload Images — auto-converted to WebP" required>
               <input type="file" multiple accept="image/*"
                 onChange={(e) => setImages(e.target.files)}
-                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full text-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-orange-500 file:text-white hover:file:bg-orange-600 transition"
+                className="bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 w-full text-sm file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-500 file:text-white hover:file:bg-violet-700 transition"
                 required />
             </Field>
             {images && images.length > 0 && (
@@ -571,7 +571,7 @@ const Page = () => {
 
           <div className="flex justify-end">
             <button type="submit" disabled={busy}
-              className="inline-flex items-center gap-2.5 font-bold rounded-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 disabled:cursor-not-allowed px-8 py-3 text-sm text-white transition-all hover:scale-105 duration-300 select-none">
+              className="inline-flex items-center gap-2.5 font-bold rounded-full bg-blue-500 hover:from-cyan-500 hover:to-violet-700 disabled:opacity-60 disabled:cursor-not-allowed px-8 py-3 text-sm text-white transition-all hover:scale-105 duration-300 select-none">
               {busy ? (
                 <>
                   <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
