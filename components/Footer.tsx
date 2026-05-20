@@ -22,7 +22,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-950 text-gray-500 border-t border-white/10">
+    <footer className="bg-gray-950 text-gray-600 border-t border-white/10">
       <div className="max-w-6xl mx-auto py-14 pb-10 px-8 2xl:px-0 flex flex-col items-center gap-10">
         <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
           <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 w-full md:w-sm">
@@ -30,15 +30,15 @@ const Footer = () => {
               <Image
                 src="/favicon.ico"
                 alt="DC"
-                width={80}
+                width={60}
                 height={20}
                 className="object-contain"
               />
               <div>
-                <h1 className="text-base 2xl:text-lg font-extrabold uppercase text-gray-300">
+                <h1 className="text-base 2xl:text-lg font-extrabold uppercase text-gray-300 mb-1">
                   D-Link Estate
                 </h1>
-                <p className="text-[11px] text-gray-400">
+                <p className="text-[11px] text-gray-500">
                   D-Link Colombo (Pvt) Ltd.
                 </p>
               </div>
@@ -207,7 +207,7 @@ const Footer = () => {
             <h6 className="text-white text-base font-semibold">
               Stay in the loop
             </h6>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-500">
               Subscribe for property deals, updates, and exclusive offers.
             </p>
           </div>
@@ -224,7 +224,7 @@ const Footer = () => {
         {/* Bottom Line */}
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 w-full">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 text-xs text-gray-400 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 text-xs text-center md:text-left">
             <Copyright size={14} />
             <span>
               2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved. Powered by{" "}

@@ -40,8 +40,8 @@ const Navbar = () => {
           <Image
             src="/favicon.ico"
             alt="DC"
-            width={60}
-            height={20}
+            width={50}
+            height={25}
             className="object-contain"
           />
           <div>
@@ -123,7 +123,7 @@ const Navbar = () => {
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? (
-              <TbX className="w-7 h-7 cursor-pointer" />
+              <TbX className="w-7 h-7 cursor-pointer text-blue-600" />
             ) : (
               <TbMenu className="w-7 h-7 cursor-pointer text-blue-600" />
             )}
