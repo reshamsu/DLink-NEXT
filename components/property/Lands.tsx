@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
@@ -221,7 +221,7 @@ const Listings: React.FC = () => {
                     <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-2.5 py-1 rounded-full line-clamp-1 max-w-[70%]">
                       {listing.is_furnished}
                     </span>
-                    <Link href={`/listing/${listing.id}`} className="btn-orange-glass">
+                    <Link href={`/listing/${listing.id}`} className="btn-primary-glass">
                       <TbArrowRight size={16} />
                     </Link>
                   </div>
@@ -234,7 +234,7 @@ const Listings: React.FC = () => {
         {hasMore && (
           <button
             onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_STEP)}
-            className="select-none btn-orange-outline btn-dynamic"
+            className="select-none btn-primary-outline btn-dynamic"
           >
             Show more Listings
           </button>

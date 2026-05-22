@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 type ButtonProps = {
   type?: "button" | "submit";
@@ -9,10 +9,10 @@ type ButtonProps = {
     | "btn-light-base"
     | "btn-light-outline"
     | "btn-light-glass"
-    | "btn-orange-sm"
-    | "btn-orange-base"
-    | "btn-orange-outline"
-    | "btn-orange-glass"
+    | "btn-primary-sm"
+    | "btn-primary-base"
+    | "btn-primary-outline"
+    | "btn-primary-glass"
     | "btn-dark-sm"
     | "btn-dark-base"
     | "btn-dark-underline"

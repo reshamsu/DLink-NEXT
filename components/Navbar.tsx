@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -112,7 +112,7 @@ const Navbar = () => {
           <div className="hidden md:flex gap-4">
             <Link
               href="https://wa.me/94761676603"
-              className="select-none btn-orange-sm btn-dynamic"
+              className="select-none btn-primary-base btn-dynamic"
             >
               <TbPhone size={22} /> Inquire Now
             </Link>
@@ -181,7 +181,7 @@ const Navbar = () => {
             </Link> */}
             <Link
               href="https://wa.me/94761676603"
-              className="select-none btn-orange-sm btn-dynamic"
+              className="select-none btn-primary-sm btn-dynamic"
             >
               <TbPhone size={22} /> Inquire Now
             </Link>

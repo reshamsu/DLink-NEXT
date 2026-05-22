@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { TbArrowRight } from "react-icons/tb";
 
 export default function NotFound() {
@@ -31,7 +31,7 @@ export default function NotFound() {
 
         <Link
           href="/"
-          className="select-none btn-orange-base btn-dynamic mt-4"
+          className="select-none btn-primary-base btn-dynamic mt-4"
         >
           BACK TO HOME <TbArrowRight size={20} />
         </Link>

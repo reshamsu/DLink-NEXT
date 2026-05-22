@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { ReactTyped } from "react-typed";
@@ -252,7 +252,7 @@ const Hero = () => {
             </div>
 
             {/* Submit */}
-            <button type="submit" className="btn-orange-sm gap-2">
+            <button type="submit" className="btn-primary-base gap-2">
               <TbSearch size={16} />
               Search
             </button>

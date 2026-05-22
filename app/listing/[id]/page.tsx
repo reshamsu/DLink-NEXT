@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useParams } from "next/navigation";
@@ -146,10 +146,10 @@ const Page = () => {
       `Hi, I found this listing on D-Link Realtors and I'm interested:`,
       ``,
       `*${listing.property_title}*`,
-      `📍 ${listing.city} — ${listing.location}`,
-      `💰 LKR ${listing.price?.toLocaleString()} _(Negotiable)_`,
+      `ðŸ“ ${listing.city} â€” ${listing.location}`,
+      `ðŸ’° LKR ${listing.price?.toLocaleString()} _(Negotiable)_`,
       ``,
-      `🛏 ${listing.bedrooms} Beds  |  🚿 ${listing.bathrooms} Baths  |  ${listing.perches} Perch`,
+      `ðŸ› ${listing.bedrooms} Beds  |  ðŸš¿ ${listing.bathrooms} Baths  |  ${listing.perches} Perch`,
       ``,
       `Could you please share more details or schedule a viewing?`,
       ``,
@@ -162,18 +162,18 @@ const Page = () => {
       `*D-LINK REALTORS*`,
       `_Sri Lanka's Premier Property Platform_`,
       ``,
-      `🏠 *${listing.property_title}*`,
+      `ðŸ  *${listing.property_title}*`,
       ``,
-      `📍 ${listing.city} — ${listing.location}`,
-      `💰 LKR ${listing.price?.toLocaleString()} _(Negotiable)_`,
+      `ðŸ“ ${listing.city} â€” ${listing.location}`,
+      `ðŸ’° LKR ${listing.price?.toLocaleString()} _(Negotiable)_`,
       ``,
-      `🛏 ${listing.bedrooms} Beds  |  🚿 ${listing.bathrooms} Baths  |  ${listing.perches} Perch  |  ${listing.floors} Floor(s)`,
-      `✅ ${listing.status}  •  ${listing.is_furnished}`,
+      `ðŸ› ${listing.bedrooms} Beds  |  ðŸš¿ ${listing.bathrooms} Baths  |  ${listing.perches} Perch  |  ${listing.floors} Floor(s)`,
+      `âœ… ${listing.status}  â€¢  ${listing.is_furnished}`,
       ``,
-      `👉 View full listing:`,
+      `ðŸ‘‰ View full listing:`,
       `${listingUrl}`,
       ``,
-      `📞 +94 76 167 6603`,
+      `ðŸ“ž +94 76 167 6603`,
       `_Roy.Su Realtors | D-Link Colombo_`,
     ].join("\n")
   )}`;
@@ -194,7 +194,7 @@ const Page = () => {
 
   return (
     <div className="max-w-6xl mx-auto mt-20 px-0 xl:px-6 2xl:px-0">
-      {/* ── Mobile: full-width slider ── */}
+      {/* â”€â”€ Mobile: full-width slider â”€â”€ */}
       <div
         className="md:hidden relative h-[64vh] w-full overflow-hidden select-none"
         onTouchStart={handleTouchStart}
@@ -218,7 +218,7 @@ const Page = () => {
             <TbMapPin size={13} className="text-blue-500" /> {listing.city}
           </p>
           <span className="bg-white/90 text-xs text-blue-600 font-bold px-3 py-1.5 rounded-full">
-            {listing.property_type} · {listing.listing_type}
+            {listing.property_type} Â· {listing.listing_type}
           </span>
         </div>
         {images.length > 1 && (
@@ -248,7 +248,7 @@ const Page = () => {
         )}
       </div>
 
-      {/* ── Desktop: grid gallery ── */}
+      {/* â”€â”€ Desktop: grid gallery â”€â”€ */}
       <div className="hidden md:block select-none px-0">
         <div className="grid grid-cols-[3fr_2fr] gap-1.5 h-[80vh] bg-black rounded-3xl overflow-hidden">
           {/* Main image */}
@@ -277,7 +277,7 @@ const Page = () => {
               </p>
             </div>
             <span className="absolute top-5 right-5 bg-white/90 text-xs text-blue-600 font-bold px-3.5 py-1.5 rounded-full z-10">
-              {listing.property_type} · {listing.listing_type}
+              {listing.property_type} Â· {listing.listing_type}
             </span>
             <span className="absolute bottom-5 left-5 text-xs font-extrabold text-white/60 uppercase tracking-widest select-none z-10">
               Roy.Su Realtors
@@ -302,7 +302,7 @@ const Page = () => {
             )}
           </div>
 
-          {/* Thumbnails 2×2 */}
+          {/* Thumbnails 2Ã—2 */}
           <div className="grid grid-cols-2 grid-rows-2 gap-1.5">
             {[0, 1, 2, 3].map((i) => {
               const src = images[i];
@@ -360,7 +360,7 @@ const Page = () => {
             <p className="text-sm text-gray-500">{listing.property_subtitle}</p>
             <p className="flex items-center gap-1.5 text-xs text-gray-400 font-semibold mt-1">
               <TbMapPin size={13} className="text-blue-600 shrink-0" />
-              {listing.city} — {listing.location}
+              {listing.city} â€” {listing.location}
             </p>
           </div>
 
@@ -417,7 +417,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* Right column — sticky card */}
+        {/* Right column â€” sticky card */}
         <div className="md:sticky md:top-24 h-fit">
           <div className="bg-white rounded-3xl border border-gray-200 shadow-lg p-8 flex flex-col gap-6">
             {/* Price */}
@@ -439,7 +439,7 @@ const Page = () => {
                 { label: "Type", value: listing.property_type },
                 {
                   label: "Location",
-                  value: `${listing.city} — ${listing.location}`,
+                  value: `${listing.city} â€” ${listing.location}`,
                 },
                 { label: "Furnishing", value: listing.is_furnished },
                 { label: "Status", value: listing.status },
@@ -457,7 +457,7 @@ const Page = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <Link
                 href="tel:+94761676603"
-                className="btn-orange-sm select-none w-full justify-center gap-2"
+                className="btn-primary-sm select-none w-full justify-center gap-2"
               >
                 <TbPhone size={16} /> Call Agent
               </Link>
@@ -481,7 +481,7 @@ const Page = () => {
                 href="/"
                 className="btn-light-outline select-none justify-center text-sm"
               >
-                ← Back to Listings
+                â† Back to Listings
               </Link>
             </div>
           </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useMemo, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -463,7 +463,7 @@ function EditForm({ id }: { id: string }) {
     return (
       <div className="flex flex-col items-center justify-center h-[70vh] gap-4">
         <p className="text-gray-500 text-sm">Listing not found.</p>
-        <Link href="/dashboard/listings/edit" className="btn-orange-sm w-fit">
+        <Link href="/dashboard/listings/edit" className="btn-primary-sm w-fit">
           Back to Listings
         </Link>
       </div>

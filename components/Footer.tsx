@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import {
@@ -215,9 +215,9 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-6 py-3 rounded-3xl text-sm bg-white/10 text-white"
+              className="px-6 py-2.5 rounded-3xl text-sm bg-white/10 text-white"
             />
-            <button className="btn-orange-sm">Subscribe</button>
+            <button className="btn-primary-base">Subscribe</button>
           </div>
         </div>
 

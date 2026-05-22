@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -374,7 +374,7 @@ const Hero = () => {
           <button
             type="submit"
             disabled={loading}
-            className="select-none btn-orange-base btn-dynamic flex items-center gap-2"
+            className="select-none btn-primary-base btn-dynamic flex items-center gap-2"
           >
             {loading ? "Sending..." : "Submit Message"} <TbSend2 size={24} />
           </button>
