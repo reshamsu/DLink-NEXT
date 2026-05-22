@@ -35,8 +35,8 @@ const Navbar = () => {
   return (
     <header className="fixed z-40 w-full select-none">
       <nav
-        className="max-w-6xl mx-auto py-2 px-6 2xl:px-0 select-none flex items-center justify-between transition-all duration-300">
-        <Link href="/" className="flex items-center gap-2">
+        className="max-w-6xl mx-auto flex items-center justify-between select-none py-2 px-4 md:px-12 2xl:px-0">
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/favicon.ico"
             alt="DC"

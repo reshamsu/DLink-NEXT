@@ -22,11 +22,14 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gray-950 text-gray-600 border-t border-white/10">
-      <div className="max-w-6xl mx-auto py-14 pb-10 px-8 2xl:px-0 flex flex-col items-center gap-10">
-        <div className="flex flex-col lg:flex-row gap-10 w-full pb-10 border-b border-gray-800">
+    <footer className="bg-gray-950 text-gray-700 border-t border-white/10">
+      <div className="max-w-6xl mx-auto py-16 px-6 sm:px-12 2xl:px-0 flex flex-col gap-6">
+        <div className="flex flex-col lg:flex-row gap-12 w-full pb-10 border-b border-gray-800">
           <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 w-full md:w-sm">
-            <Link href="/" className="flex flex-col items-center md:items-start gap-2">
+            <Link
+              href="/"
+              className="flex flex-col items-center md:items-start gap-2"
+            >
               <Image
                 src="/favicon.ico"
                 alt="DC"
@@ -35,7 +38,7 @@ const Footer = () => {
                 className="object-contain"
               />
               <div>
-                <h1 className="text-base 2xl:text-lg font-extrabold uppercase text-gray-300 mb-1">
+                <h1 className="text-lg font-extrabold uppercase text-gray-300 mb-1">
                   D-Link Estate
                 </h1>
                 <p className="text-[11px] text-gray-500">
@@ -43,11 +46,8 @@ const Footer = () => {
                 </p>
               </div>
             </Link>
-            {/* <p className="text-sm">
-              Find your next property with D-Link Colombo.
-            </p> */}
 
-            <ul className="flex gap-2 text-lg 2xl:text-xl">
+            <ul className="flex gap-2 text-lg">
               <li>
                 <Link
                   href="https://wa.me/94761676603"
@@ -100,26 +100,26 @@ const Footer = () => {
           </div>
 
           {/* Footer Links */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 w-full text-xs 2xl:text-sm">
-            {/* Explore */}
-            <div className="ml-0 xl:ml-10">
-              <h6 className="text-base font-semibold mb-4 text-white">
-                Service
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 w-full text-[12px] font-medium">
+            {/* Our Services */}
+            <div className="ml-0 xl:ml-12">
+              <h6 className="text-sm font-semibold mb-4 text-white">
+                Our Services
               </h6>
-              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
+              <ul className="flex flex-col gap-2">
                 {[
-                  "Help Center",
-                  "Safety Regulations",
-                  "Disability Support",
-                  "Help with Viewings",
-                  "Report a Problem",
+                  { label: "Buy a Property", href: "/contact" },
+                  { label: "Sell a Property", href: "/contact" },
+                  { label: "Rental Inquiry", href: "/contact" },
+                  { label: "Property Valuation", href: "/contact" },
+                  { label: "Investment Consulting", href: "/service" },
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
-                      href="/explore-uae"
+                      href={item.href}
                       className="hover:text-blue-500 hover:underline"
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -182,18 +182,18 @@ const Footer = () => {
               </h6>
               <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
                 {[
-                  "About Us",
-                  "Resource and Policy",
-                  "Careers",
-                  "Trust and Safety",
-                  "Contact Us",
+                  { label: "About Us", href: "/about" },
+                  { label: "Our Services", href: "/service" },
+                  { label: "Browse Properties", href: "/property/homes" },
+                  { label: "Why Choose Us", href: "/about" },
+                  { label: "Contact Us", href: "/contact" },
                 ].map((item, i) => (
                   <li key={i}>
                     <Link
-                      href="/about"
+                      href={item.href}
                       className="hover:text-blue-500 hover:underline"
                     >
-                      {item}
+                      {item.label}
                     </Link>
                   </li>
                 ))}
@@ -202,16 +202,16 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4 pb-10 border-b border-gray-800">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-6 border-b border-gray-800 w-full">
           <div className="flex flex-col gap-2 text-center md:text-left">
-            <h6 className="text-white text-base font-semibold">
+            <h6 className="text-white text-sm font-semibold">
               Stay in the loop
             </h6>
             <p className="text-xs text-gray-500">
               Subscribe for property deals, updates, and exclusive offers.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex items-center gap-2">
             <input
               type="email"
               placeholder="Enter your email"
@@ -222,21 +222,21 @@ const Footer = () => {
         </div>
 
         {/* Bottom Line */}
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0 w-full">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-1 text-xs text-center md:text-left">
-            <Copyright size={14} />
-            <span>
-              2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved. Powered by{" "}
-              <Link
-                href="https://atlascreate.io"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#dd9e5e] underline"
-              >
-                Atlas'Create
-              </Link>
-            </span>
+        <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-semibold w-full">
+          <div className="flex items-center gap-1.5">
+            <Copyright size={12} />
+            <span>2026 D-Link Colombo (Pvt) Ltd. All Rights Reserved.</span>
+          </div>
+          <div>
+            Powered by{" "}
+            <Link
+              href="https://atlascreate.io"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white underline"
+            >
+              Atlas&apos;Create
+            </Link>
           </div>
         </div>
       </div>
