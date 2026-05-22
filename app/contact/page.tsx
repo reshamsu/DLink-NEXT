@@ -167,7 +167,7 @@ const Hero = () => {
       </div>
 
       {/* FORM CARD */}
-      <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-24 mb-16 md:mb-24 p-4 lg:pr-0 grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white/95 backdrop-blur-sm border-2 border-gray-100 rounded-4xl shadow-2xl relative z-30 overflow-hidden">
+      <div className="max-w-3xl lg:max-w-5xl mx-auto -mt-24 mb-16 md:mb-24 p-4 lg:pr-0 grid grid-cols-1 lg:grid-cols-2 bg-white/95 backdrop-blur-sm border-2 border-gray-100 rounded-4xl shadow-2xl relative z-30 overflow-hidden">
         <div className="bg-blue-600/5 border-2 border-blue-500/10 rounded-3xl p-6 md:p-8 flex flex-col gap-12">
           <div className="flex flex-col gap-2.5">
             <div className="flex flex-col gap-4">
@@ -195,12 +195,12 @@ const Hero = () => {
               </div>
               <label
                 htmlFor=""
-                className="flex flex-col gap-0.5 text-lg font-bold"
+                className="flex flex-col gap-0.5 font-bold"
               >
                 Call Us
                 <Link
                   href="tel:94761676603"
-                  className="text-sm md:text-base font-medium hover:underline"
+                  className="text-sm font-medium hover:underline"
                 >
                   +94 76 167 6603
                 </Link>
@@ -215,12 +215,12 @@ const Hero = () => {
               </div>
               <label
                 htmlFor=""
-                className="flex flex-col gap-1 text-lg font-bold"
+                className="flex flex-col gap-1 font-bold"
               >
                 Whatsapp Us
                 <Link
                   href="https://wa.me/94761676603"
-                  className="text-sm md:text-base font-medium hover:underline"
+                  className="text-sm font-medium hover:underline"
                 >
                   +94 76 167 6603
                 </Link>
@@ -236,12 +236,12 @@ const Hero = () => {
               <label
                 htmlFor="
                         "
-                className="flex flex-col gap-0.5 text-lg font-bold"
+                className="flex flex-col gap-0.5 font-bold"
               >
                 Email Us
                 <Link
                   href="mailto:info@dlink-colombo.com"
-                  className="text-sm md:text-base font-medium hover:underline break-all"
+                  className="text-sm font-medium hover:underline break-all"
                 >
                   info@dlink-colombo.com
                 </Link>
@@ -253,12 +253,12 @@ const Hero = () => {
         {/* FORM */}
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-end gap-8 py-4 md:py-6 px-4 lg:px-0 lg:pr-4 rounded-3xl"
+          className="flex flex-col items-end gap-8 p-4 py-8 md:p-8 rounded-3xl"
         >
           {/* Full Name */}
           <div className="flex flex-col gap-3 w-full">
             <label className="font-bold text-sm">
-              Full name<span className="text-red-500">*</span>
+              Full name<span className="text-blue-600">*</span>
             </label>
             <input
               name="full_name"
@@ -266,7 +266,7 @@ const Hero = () => {
               onChange={handleChange}
               type="text"
               placeholder="Your Full name"
-              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
               required
             />
           </div>
@@ -274,7 +274,7 @@ const Hero = () => {
           {/* Email */}
           <div className="flex flex-col gap-3 w-full">
             <label className="font-bold text-sm">
-              Email Address<span className="text-red-500">*</span>
+              Email Address<span className="text-blue-600">*</span>
             </label>
             <input
               name="email"
@@ -282,7 +282,7 @@ const Hero = () => {
               onChange={handleChange}
               type="email"
               placeholder="Your Email Address"
-              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
               required
             />
           </div>
@@ -291,7 +291,7 @@ const Hero = () => {
             {/* Phone */}
             <div className="flex flex-col gap-3 w-full">
               <label className="font-bold text-sm">
-                Phone Number<span className="text-red-500">*</span>
+                Phone Number<span className="text-blue-600">*</span>
               </label>
               <input
                 name="phone"
@@ -299,14 +299,14 @@ const Hero = () => {
                 onChange={handleChange}
                 type="tel"
                 placeholder="Your Phone Number"
-                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
                 required
               />
             </div>
 
             {/* Reason */}
             <div className="flex flex-col gap-3 w-full">
-              <label className="text-gray-600 font-bold text-sm">
+              <label className="font-bold text-sm">
                 How can we assist you?
                 <span className="text-blue-600">*</span>
               </label>
@@ -314,7 +314,7 @@ const Hero = () => {
                 name="best_reason"
                 value={form.best_reason}
                 onChange={handleChange}
-                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+                className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
                 required
               >
                 <option value="" disabled>
@@ -335,7 +335,7 @@ const Hero = () => {
           {/* Subject */}
           <div className="flex flex-col gap-3 w-full">
             <label className="font-bold text-sm">
-              Inquiry Subject<span className="text-red-500">*</span>
+              Inquiry Subject<span className="text-blue-600">*</span>
             </label>
             <input
               name="inquiry_subject"
@@ -343,7 +343,7 @@ const Hero = () => {
               onChange={handleChange}
               type="text"
               placeholder="Your Purpose"
-              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
               required
             />
           </div>
@@ -351,14 +351,14 @@ const Hero = () => {
           {/* Message */}
           <div className="flex flex-col gap-3 w-full">
             <label className="font-bold text-sm">
-              Inquiry Message<span className="text-red-500">*</span>
+              Inquiry Message<span className="text-blue-600">*</span>
             </label>
             <textarea
               name="inquiry_message"
               value={form.inquiry_message}
               onChange={handleChange}
               placeholder="Enter your message here"
-              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-3"
+              className="bg-gray-100 border border-gray-200 rounded-xl px-4 py-2.5"
               required
             />
           </div>

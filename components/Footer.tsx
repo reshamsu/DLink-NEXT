@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-950 text-gray-700 border-t border-white/10">
       <div className="max-w-6xl mx-auto py-16 px-6 sm:px-12 2xl:px-0 flex flex-col gap-6">
-        <div className="flex flex-col lg:flex-row gap-12 w-full pb-10 border-b border-gray-800">
+        <div className="flex flex-col lg:flex-row gap-12 w-full pb-10 border-b border-white/10">
           <div className="flex flex-col items-center text-center md:items-start md:text-start gap-4 w-full md:w-sm">
             <Link
               href="/"
@@ -128,10 +128,10 @@ const Footer = () => {
 
             {/* Products */}
             <div className="ml-0 xl:ml-10">
-              <h6 className="text-base font-semibold mb-4 text-white">
+              <h6 className="text-sm font-semibold mb-4 text-white">
                 Find Property
               </h6>
-              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
+              <ul className="flex flex-col gap-2">
                 <li>
                   <button
                     onClick={() => handleNavClick("/property/apartments")}
@@ -177,10 +177,10 @@ const Footer = () => {
 
             {/* Company */}
             <div className="ml-0 xl:ml-10">
-              <h6 className="text-base font-semibold mb-4 text-white">
+              <h6 className="text-sm font-semibold mb-4 text-white">
                 D-Link Colombo
               </h6>
-              <ul className="flex flex-col gap-2.5 text-xs 2xl:text-sm">
+              <ul className="flex flex-col gap-2">
                 {[
                   { label: "About Us", href: "/about" },
                   { label: "Our Services", href: "/service" },
@@ -202,7 +202,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-6 border-b border-gray-800 w-full">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pb-6 border-b border-white/10 w-full">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <h6 className="text-white text-sm font-semibold">
               Stay in the loop
