@@ -8,7 +8,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 
-const ALLOWED_EMAILS = ["resham.iox@gmail.com", "dlink.colombo@gmail.com", "dilruh2010@gmail.com"];
+const ALLOWED_EMAILS = (process.env.NEXT_PUBLIC_ALLOWED_EMAILS ?? "").split(",");
 
 interface GoogleJwt {
   email: string;

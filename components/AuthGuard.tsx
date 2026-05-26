@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-const ALLOWED_EMAILS = ["resham.iox@gmail.com", "dlink-colombo@gmail.com"];
+const ALLOWED_EMAILS = (process.env.NEXT_PUBLIC_ALLOWED_EMAILS ?? "").split(",");
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
