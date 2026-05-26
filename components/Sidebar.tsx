@@ -61,17 +61,21 @@ const nav: NavSection[] = [
   },
 ];
 
-interface SessionUser { name: string; email: string; picture: string }
+interface SessionUser {
+  name: string;
+  email: string;
+  picture: string;
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [open, setOpen]   = useState(false);
-  const [user, setUser]   = useState<SessionUser | null>(null);
+  const [open, setOpen] = useState(false);
+  const [user, setUser] = useState<SessionUser | null>(null);
 
   useEffect(() => {
     setUser({
-      name:    localStorage.getItem("dl_user_name")    ?? "Admin",
-      email:   localStorage.getItem("dl_user_email")   ?? "",
+      name: localStorage.getItem("dl_user_name") ?? "Admin",
+      email: localStorage.getItem("dl_user_email") ?? "",
       picture: localStorage.getItem("dl_user_picture") ?? "",
     });
   }, []);
@@ -109,20 +113,21 @@ export default function Sidebar() {
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/favicon.ico"
-              alt="DC"
-              width={40}
+              alt="X"
+              width={50}
               height={20}
               className="object-contain"
             />
             <div>
-              <h1 className="text-sm 2xl:text-base font-extrabold uppercase">
+              <h1 className="text-base md:text-lg font-extrabold uppercase text-white leading-relaxed">
                 D-Link Estate
               </h1>
-              <p className="text-[11px] text-gray-500">
+              <p className="text-[10px] md:text-[11px] text-[#2563eb] font-bold leading-none">
                 D-Link Colombo (Pvt) Ltd.
               </p>
             </div>
           </Link>
+
           <button
             onClick={() => setOpen(false)}
             className="lg:hidden text-gray-500 hover:text-white transition p-1"
@@ -225,8 +230,12 @@ export default function Sidebar() {
               </div>
             )}
             <div className="min-w-0 flex-1">
-              <p className="text-xs font-bold text-white truncate">{user?.name ?? "Admin"}</p>
-              <p className="text-[10px] text-gray-500 truncate">{user?.email ?? ""}</p>
+              <p className="text-xs font-bold text-white truncate">
+                {user?.name ?? "Admin"}
+              </p>
+              <p className="text-[10px] text-gray-500 truncate">
+                {user?.email ?? ""}
+              </p>
             </div>
             <Link
               href="/logout"

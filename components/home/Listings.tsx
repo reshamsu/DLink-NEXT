@@ -166,8 +166,8 @@ const Listings: React.FC = () => {
 
   return (
     <section className="bg-gray-100 text-gray-800" id="listings">
-      <div className="max-w-6xl mx-auto flex flex-col gap-8 py-16 px-8 2xl:px-0">
-        <div className="flex flex-col gap-3">
+      <div className="max-w-6xl mx-auto flex flex-col items-center gap-8 py-16 px-8 2xl:px-0">
+        <div className="flex flex-col gap-3 w-full">
           <p className="text-xs font-extrabold bg-blue-500/10 text-blue-600 w-fit px-4 py-2 rounded-full">
             LISTINGS
           </p>
@@ -266,8 +266,8 @@ const Listings: React.FC = () => {
                     <span className="text-[10px] font-bold text-blue-500 bg-blue-50 px-2.5 py-1 rounded-full line-clamp-1 max-w-[70%]">
                       {listing.is_furnished}
                     </span>
-                    <Link href={`/listing/${listing.id}`} className="btn-primary-glass">
-                      <TbArrowRight size={16} />
+                    <Link href={`/listing/${listing.id}`} className="btn-dark-glass">
+                      <TbArrowRight size={20} />
                     </Link>
                   </div>
                 </div>

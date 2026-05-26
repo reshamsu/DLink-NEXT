@@ -193,7 +193,7 @@ const Page = () => {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto mt-20 px-0 xl:px-6 2xl:px-0">
+    <div className="max-w-6xl mx-auto mt-16 px-0 xl:px-6 2xl:px-0">
       {/* â”€â”€ Mobile: full-width slider â”€â”€ */}
       <div
         className="md:hidden relative h-[64vh] w-full overflow-hidden select-none"

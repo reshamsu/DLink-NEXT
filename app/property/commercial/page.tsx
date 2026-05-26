@@ -4,7 +4,7 @@ import Commercial from "@/components/property/Commercial";
 
 export default function Page() {
   return (
-     <div className="relative z-30 pt-18">
+     <div className="relative z-30 pt-16">
       <Commercial />
     </div>
   );

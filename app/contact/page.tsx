@@ -159,7 +159,7 @@ const Hero = () => {
 
         {/* TEXT */}
         <div className="max-w-6xl mx-auto absolute inset-0 flex flex-col justify-center items-center gap-2 md:gap-6 text-white/80 z-10 px-6 md:px-10 2xl:px-0">
-          <h1 className="text-[44px] md:text-6xl font-bold">{title}</h1>
+          <h1 className="text-[44px] md:text-5xl font-bold">{title}</h1>
           <p className="text-sm 2xl:text-base text-gray-200 max-w-3xl">
             {subtitle}
           </p>
