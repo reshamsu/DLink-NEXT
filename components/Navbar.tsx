@@ -63,10 +63,7 @@ const Navbar = () => {
     >
       <nav className="max-w-6xl mx-auto flex items-center justify-between py-2 px-4 md:px-8 2xl:px-0">
         {/* Logo */}
-        <Link
-          href="/"
-          className="flex items-center gap-2"
-        >
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/favicon.ico"
             alt="X"
@@ -86,7 +83,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4 lg:gap-6 text-[12px]">
           {/* Desktop Nav */}
-          <ul className="hidden md:flex items-center gap-6 text-[11px] font-medium">
+          <ul className="hidden md:flex items-center gap-2 text-[11px] font-medium">
             {Nav_Links.map((link) => {
               if (link.submenu) {
                 const isActive = link.submenu.some((sub) =>
@@ -95,13 +92,13 @@ const Navbar = () => {
                 return (
                   <li key={link.key} className="relative group">
                     <button
-                      className={`relative flex items-center gap-1 py-1.5 px-1 transition-colors duration-300
+                      className={`relative flex items-center gap-1 py-1.5 pl-4 px-2 rounded-full transition-colors duration-300
                         after:absolute after:bottom-0 after:left-0 after:h-[2px] after:rounded-full
                         after:transition-all after:duration-300 after:ease-in-out
                         ${
                           isActive
-                            ? "text-black after:w-full after:bg-blue-600 font-bold"
-                            : "text-black/90 hover:text-black font-semibold after:w-0 hover:after:w-full after:bg-blue-600"
+                            ? "text-blue-600 after:w-full bg-blue-600/10 font-bold"
+                            : "text-black/90 hover:text-black font-semibold hover:bg-black/10"
                         }`}
                     >
                       {link.label}
@@ -141,13 +138,13 @@ const Navbar = () => {
                   <Link
                     href={href}
                     onClick={(e) => handleNavClick(e, href)}
-                    className={`relative flex items-center py-1.5 px-1 transition-colors duration-300
+                    className={`relative flex items-center py-1.5 px-4 rounded-full transition-colors duration-300
                     after:absolute after:bottom-0 after:left-0 after:h-[2px] after:rounded-full
                     after:transition-all after:duration-300 after:ease-in-out
                     ${
                       isActive
-                        ? "text-black after:w-full after:bg-blue-600 font-bold"
-                        : "text-black/90 hover:text-black font-semibold after:w-0 hover:after:w-full after:bg-blue-600"
+                        ? "text-blue-600 after:w-full bg-blue-600/10 font-bold"
+                        : "text-black/90 hover:text-black font-semibold hover:bg-black/10"
                     }`}
                   >
                     {link.label}
@@ -158,13 +155,13 @@ const Navbar = () => {
           </ul>
 
           {/* Right side */}
-          <div className="hidden md:flex w-px h-4 bg-black/30 mr-2" />
+          <div className="hidden md:flex w-px h-4 bg-blue-600/30 mr-2" />
 
           <a
-            href="tel:+94774374420"
+            href="tel:+94761676603"
             className="flex items-center btn-primary-sm"
           >
-            Let&apos;s Talk
+            Let&apos;s Connect
           </a>
 
           <div className="md:hidden flex items-center gap-4">
